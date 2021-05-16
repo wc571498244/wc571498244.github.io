@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>易歪歪的博客</title>
+  
+  <subtitle>歪歪伊</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wc571498244.github.io/"/>
+  <updated>2021-05-16T02:54:01.414Z</updated>
+  <id>https://wc571498244.github.io/</id>
+  
+  <author>
+    <name>易歪歪</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gunicorn 配置详解</title>
+    <link href="https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/"/>
+    <id>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</id>
+    <published>2021-05-16T02:52:48.000Z</published>
+    <updated>2021-05-16T02:54:01.414Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;config&quot;&gt;&lt;a href=&quot;#config&quot; class=&quot;headerlink&quot; title=&quot;config&quot;&gt;&lt;/a&gt;config&lt;/h3&gt;&lt;p&gt;&lt;code&gt;-c CONFIG, --config
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://wc571498244.github.io/tags/Python/"/>
+    
+  </entry>
+  
+</feed>
