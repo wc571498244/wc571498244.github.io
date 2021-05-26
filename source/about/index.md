@@ -8,8 +8,8 @@ mathjax: true
 
 
 ## CV
-[中文版](/medias/files/cv-zh.pdf)
-[English Version](/medias/files/cv-en.pdf)
+[中文版](/medias/files/)
+[English Version](/medias/files/)
 
 ## 教育背景
 湖南科技学院

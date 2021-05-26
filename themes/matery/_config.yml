@@ -175,21 +175,11 @@ profile:
 myProjects:
   enable: true
   data:
-    hexo-matery-modified:
+    wc571498244.github.io:
       icon: fa-meetup
       iconBackground: 'linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)'
       url: https://github.com/wc571498244/wc571498244.github.io
-      desc: 我的个性化配置过的博客源码，即下即用。
-    #Span-Linearization-Parser:
-    #    icon: fa-database
-    #    iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
-    #    url: https://github.com/AntNLP/span-linearization-parser
-    #    desc: 基于PyTorch的成分句法分析模型，ACL2020论文源码。
-    #ECNU-BeamerTemplate:
-    #    icon: fa-file-text-o
-    #    iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
-    #    url: https://github.com/godweiyang/ECNU_BeamerTemplate
-    #    desc: 基于Latex Beamer的华东师范大学PPT模板。
+      desc: 博客源码，即下即用.(dev分支)
 
 # config my skills informations in about page.
 # If you don't want to display this `My Skills` content, you can deactivate or delete this configuration.
