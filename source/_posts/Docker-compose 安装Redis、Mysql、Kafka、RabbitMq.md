@@ -1,5 +1,5 @@
 ---
-title: Gunicorn 配置详解
+title: Docker-compose 安装Redis、Mysql、Kafka、RabbitMq
 top: false
 cover: false
 toc: true
