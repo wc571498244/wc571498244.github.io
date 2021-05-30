@@ -190,9 +190,12 @@ mySkills:
     Python:
       background: 'linear-gradient(to right, #2196F3 0%, #42A5F5 100%)'
       percent: 90%
-    SQL:
+    MySQL:
       background: 'linear-gradient(to right, #4CAF50 0%, #81C784 100%)'
       percent: 80%
+    MongoDB:
+      background: 'linear-gradient(to right, #4CAF50 0%, #81C784 100%)'
+      percent: 70%
     HTML:
       background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
       percent: 45%
