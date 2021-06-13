@@ -78,11 +78,10 @@ sudo usermod -aG docker $USER
 
 3. 修改docker服务配置`/usr/lib/systemd/system/docker.service`
 ```sh
+将原有的注释
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-# 将原有的注释
-#ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-
-# 新加代码
+新加代码
 ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 ```
 
@@ -113,7 +112,7 @@ python:3.6 # 镜像名
 Runner registered successfully.
 ```
 
-[getlab-token](/medias/files/getlab-token.PNG)
+[getlab-token](/medias/files/getlab-token.png)
 
 
 
