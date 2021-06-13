@@ -52,7 +52,8 @@ networks:
 ```
 
 > 目录结构如下：
-```
+
+```sh
 .
 ├── config
 │   └── gitlab
@@ -61,35 +62,38 @@ networks:
 |   └── gitlab-runner
 ├── docker-compose.yaml
 └── logs
-
 ```
 
-
 **解决 ERROR:Docker Got permission denied while trying to connect to the Docker daemon socket at unix://**
+
 1. 给权限
 ```sh
 chmod 666 /var/run/docker.sock
 ```
+
 2. 把当前用户加入docker组 
 ```sh
 sudo usermod -aG docker $USER
 ```
+
 3. 修改docker服务配置`/usr/lib/systemd/system/docker.service`
 ```sh
+
 # 将原有的注释
 #ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
 # 新加代码
 ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 ```
+
 4. 重启docker服务
 ```sh
 systemctl restart docker
 ```
 
 ### gitlab-runner 注册到gitlab
-
 > 注册命令
+
 ```sh
 $ docker exec -it <gitlab-runner_container_name> gitlab-runner register
 
@@ -109,7 +113,7 @@ python:3.6 # 镜像名
 Runner registered successfully.
 ```
 
-![getlab-token](/medias/files/getlab-token.PNG)
+[getlab-token](/medias/files/getlab-token.PNG)
 
 
 
