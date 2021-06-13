@@ -76,11 +76,10 @@ chmod 666 /var/run/docker.sock
 sudo usermod -aG docker $USER
 ```
 
-3. 修改docker服务配置`/usr/lib/systemd/system/docker.service`
-```sh
+3. 修改docker服务配置/usr/lib/systemd/system/docker.service
+```python
 将原有的注释
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
-
 新加代码
 ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 ```
