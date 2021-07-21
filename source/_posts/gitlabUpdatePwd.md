@@ -30,6 +30,3 @@ Enqueued ActionMailer::MailDeliveryJob (Job ID: 1baf8589-c259-4287-bb21-345c862c
 
 exit
 ```
-
-
-![getlab-token](getlab-token.png)
