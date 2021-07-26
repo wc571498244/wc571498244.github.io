@@ -1,0 +1,2324 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="2021-05 开发者热榜, 博客 Python">
+    <meta name="baidu-site-verification" content="code-9mfL0js8FS">
+    <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
+    <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
+    <meta name="description" content="2021-05-31
+
+架构师图谱（上篇） 
+
+10 问 10 答：你真的了解线程池吗？ 
+
+搜狗面试题：IO 多路复用之 select、poll、epoll 的区别 
+
+消息队列解耦是骗小孩儿的 
+
+面试侃集合：SynchronousQu">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>2021-05 开发者热榜 | 进步缓慢的CYX</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ce84511d3df71640a9378a69f6293044";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">进步缓慢的CYX</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">进步缓慢的CYX</div>
+        <div class="logo-desc">
+            
+            记录生活、记录工作
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wc571498244/wc571498244.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wc571498244/wc571498244.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        2021-05 开发者热榜
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/热榜/" target="_blank">
+                            <span class="chip bg-color">热榜</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/热榜/" class="post-category" target="_blank">
+                            热榜
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-06-05
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    OrangeQ
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="2021-05-31"><a href="#2021-05-31" class="headerlink" title="2021-05-31"></a>2021-05-31</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/xha1t37" target="_blank" rel="noopener">架构师图谱（上篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/b70jpzu" target="_blank" rel="noopener">10 问 10 答：你真的了解线程池吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d6e55fr" target="_blank" rel="noopener">搜狗面试题：IO 多路复用之 select、poll、epoll 的区别 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/szkr8sy" target="_blank" rel="noopener">消息队列解耦是骗小孩儿的 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bv8je05" target="_blank" rel="noopener">面试侃集合：SynchronousQueue 公平模式篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jawq9ra" target="_blank" rel="noopener">JDK 动态代理：不仅要学会用，更要掌握其原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/c08a0to" target="_blank" rel="noopener">Google 大规模监控系统：Monarch </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/y3b2owg" target="_blank" rel="noopener">Redis 集群 JedisCluster 的 pipeline 自定义实现 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2rxc164" target="_blank" rel="noopener">数仓的元数据管理和上下游约定 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jj02es0" target="_blank" rel="noopener">拯救祭天的程序员：事件溯源模式 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/i2afkgv" target="_blank" rel="noopener">技术分享：手机推送原理剖析指南 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/76ru5go" target="_blank" rel="noopener">初探可编程网关 Pipy </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/18mijcv" target="_blank" rel="noopener">浅谈前端水印 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3y65u6s" target="_blank" rel="noopener">工作五年反思 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0pukbi2" target="_blank" rel="noopener">资深 DevOps 工程师揭秘：为什么你对于 DevOps 无从下手？（原则篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/woena4v" target="_blank" rel="noopener">使用 JavaScript 访问设备硬件的新标准 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/v8tzj2u" target="_blank" rel="noopener">58同城 Hadoop 2.6 升级 3.2 实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5qsk2x3" target="_blank" rel="noopener">残影拖尾实现思路分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bmxr234" target="_blank" rel="noopener">错误档案（二）：MySQL 8.0 连接 C3P0 的问题 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vlf02z6" target="_blank" rel="noopener">使用 .NET 5 自制编程语言 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-30"><a href="#2021-05-30" class="headerlink" title="2021-05-30"></a>2021-05-30</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/z26byeu" target="_blank" rel="noopener">25 张图，一万字，拆解 Linux 网络包发送过程 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wwmsd4f" target="_blank" rel="noopener">学会这 10 个设计原则，离架构师又进了一步 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/uq1g9e6" target="_blank" rel="noopener">从源码角度研究 Java 动态代理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mhg7tvg" target="_blank" rel="noopener">Spring 事务源码解析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xngcn69" target="_blank" rel="noopener">工具 | 一款 HTML5 远程桌面网关 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ehn7pjw" target="_blank" rel="noopener">用 Kubernetes 搭建 Etcd 集群和 WebUI </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ygxad38" target="_blank" rel="noopener">Linux 下的防火墙 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hlwpt15" target="_blank" rel="noopener">美团外卖美食知识图谱的迭代及应用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/epo9neh" target="_blank" rel="noopener">Java 并发：ThreadLocal 的简单介绍 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ushzvi4" target="_blank" rel="noopener">安全左移理念，腾讯 DevSecOps 如何实践？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ndczb5x" target="_blank" rel="noopener">讲讲大厂面试必考的假设检验 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5m9ap94" target="_blank" rel="noopener">写技术博客的一些想法，你我共勉 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4vo46r0" target="_blank" rel="noopener">性能分析场景下，一种实时分位数计算的系统及方法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/no2jbd4" target="_blank" rel="noopener">DuckDB：接口与示例 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/z5l7v6k" target="_blank" rel="noopener">AES 算法（三）：填充模式 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ih7nofa" target="_blank" rel="noopener">京东 App 订单业务 Swift 优化总结 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/s91bndh" target="_blank" rel="noopener">卷？能有搞开源打包工具的大佬们卷？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/oh0jddn" target="_blank" rel="noopener">使用 Quarkus 和 MicroProfile 实现微服务特性 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cme0pqf" target="_blank" rel="noopener">在疯狂生长的初创工作是什么体验 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ygqapa8" target="_blank" rel="noopener">“鸭梨” 大吗？ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-29"><a href="#2021-05-29" class="headerlink" title="2021-05-29"></a>2021-05-29</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/d139zzl" target="_blank" rel="noopener">有了这款运维自动化神器，可以抛弃 Ansible 了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xgjagkk" target="_blank" rel="noopener">携程 Web CI/CD 实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/exb3tei" target="_blank" rel="noopener">JVM 进阶之路（十三）：类加载过程 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/w8a1cdp" target="_blank" rel="noopener">RabbitMQ 的 6 种工作模式 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/u9wqg6f" target="_blank" rel="noopener">细谈 Go 变量的内存分布 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/269bwr7" target="_blank" rel="noopener">闲鱼是如何利用 RxJava 提升异步编程能力的 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1augip4" target="_blank" rel="noopener">轻松玩转移动 AI：一键集成的端智能框架 Pitaya </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1j6tho5" target="_blank" rel="noopener">通过海量数据挖掘新兴领域需求 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rjc6fas" target="_blank" rel="noopener">Lucene 段的强制合并（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vc3holy" target="_blank" rel="noopener">训练 GPT-3，为什么原有的深度学习框架吃不消？ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-28"><a href="#2021-05-28" class="headerlink" title="2021-05-28"></a>2021-05-28</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/sorcj5w" target="_blank" rel="noopener">深入源码，深度解析 Java 线程池的实现原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vpwl7ir" target="_blank" rel="noopener">开发团队如何选型支付网关 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xkfsqsz" target="_blank" rel="noopener">一网打尽 HDFS、MapReduce、Yarn 实战参数调优 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/lrypigs" target="_blank" rel="noopener">BPF 之巅：洞悉 Linux 系统和应用性能 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5rsuqjy" target="_blank" rel="noopener">我这样升级 Go 版本，你呢？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hfpeg25" target="_blank" rel="noopener">Go 可用性（七）：总结 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nz6onir" target="_blank" rel="noopener">玩转微信读书 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5kl2svw" target="_blank" rel="noopener">mybatis-sql 输出小插曲 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vwedj5c" target="_blank" rel="noopener">[译] Google I/O 2021，Flutter 2.2 中的新功能一览 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zo9g6il" target="_blank" rel="noopener">搞个大点的，某团购 App mtgsig </a></p>
+</li>
+</ol>
+<h4 id="2021-05-27"><a href="#2021-05-27" class="headerlink" title="2021-05-27"></a>2021-05-27</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/s8xgae9" target="_blank" rel="noopener">掌门 MySQL 数据库规约落地及优化实战 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ybiw04u" target="_blank" rel="noopener">高并发、高性能、高可用系统设计经验 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cs2cbes" target="_blank" rel="noopener">进程、线程与协程傻傻分不清？一文带你吃透 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/q8zmevp" target="_blank" rel="noopener">高性能万亿级消息吞吐 Pulsar 设计原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/p77raxg" target="_blank" rel="noopener">这可能是最容易理解的 Go Mutex 源码剖析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ijogl07" target="_blank" rel="noopener">Java 并发编程专题系列之从底层分析 LockSupport 原理机制 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/o9lpsd5" target="_blank" rel="noopener">又吵起来了，Go 是传值还是传引用？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2buvyqq" target="_blank" rel="noopener">从 Netflix 到 Alibaba，Spring Cloud 更好了吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9lt21j7" target="_blank" rel="noopener">Mesh 大规模落地后，下一站是？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nf6f6dy" target="_blank" rel="noopener">万字攻略：迅速蹿红的数据湖，你真的招架得住吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mbmdjm5" target="_blank" rel="noopener">在 React Native 上使用 Agora 开发多频道音视频应用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/04iwr1c" target="_blank" rel="noopener">AI 入行那些事儿（十三）：人工智能的三类技术岗位 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dei0ihq" target="_blank" rel="noopener">.NET 程序崩溃了怎么抓 Dump ? 我总结了三种方案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d6ibczk" target="_blank" rel="noopener">基于 Web 引擎扩展技术的 RTC 混合开发框架实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ghjdkxr" target="_blank" rel="noopener">了不起的 Chrome 浏览器（三）：Chrome 91 支持 WebAssembly SIMD，加速 Web 在 AI 等领域的应用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wp0paz6" target="_blank" rel="noopener">AES 算法（一）：简介 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9sp3u68" target="_blank" rel="noopener">[译] Android 隐私安全更新一览 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/55bjfc7" target="_blank" rel="noopener">Flink jm、tm 启动过程和资源分配 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ny44udc" target="_blank" rel="noopener">正经分析 iOS 包大小优化 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ni0zzo7" target="_blank" rel="noopener">漫画：那些对程序员来说伤害性不高但是侮辱性极强的瞬间 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-26"><a href="#2021-05-26" class="headerlink" title="2021-05-26"></a>2021-05-26</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/3tudqnj" target="_blank" rel="noopener">做一次黑客，入侵一次服务器 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rffhesh" target="_blank" rel="noopener">@Autowired 的这些新姿势，你学会了？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rg1xz9u" target="_blank" rel="noopener">资料 | 腾讯出品的，面向开发人员梳理的代码安全指南 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ralhzed" target="_blank" rel="noopener">Java 反射机制：跟着代码学反射 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/izdtuy1" target="_blank" rel="noopener">Java 容器：基于源码分析 Map 集合体系 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5n7iu13" target="_blank" rel="noopener">Go：开箱即用，Web 界面一键安装，没有项目经验，可以拿这个练手 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/04obda1" target="_blank" rel="noopener">设计和分析 Java 动态代理的技术实现 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6jgefa2" target="_blank" rel="noopener">Redis 在微服务领域的贡献 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a3b7d7v" target="_blank" rel="noopener">蜻蜓FM 信息流推荐探索与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/r9eiirl" target="_blank" rel="noopener">Go 可用性（六）：熔断 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9kxllh2" target="_blank" rel="noopener">面阿里 P7，竟问这么简单的题目？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/s2iot5y" target="_blank" rel="noopener">Java 并发：显式锁篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nr8muzy" target="_blank" rel="noopener">独立开发变现周刊（第 3 期）：100 个 CSS 加载动画 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mbmuynu" target="_blank" rel="noopener">用 Go 实现配置中心（二） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/q8fwmfa" target="_blank" rel="noopener">新编辑神器！可以在终端运行 Jupyter Notebook 了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qd9qw2m" target="_blank" rel="noopener">使用 Apache Pulsar + Hudi 构建 Lakehouse 方案了解下？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nhyvvxd" target="_blank" rel="noopener">PwnLnX：一款针对 Linux 系统的渗透测试工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/we7vjgg" target="_blank" rel="noopener">安全面试题：为什么 masscan 扫描快？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2ke8idu" target="_blank" rel="noopener">Tomcat 应用服务启不来，没有报错日志？不可能 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/e4cu3tb" target="_blank" rel="noopener">憋个大招 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-25"><a href="#2021-05-25" class="headerlink" title="2021-05-25"></a>2021-05-25</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/obo72ks" target="_blank" rel="noopener">听叔一句劝，消息队列的水太深，你把握不住 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jwzcso7" target="_blank" rel="noopener">字节跳动异构场景下的高可用建设实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bbulcom" target="_blank" rel="noopener">Kafka 为什么要抛弃 ZooKeeper？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/obbhbyl" target="_blank" rel="noopener">详解 Go 空结构体的 3 种使用场景 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dlbbh09" target="_blank" rel="noopener">面试侃集合：LinkedBlockingQueue 篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/21xn1nt" target="_blank" rel="noopener">分布式动态配置后浪推前浪：Nacos </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7t64cmv" target="_blank" rel="noopener">故事篇：数据库架构演变之路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pr7tx1o" target="_blank" rel="noopener">Kubernetes 稳定性保障手册：洞察 + 预案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rvb0p4k" target="_blank" rel="noopener">资深 DevOps 工程师揭秘：为什么你对于 DevOps 无从下手？（认知篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kuvdreq" target="_blank" rel="noopener">图解堆排序算法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/skwg9g5" target="_blank" rel="noopener">zk 选举原理探索（上） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/18kb0os" target="_blank" rel="noopener">Goroutine Local Storage 的一些实现方案和必要性讨论 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/oupfx04" target="_blank" rel="noopener">Android 之 OkHttp 网络架构源码深入分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sx7x45q" target="_blank" rel="noopener">在？送你个开源社区版 AirTag：GitHub 热点速览 v.21.21 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0h97qx4" target="_blank" rel="noopener">论文笔记：向量召回技术在 Facebook 搜索中的落地 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4h2kfve" target="_blank" rel="noopener">年轻人逃离算法？更懂你的时尚推荐算法，你会拒绝吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a1ezb05" target="_blank" rel="noopener">Anki 卡片共享 CSS 的方法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6612w8j" target="_blank" rel="noopener">[译] Android Jetpack 更新一览 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3rhjmhe" target="_blank" rel="noopener">某区块链公司竟然用这道算法题来面试 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rmge4jn" target="_blank" rel="noopener">ZLT-MP v4.5.0 发布 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-24"><a href="#2021-05-24" class="headerlink" title="2021-05-24"></a>2021-05-24</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/5u1byn9" target="_blank" rel="noopener">各厂三年 Go 面经，已入字节 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ngx4og0" target="_blank" rel="noopener">“三次握手，四次挥手” 这么讲，保证你忘不了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/lq1k5bp" target="_blank" rel="noopener">[译] 您不想错过的 IntelliJ IDEA 十大插件 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/te3l12o" target="_blank" rel="noopener">人人都是架构师？？？谈何容易 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d1m43ci" target="_blank" rel="noopener">10 个解放双手实用在线工具，有些代码真的不用手写 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/iuap0u6" target="_blank" rel="noopener">Dubbo 面试 17 问 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/60dpt6s" target="_blank" rel="noopener">从零开始写数据库：500 行代码实现 LSM 数据库 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gyk8wki" target="_blank" rel="noopener">看了那么多 MySQL 教程，90% 的同学依然写不对的一个简单 SQL </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3106ldp" target="_blank" rel="noopener">JVM 实现原理分析之 safepoint </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fg5uqnz" target="_blank" rel="noopener">Apache Spark 3.0 是如何提高 SQL 工作负载的性能 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/j2oi5lo" target="_blank" rel="noopener">Spring 官宣，干掉原生 JVM！有点小激动啊 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6bdrdyx" target="_blank" rel="noopener">硬刚 Hive：4 万字基础调优面试小总结 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/520qblg" target="_blank" rel="noopener">自律的提问者 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kpu94zu" target="_blank" rel="noopener">深入了解 PHP：用 gdb 调试源码 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8vjyq3j" target="_blank" rel="noopener">Netty 源码解析：FastThreadLocal 与 HashedWheelTimer </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rg9aapb" target="_blank" rel="noopener">Flutter 还是 React Native？谁是 2021 年构建移动应用程序的最佳选择？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/410s6fe" target="_blank" rel="noopener">COS 数据湖最佳实践：基于 Serverless 架构的入湖方案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dtlq51x" target="_blank" rel="noopener">听见用户的声音，爱奇艺全渠道用户反馈分析的探索与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/g4k916p" target="_blank" rel="noopener">CooBox 之早鸟执行器，轻松控制频率处理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/03m0auz" target="_blank" rel="noopener">.Net Core with 微服务：架构图 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-23"><a href="#2021-05-23" class="headerlink" title="2021-05-23"></a>2021-05-23</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/5za3e5u" target="_blank" rel="noopener">Golang 内存管理分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/18gz8ap" target="_blank" rel="noopener">百亿规模 API 网关服务 Shepherd 的设计与实现 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/b4qs5mi" target="_blank" rel="noopener">程序员如何谈薪资 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/25bbheg" target="_blank" rel="noopener">逛到底层看 NIO 的零拷贝 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qrqp4ja" target="_blank" rel="noopener">15 分钟！一文帮小白搞懂操作系统之内存 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8j22qny" target="_blank" rel="noopener">抄底的艺术：量化交易之路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/g6gcl8g" target="_blank" rel="noopener">DuckDB：开篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hrzbl6z" target="_blank" rel="noopener">解谜英语语法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/s8qw93o" target="_blank" rel="noopener">ElasticSearch 海量数据查询性能优化 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5f0vunw" target="_blank" rel="noopener">Lambda 表达式实现原理分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zu0ile7" target="_blank" rel="noopener">React + TypeScript 实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nsuesyp" target="_blank" rel="noopener">Kubernetes 实用技巧：使用 ksniff 抓包 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0nl82hl" target="_blank" rel="noopener">团队大了，胆儿变小了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9lcpv5e" target="_blank" rel="noopener">近业务 = 困死在一条船上？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/viaayf9" target="_blank" rel="noopener">Chrome 插件：图片批量下载 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d1elomi" target="_blank" rel="noopener">FastAPI 的 swagger ui 界面崩溃修复记 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/k3yowca" target="_blank" rel="noopener">谈谈 Service Worker 与 PWA </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/07ie7w9" target="_blank" rel="noopener">在 Python 中判断两个浮点数的相等 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1mxnn0j" target="_blank" rel="noopener">聊聊安全溯源分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fg5b2h9" target="_blank" rel="noopener">测试的杀虫剂现象 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-22"><a href="#2021-05-22" class="headerlink" title="2021-05-22"></a>2021-05-22</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/shuynwm" target="_blank" rel="noopener">对话阿里副总裁叶军：你们误会 TO B 了，钉钉的底层逻辑 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dboaec1" target="_blank" rel="noopener">一晚上掌握数仓必会函数 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mshzps1" target="_blank" rel="noopener">Go 面试官问我如何实现面向对象？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9qh9d09" target="_blank" rel="noopener">分块传输就不能跨域？<code>chunked</code> 编码影响 <code>CORS</code> 跨域的问题排查 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/r2fvvia" target="_blank" rel="noopener">绝了，没想到一个 source map 居然涉及到那么多知识盲区 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kka19ky" target="_blank" rel="noopener">正则表达式有几种位置匹配模式？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rax9mj2" target="_blank" rel="noopener">我是怎样从 0 到 1 手写 babel 的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sbnpq55" target="_blank" rel="noopener">C# 并行和多线程编程：认识和使用 Task </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0wh5k3a" target="_blank" rel="noopener">资料 | 设计模式 Java 版 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fa6qc29" target="_blank" rel="noopener">Android 进程通讯机制之 Binder（信使）架构以及内存映射详解 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-21"><a href="#2021-05-21" class="headerlink" title="2021-05-21"></a>2021-05-21</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/t1o49fm" target="_blank" rel="noopener">企业微信万亿级日志检索系统 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/q62fiq2" target="_blank" rel="noopener">如闪电划破雨夜，这些开源项目瞬间点亮了命令行 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/p2gl29o" target="_blank" rel="noopener">聊聊部署在 Docker 容器里面的 Spring Boot 项目如何启用 Arthas </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2gko5th" target="_blank" rel="noopener">如何井井有条的管理开发任务（附任务管理模板） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nnicr2q" target="_blank" rel="noopener">Redis 破障之路（四）：Jedis 基本使用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rb0xb1h" target="_blank" rel="noopener">海康三年开发社招：四面通过 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/458js9n" target="_blank" rel="noopener">状态管理本应如此简单 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3j55yw0" target="_blank" rel="noopener">Android 之 App 启动优化和优雅过渡动画全面解析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cr3hf19" target="_blank" rel="noopener">Android 12 Beta 版发布，诸多亮点不容错过 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4036fkc" target="_blank" rel="noopener">GUI 界面如何设计？ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-20"><a href="#2021-05-20" class="headerlink" title="2021-05-20"></a>2021-05-20</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/ep5e8sd" target="_blank" rel="noopener">亿级系统的 Redis 缓存如何设计？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/osge9c2" target="_blank" rel="noopener">这款远程桌面软件开源了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8fcktmr" target="_blank" rel="noopener">App 安全合规 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0xgnpbf" target="_blank" rel="noopener">Java 容器：基于源码分析 List 集合体系 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6vy3amw" target="_blank" rel="noopener">深度解密 Go 语言之基于信号的抢占式调度 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9l6q8vn" target="_blank" rel="noopener">数据分析引擎黑马 ClickHouse 最新技术的实践与应用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/92jmc1s" target="_blank" rel="noopener">Linux 内核 vs Windows 内核 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7l0c9n2" target="_blank" rel="noopener">Karmada：工商银行多 k8s 集群管理及容灾实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8to855z" target="_blank" rel="noopener">初探 Golang 代码混淆 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4lpp3ik" target="_blank" rel="noopener">Python 自动扫描出微信不是好友名单 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/w4firqt" target="_blank" rel="noopener">云计算的背后到底是什么？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1qmg2o3" target="_blank" rel="noopener">前端小姐姐和你聊聊 IOC 中依赖注入那些事 (Dependency inject) </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/yfcmr5y" target="_blank" rel="noopener">绘制类图的一般步骤和方法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5ode4ev" target="_blank" rel="noopener">图算法系列之深度优先搜索（二） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5ybjmgl" target="_blank" rel="noopener">JavaScript 的基本类型和引用类型 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/tbed5tx" target="_blank" rel="noopener">Flutter Fish Redux 架构演进 2.0 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/f5jeg82" target="_blank" rel="noopener">这些前沿 BIP 开发知识，你还不知道吗 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sb4ru62" target="_blank" rel="noopener">现代 C++：简洁的 as_cast 函数模板 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xkm9s48" target="_blank" rel="noopener">漫画｜程序员：大师，面对 bug 我总是冷静不了，应该怎么办？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0nlu21e" target="_blank" rel="noopener">一文彻底搞懂 DvaJS 原理 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-19"><a href="#2021-05-19" class="headerlink" title="2021-05-19"></a>2021-05-19</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/bzx7ri7" target="_blank" rel="noopener">Spring Boot 开发秘籍：集成参数校验及高阶技巧 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pws2m3l" target="_blank" rel="noopener">微软又一个数据可视化神器开源了！非常酷炫 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/eonszqf" target="_blank" rel="noopener">什么是跨域？如何解决？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0nsf6pk" target="_blank" rel="noopener">Java 并发：线程池篇（附场景分析） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/64lpl8z" target="_blank" rel="noopener">[译] 如何设计一个容错的微服务架构 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6w5jz3l" target="_blank" rel="noopener">Java 并发编程专题系列之深入分析 AQS 的工作原理（前传） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qbi7z31" target="_blank" rel="noopener">面试篇：虚拟机栈 5 连问？一听心里就乐了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/r3n36o3" target="_blank" rel="noopener">如何用 JS 实现页面录制与回放 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xv8lj51" target="_blank" rel="noopener">做个产品喜欢的开发 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wb7n2nl" target="_blank" rel="noopener">验证是否存在写文件漏洞小技巧 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jpztcgn" target="_blank" rel="noopener">玩转直播系列之 RTMP 协议和源码解析（二） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/146am4j" target="_blank" rel="noopener">读者：西法，记忆化递归究竟怎么改成动态规划啊？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/37gh7wp" target="_blank" rel="noopener">Go 实现简易端口扫描 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/u3qnfym" target="_blank" rel="noopener"> 百亿级图数据在快手安全情报的应用与挑战 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nzee8m6" target="_blank" rel="noopener">[译] 小函数的调用开销需要考虑吗？Go 内联了解下 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9286dr8" target="_blank" rel="noopener">用好 Python 数据结构解题《347. 前 K 个高频元素》 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/e72taje" target="_blank" rel="noopener">HarmonyOS 鸿蒙开发：开发环境 DevEco Studio 安装 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zai4jmx" target="_blank" rel="noopener">Android 的 ViewPager2 实战详解：入门到精通 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8cc8gmu" target="_blank" rel="noopener">Coobox 之 Android App 前后台状态变化通知 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3hk8rkc" target="_blank" rel="noopener">记一次 .NET 某旅行社 Web 站 CPU 爆高分析 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-18"><a href="#2021-05-18" class="headerlink" title="2021-05-18"></a>2021-05-18</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/r3kppel" target="_blank" rel="noopener">WebRTC 的前世今生 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xfj8e0e" target="_blank" rel="noopener">动图演示：彻底理解红黑树？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cc99d68" target="_blank" rel="noopener">消息队列产生严重消息堆积怎么处理？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3o1c6vb" target="_blank" rel="noopener">Java 反编译工具的使用与对比分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/l9yirih" target="_blank" rel="noopener">JVM 进阶之路（十二）：字节码指令 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pwz9rfd" target="_blank" rel="noopener">Go sync.Pool 浅析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/o7pvjm6" target="_blank" rel="noopener">六面字节终于拿下，双非菜鸡的暑期实习 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sq70sbp" target="_blank" rel="noopener">Arthas 3.5.1 发布：神级特性！内存搜索对象 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qadxlhp" target="_blank" rel="noopener">Go 语言中 new 和 make 你使用哪个来分配内存？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gq64qdn" target="_blank" rel="noopener">Django 3.0 + Redis 3.4 + Celery 4.4 应用开发（附源码） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/z474gay" target="_blank" rel="noopener">FoundationDB：Apple 开源的分布式 KV 存储 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6xcz0t9" target="_blank" rel="noopener">如何快速实现一个聊天室？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3auey0k" target="_blank" rel="noopener">实践解析 | 如何通过 WebAssembly 在 Web 进行实时视频人像分割 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ys4z01r" target="_blank" rel="noopener">Kubebuilder 进阶：源码分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gf1ivgw" target="_blank" rel="noopener">算法转 Java 后端，2021 秋招斩获腾讯、京东、百度等大厂 Offer 面经分享 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ukuaetz" target="_blank" rel="noopener">深入探究 6 个 React 诡异现象 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ioljlm8" target="_blank" rel="noopener">Presto 入门及查询优化方法总结 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/oweu0c5" target="_blank" rel="noopener">早期阶段的 ToB SaaS 如何做 “数据收集” </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5i83v42" target="_blank" rel="noopener">打造后台登录页面扫描工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ff93fhy" target="_blank" rel="noopener">你真的懂点击率 (CTR) 建模吗？ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-17"><a href="#2021-05-17" class="headerlink" title="2021-05-17"></a>2021-05-17</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/a3frc3i" target="_blank" rel="noopener">聊一聊 Linux 的五种 IO 模型 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5wy35j7" target="_blank" rel="noopener">Redis 技术专题系列之数据同步持久化机制 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jly7bl3" target="_blank" rel="noopener">工具 | 字节跳动开源的 Markdown 编辑器 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/97tocs6" target="_blank" rel="noopener">请立刻停止使用 JWT 进行会话管理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0bzz8sf" target="_blank" rel="noopener">Kafka 万亿级消息实战 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qf07xgk" target="_blank" rel="noopener">实时计算框架：Flink 集群搭建与运行机制 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qfxih79" target="_blank" rel="noopener">掉进数据治理无止境的坑，我是怎么爬出来的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/euwldfo" target="_blank" rel="noopener">为什么 Go map 和 slice 是非线性安全的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4c58qqk" target="_blank" rel="noopener">Go 实现一个 JS 解释器 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7nmyit0" target="_blank" rel="noopener">后期数据库主从架构的痛点，真的痛 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1j7jqku" target="_blank" rel="noopener">Python 之父爆料：明年至少令 Python 提速 1 倍 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xt7kx5u" target="_blank" rel="noopener">面试侃集合（ArrayBlockingQueue 篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2pcdauw" target="_blank" rel="noopener">Netty 源码解析：对象池 Recycler 实现原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ur8a54x" target="_blank" rel="noopener">硬着头皮写，硬着头皮搞：一个服务一个数据库模式（下） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ojus0fq" target="_blank" rel="noopener">分布式应用运行时 Dapr </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7aw4hrj" target="_blank" rel="noopener">学会了 JsonPath，你的 Python 接口脚本才算完整 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ggex869" target="_blank" rel="noopener">为什么机器学习算法难以优化？一文详解算法优化内部机制 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fwaujdt" target="_blank" rel="noopener">利用 Agora Flutter SDK 开发多人视频通话 APP </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zmzw3tr" target="_blank" rel="noopener">Android App 个人信息收集合规自查 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/99pvhml" target="_blank" rel="noopener">awesome-design.ai 更新 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-16"><a href="#2021-05-16" class="headerlink" title="2021-05-16"></a>2021-05-16</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/0hjw87u" target="_blank" rel="noopener">日订单量达到 100 万单后，我们做了订单中心重构 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ymuky90" target="_blank" rel="noopener">突破 Web 应用研发效能的叹息之墙 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1b5jcg5" target="_blank" rel="noopener">消息队列如何确保消息的有序性？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a4op90o" target="_blank" rel="noopener">滴滴出行平台业务架构演进 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8xzkzb0" target="_blank" rel="noopener">应对 “高并发” 的思路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5q7ia30" target="_blank" rel="noopener">读《干法》：思考应该怎样去工作 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nhi4go9" target="_blank" rel="noopener">Kafka 技术专题之总体原理和分析介绍（下） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ewr4rul" target="_blank" rel="noopener">方法调用：一看就懂，一问就懵？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/32knt0g" target="_blank" rel="noopener">如何搞定不同公司的算法面试？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9ri7ti0" target="_blank" rel="noopener">低代码开发的九大原则 (Mendix) </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/o8oqe2u" target="_blank" rel="noopener">[译] 在分布式系统中解决，或平衡微服务的复杂度（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fhd9lgu" target="_blank" rel="noopener">用可视化探索数据特征的 N 种姿势 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hc0ok96" target="_blank" rel="noopener">在 JavaScript 应用程序中执行语音识别 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/65xb7v3" target="_blank" rel="noopener">那些好用的 VS Code 插件，究竟是如何提高编码效率的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xwksizl" target="_blank" rel="noopener">漏洞扫描器 hang 住 case 复盘 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qoj05dv" target="_blank" rel="noopener">用户数百万、月下载超 1 亿，著名开源项目 Babel 却说自己快没钱维护了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jcqmdn0" target="_blank" rel="noopener">V 神在用的 Archerswap </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0x4f9wt" target="_blank" rel="noopener">jbd2 的一种死锁分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gvg5v4e" target="_blank" rel="noopener">[译] 7 个有用的 PyTorch 技巧 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zec189c" target="_blank" rel="noopener">.NET 中的值类型与引用类型 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-15"><a href="#2021-05-15" class="headerlink" title="2021-05-15"></a>2021-05-15</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/wa52n1g" target="_blank" rel="noopener">高并发，我把握不住啊 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jt9e5bq" target="_blank" rel="noopener">动图图解！既然 IP 层会分片，为什么 TCP 层也还要分段？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7yfzhc1" target="_blank" rel="noopener">分区取模分库分表策略：多表事务分库内闭环解决方案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a0rzc4w" target="_blank" rel="noopener">聊聊前端的错误日志和监控 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/byr4l3l" target="_blank" rel="noopener">架构模式 CQRS </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hcpeepo" target="_blank" rel="noopener">工具 | Google 开源的，更方便、更友好地帮助开发者编写脚本的工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/aeu9gvf" target="_blank" rel="noopener">Wavve 这个产品是如何卖了几百万美金的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hq8mcsw" target="_blank" rel="noopener">Apache Flink 在 bilibili 的多元化探索与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/prv92im" target="_blank" rel="noopener">pypy 真的能让 Python 比 C 还快么？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/h0opsan" target="_blank" rel="noopener">前端智能化：图层抽象与优化 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-14"><a href="#2021-05-14" class="headerlink" title="2021-05-14"></a>2021-05-14</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/9yex08q" target="_blank" rel="noopener">我把这个软件，推荐给了总监 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/o9vzo5r" target="_blank" rel="noopener">2021 Java 后端实习春招面试题整理（含答案） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8ee5tsg" target="_blank" rel="noopener">Java 并发工具篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jggpayh" target="_blank" rel="noopener">实现无限缓存的 channel </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5ga4hr7" target="_blank" rel="noopener">用 Go 实现配置中心（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/na9v8qi" target="_blank" rel="noopener">Golang 调度模型 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sdn01ho" target="_blank" rel="noopener">拒绝后知后觉，分析师主动破局之路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/22qf866" target="_blank" rel="noopener">在 RecyclerView 中使用 ListAdapter </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/38r8iaa" target="_blank" rel="noopener">nocode 和 lowcode </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7rpkxbw" target="_blank" rel="noopener">论文｜DeepWalk 的算法原理、代码实现和应用说明 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-13"><a href="#2021-05-13" class="headerlink" title="2021-05-13"></a>2021-05-13</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/w8wyj2e" target="_blank" rel="noopener">消息队列把消息弄丢了怎么办？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3byclqk" target="_blank" rel="noopener">这个 GitHub 项目能克隆你的声音 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/v0h2yzf" target="_blank" rel="noopener">开箱即用的 Prometheus 告警规则集 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4xn9lu7" target="_blank" rel="noopener">低代码真的是 “行业毒瘤”？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/60iqdgi" target="_blank" rel="noopener">虚拟机线程问题分析（一）：服务调优或问题排查执行方案  </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cf864l7" target="_blank" rel="noopener">独立开发变现周刊（第 1 期）: Notion 也能做博客？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fkj8ild" target="_blank" rel="noopener">Interceptor 拦截器：gRPC 生态里的中间件 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a140pj2" target="_blank" rel="noopener">可观测性理念篇：结构化日志的重要性 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6xrjrha" target="_blank" rel="noopener">网易湖仓一体的探索与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/oi699l7" target="_blank" rel="noopener">放下我执，从此没有蠢问题 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/clp3lb7" target="_blank" rel="noopener">算法平台在线服务体系的演进与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5hjz6vy" target="_blank" rel="noopener">如何开发 VR 实时视频聊天应用程序 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/i888g51" target="_blank" rel="noopener">Chromium 90，给前端用的 devtools 的前端写得有性能问题 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qaay4yg" target="_blank" rel="noopener">技术管道的故事 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9n7g2n5" target="_blank" rel="noopener">Kubebuilder 进阶: 测试 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1e0l5vy" target="_blank" rel="noopener">图数据库 Nebula Graph 的 Ansible 实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/47n28fp" target="_blank" rel="noopener">云原生安全攻防技术浅析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/yuf0c1v" target="_blank" rel="noopener">携程机票前端安卓虚拟机测试集群建设实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wa2r4eo" target="_blank" rel="noopener">Spark 中如何使用矩阵运算间接实现 i2i </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/62b1s5q" target="_blank" rel="noopener">在 Android 中通过 Hilt 进行依赖项注入 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-12"><a href="#2021-05-12" class="headerlink" title="2021-05-12"></a>2021-05-12</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/qaw4y76" target="_blank" rel="noopener">优化技术专题（一）：Java 虚拟机优化案例系列 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8fsz3uu" target="_blank" rel="noopener">低代码核心：代码生成还是模型解释？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/uqgr3dg" target="_blank" rel="noopener">大促突围：京东到家基于 Canal 的数据异构设计 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/lxdh3td" target="_blank" rel="noopener">字节跳动社招一面 2021.04.23 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/t9cq6j3" target="_blank" rel="noopener">一文从 0 到 1 掌握用户画像知识体系 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3wigv9h" target="_blank" rel="noopener">为什么TCP 建连接要 3 次，断连接却要 4 次呢？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/73pqk57" target="_blank" rel="noopener">Plan9 assembly 完全解析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/uce1j3m" target="_blank" rel="noopener">附近的人？你 zao 吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4j54bjs" target="_blank" rel="noopener">gRPC 的反射机制（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zxujh0m" target="_blank" rel="noopener">架构设计笔记（十七）：关键模式_安全架构 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zi1ae0q" target="_blank" rel="noopener">如何打造一款标准的 JS SDK ？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5wfld6l" target="_blank" rel="noopener">如何用迭代法《中序遍历二叉树》 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/prpo5xg" target="_blank" rel="noopener">RocketMQ 优雅停机往事 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8mi106z" target="_blank" rel="noopener">干货解读数据中台产品 “模块化” 设计思路  </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/peszwpp" target="_blank" rel="noopener">Go 数组比切片好在哪？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/l7ywtht" target="_blank" rel="noopener">ClickHouse Join 分布式表不走 localjoin 问题解析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bt3qaxe" target="_blank" rel="noopener">漫画：如何向外行解释你为什么想打产品经理？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nqz2hvf" target="_blank" rel="noopener">[北京] 好未来前端开发工程师 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vf01pj4" target="_blank" rel="noopener">论文：一种基于 Embedding 和 Mapping 的跨域推荐方法 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kfvgqzo" target="_blank" rel="noopener">React 新特性为啥产出这么慢？江郎才尽啦？ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-11"><a href="#2021-05-11" class="headerlink" title="2021-05-11"></a>2021-05-11</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/bjis3t4" target="_blank" rel="noopener">36 张图详解网络基础知识 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4t5ie44" target="_blank" rel="noopener">3 个主流 Java 微服务框架 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/lg7cu53" target="_blank" rel="noopener">面对千万级、亿级流量怎么处理？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mkz0x54" target="_blank" rel="noopener">Java 筑基：JNI 到底是个啥 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5fucqps" target="_blank" rel="noopener">Birdseye：极其强大的 Python 调试工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/n3ba3h0" target="_blank" rel="noopener">面试题：如何实现丝滑般的数据库扩容 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9jssaxp" target="_blank" rel="noopener">Kubebuilder 实战：CRUD </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zv6r0sz" target="_blank" rel="noopener">如果你也会手抖输错命令，那就必须给你推荐这个 Fuck 工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0qx8h1s" target="_blank" rel="noopener">关于 Java 单线程经常占用 CPU 100% 的分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dzgh03u" target="_blank" rel="noopener">解码无代码/低代码创业圈子及其玩家 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/p5nrsbj" target="_blank" rel="noopener">跟我一起学 Go 系列：gRPC 入门必备 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/40ef4ad" target="_blank" rel="noopener">微服务的灾难 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/s4wvw9c" target="_blank" rel="noopener">从工业化到智能化，未来的 AB 实验是什么样子 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mktshpy" target="_blank" rel="noopener">出现了，PPT 制作新方式：GitHub 热点速览 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/khmbz6a" target="_blank" rel="noopener">有的便宜不能占 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8j8d5kk" target="_blank" rel="noopener">白话科普：网站图片不显示，背后的原因你都清楚吗 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pidu1sj" target="_blank" rel="noopener">Python 知识巩固：通过主进程带起多个子进程实现多进程执行逻辑 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/9llygzd" target="_blank" rel="noopener">Spark 推荐实战系列之 ALS 算法实现分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/mvihi6m" target="_blank" rel="noopener">AAAI 2021：关键词指导的神经对话模型 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cx9vamj" target="_blank" rel="noopener">NodeJS 如何实现控制台打印高亮代码 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-10"><a href="#2021-05-10" class="headerlink" title="2021-05-10"></a>2021-05-10</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/ca8fe6d" target="_blank" rel="noopener">吊炸天的 Docker 图形化工具 Portainer，必须推荐给你 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2tnj5np" target="_blank" rel="noopener">RabbitMQ、Kafka、RocketMQ 是如何实现高可用的？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/k1o0w99" target="_blank" rel="noopener">哈啰在分布式消息治理和微服务治理中的实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ejpxgkx" target="_blank" rel="noopener">20 张图助你了解 JVM 运行时数据区，你还觉得枯燥吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fqomx6r" target="_blank" rel="noopener">如何低侵入的记录调用日志 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/09d6esg" target="_blank" rel="noopener">我面试几乎必问：你设计索引的原则是什么？怎么避免索引失效？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/uku37tq" target="_blank" rel="noopener">Go 工程师必学：Go 大杀器之跟踪剖析 trace </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nt0g8q1" target="_blank" rel="noopener">Java 读写锁浅析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ghgtr19" target="_blank" rel="noopener">Netty 源码解析：PoolChunk 实现原理（jemalloc 3 的算法） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rct7tyu" target="_blank" rel="noopener">漫谈 Go 语言编译器（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/v8fdyfj" target="_blank" rel="noopener">基于 Doris 的小程序用户增长实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/8hqvwwm" target="_blank" rel="noopener">Facebook 如何避免大规模线上故障 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/njtlp3c" target="_blank" rel="noopener">从前序与中序遍历结果构造二叉树 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5bcofnf" target="_blank" rel="noopener">[译] BPF 对象 (BPF objects) 的生命周期 (Facebook，2018) </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1id2lzp" target="_blank" rel="noopener">五一假期回乡，趁周末跟大家聊聊感触 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qt10p5m" target="_blank" rel="noopener">漫画：我把老板炒鱿鱼了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vjxri3d" target="_blank" rel="noopener">Meme 正在吞噬价值 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/09282ve" target="_blank" rel="noopener">Vuejs (952)：一文带你了解 vue2 之响应式原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/conw8v4" target="_blank" rel="noopener">Android 应用启动性能：延迟初始化 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4ldst8r" target="_blank" rel="noopener">老鸟带你画 tiled lines </a></p>
+</li>
+</ol>
+<h4 id="2021-05-09"><a href="#2021-05-09" class="headerlink" title="2021-05-09"></a>2021-05-09</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/4sywkcm" target="_blank" rel="noopener">微服务设计原则 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gc13z71" target="_blank" rel="noopener">数据分析十年，我只推荐这些书 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/moooo7c" target="_blank" rel="noopener">我，管理 100 多人技术团队的二三事 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pfig936" target="_blank" rel="noopener">75 张图带你了解网络设备、网络地址规划、静态路由、实战演练  </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/96xpug6" target="_blank" rel="noopener">如何做一场高质量的分享 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/utt4f5d" target="_blank" rel="noopener">简单了解一下 K8S，并搭建自己的集群 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/r1j2iq6" target="_blank" rel="noopener">探索使用 Golang 和 Webassembly 构建一个多人游戏服务器 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/p1p2mh7" target="_blank" rel="noopener">工程师应该如何学习 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/z0h2jib" target="_blank" rel="noopener">Java 并发容器篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vo84qme" target="_blank" rel="noopener">架构设计笔记（十六）：关键模式_业务层优化 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/65z25sa" target="_blank" rel="noopener">阿里一面如何：spring 自定义 XML schema 扩展 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2e8owp3" target="_blank" rel="noopener">实时计算框架：Spark 集群搭建与入门案例 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/96f66qj" target="_blank" rel="noopener">打造一个干净且个性化的公众号阅读环境 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/uea8zyc" target="_blank" rel="noopener">图算法系列之深度优先搜索（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wesd48c" target="_blank" rel="noopener">一代传奇！经典播放器 Winamp 的开源实现 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/vy7wfl3" target="_blank" rel="noopener">设计模式：超越软件与设计的模式语言 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ua9a8za" target="_blank" rel="noopener">Java 中 RMI 的使用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wpvh74i" target="_blank" rel="noopener">Kustomize 简明教程 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cmharv7" target="_blank" rel="noopener">Flink 实时计算在微博的应用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ssd4qfx" target="_blank" rel="noopener">数据安全怎么做：数据跨境的思考 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-08"><a href="#2021-05-08" class="headerlink" title="2021-05-08"></a>2021-05-08</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/sudwryn" target="_blank" rel="noopener">聊聊如何在 Spring 事务中正确进行远程调用 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gs6z30z" target="_blank" rel="noopener">轻轻松松打印网页并生成 pdf 文档 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5irppk8" target="_blank" rel="noopener">玩转直播系列之从 0 到 1 构建简单直播系统（一） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/sxepk7u" target="_blank" rel="noopener">使用 Docker 和 Node 搭建公式渲染服务（后篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rcxeb1m" target="_blank" rel="noopener">高可用：必须修炼《流控》这把利剑 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d49xb95" target="_blank" rel="noopener">上帝视角看 “Go 项目标准布局” 之争 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rehfnn6" target="_blank" rel="noopener">游戏业务 DDoS 攻防对抗案例分享 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dli9jyq" target="_blank" rel="noopener">设计系统简史：过去，现在与可能的未来 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6ol44f3" target="_blank" rel="noopener">图算法系列之无向图的数据结构 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/qliwbil" target="_blank" rel="noopener">AI 入行那些事儿（12）：人工智能的行业趋势和人才需求 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-07"><a href="#2021-05-07" class="headerlink" title="2021-05-07"></a>2021-05-07</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/qqqjn8a" target="_blank" rel="noopener">某小公司：MySQL 连环问 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5xw6p4n" target="_blank" rel="noopener">还不会使用分布式锁？从零开始基于 etcd 实现分布式锁 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kw76t1v" target="_blank" rel="noopener">细说 Kafka Partition 分区 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cip5d5f" target="_blank" rel="noopener">民族工业软件之殇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/22smd1p" target="_blank" rel="noopener">全方位深度解读 Elasticsearch 分页查询 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/oq8if3i" target="_blank" rel="noopener">MQ 的那些破事儿，你不好奇吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bjcghco" target="_blank" rel="noopener">Kind：如何快速搭建本地 K8s 开发环境？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gxdq7u3" target="_blank" rel="noopener">Neo4j 图形数据库入门 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gz2naq8" target="_blank" rel="noopener">[译] 造就 Rust 的无名英雄 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1glhcyw" target="_blank" rel="noopener">Java 并发（同步容器篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kfyndb9" target="_blank" rel="noopener">在 GitHub 学习，成长为自己想要的样子（HelloGitHub 访谈） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4aw6p85" target="_blank" rel="noopener">程序员五一被拉去相亲，结果彻底搞懂了 HTTP 常用状态码 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nahnki6" target="_blank" rel="noopener">漫画：辞职前与老板的最后一次谈话有哪些禁忌？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/a3cemt9" target="_blank" rel="noopener">数栈技术分享：详解 FlinkX 中的断点续传和实时采集 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/und62pa" target="_blank" rel="noopener">卷积神经网络可视化，真的很像神经元（上篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jtcnrrd" target="_blank" rel="noopener">创意视频/ GIF 实验 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-06"><a href="#2021-05-06" class="headerlink" title="2021-05-06"></a>2021-05-06</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/7v2gnx6" target="_blank" rel="noopener">程序员必备基础：10 种常见安全漏洞浅析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fsnuhkp" target="_blank" rel="noopener">技术之外的工程师另类成长指南 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1ekyryi" target="_blank" rel="noopener">一文读懂 MySQL 查询语句的执行过程 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3xmfopc" target="_blank" rel="noopener">Curl 使用指南 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/efrdgy5" target="_blank" rel="noopener">ThreadLocal 使用与原理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wbuol5s" target="_blank" rel="noopener">Spring Boot 集成 groovy 脚本 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2u2tp7g" target="_blank" rel="noopener">再谈 synchronized 锁升级 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/go0rojp" target="_blank" rel="noopener">GraphQL 及元数据驱动架构在后端 BFF 中的实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zgtkl3z" target="_blank" rel="noopener">职场感悟：我的参考系在哪？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/07qzmoj" target="_blank" rel="noopener">Kafka 不再需要 ZooKeeper </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/u231mw2" target="_blank" rel="noopener">工具 | 一个非常实用的 NLP 索引工具 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/rluv4r3" target="_blank" rel="noopener">C/C++ 构建系统，我用 xmake </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/iukeyvj" target="_blank" rel="noopener">React-Hooks 面试解答 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/g5lxvm0" target="_blank" rel="noopener">酷炫！Python 函数耗时异常自动化监控 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/funesvi" target="_blank" rel="noopener">Raft 的 Figure 8 讲了什么问题？为什么需要 no-op 日志？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2i4xfjb" target="_blank" rel="noopener">[译] 神经网络不收敛怎么办？看看是不是这些原因 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/67zyftw" target="_blank" rel="noopener">聊一聊可信执行环境 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kg5vie0" target="_blank" rel="noopener">使用 Kotlin 提高生产力 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-05"><a href="#2021-05-05" class="headerlink" title="2021-05-05"></a>2021-05-05</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/ss8h91v" target="_blank" rel="noopener">架构师必看：架构设计的四大思维支柱 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/nkx9rki" target="_blank" rel="noopener">我认为最优美的数据结构 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cu1u6b9" target="_blank" rel="noopener">有了 CopyOnWrite 为何又要有 ReadWriteLock？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/zu91kh4" target="_blank" rel="noopener">GitHub 标星 8k：在 PC 上玩 Switch </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/d4ymrr1" target="_blank" rel="noopener">Go 语言中常见的几种反模式 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dg28m1s" target="_blank" rel="noopener">Spring 拦截器流程及多个拦截器的顺序 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/c59eddx" target="_blank" rel="noopener">长尾延迟问题的一些解决思路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/hf4zo9r" target="_blank" rel="noopener">写了个简洁的 Markdown 简历模板 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fg52hbx" target="_blank" rel="noopener">把你的 IDE 搬进浏览器里：JetBrains Projector 初体验 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ur8vd2p" target="_blank" rel="noopener">2021 年低代码发展预测解读 (Mendix) </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bypqv6b" target="_blank" rel="noopener">JavaScript 中到底要不要加分号？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/yct2gs5" target="_blank" rel="noopener">Python数据分析：股票成交量与收盘价时间序列可视化分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/xna3lx9" target="_blank" rel="noopener">.NET 中安全高效跨平台的模板引擎 Fluid 使用文档 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kximdd7" target="_blank" rel="noopener">记一次 .NET 某教育系统异常崩溃分析 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/1n31apj" target="_blank" rel="noopener">AndroidSyscallLogger </a></p>
+</li>
+</ol>
+<h4 id="2021-05-04"><a href="#2021-05-04" class="headerlink" title="2021-05-04"></a>2021-05-04</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/4fpatsr" target="_blank" rel="noopener">[译] Linux 系统安全强化指南 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/jpoc824" target="_blank" rel="noopener">[译] Pulsar 和 Kafka 架构对比 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2evvnnn" target="_blank" rel="noopener">学就完事了！万星项目带你做 3D 游戏：GitHub 热点速览 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/n05y7h2" target="_blank" rel="noopener">58 集团白盒代码审计系统建设实践（二）：深入理解 SAST </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/lqr22f6" target="_blank" rel="noopener">闲鱼如何 0 到 1 搭建一套发布引导链路 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/luxyokg" target="_blank" rel="noopener">终于把 XGBoost 总结写出来了 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ulixg07" target="_blank" rel="noopener">内部环境的 Wi-Fi 钓鱼实践：基于信任的安全体系一攻即破 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kpxvn6n" target="_blank" rel="noopener">基于 Scoped CSS 和 Sass 的换肤方案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/cosvl59" target="_blank" rel="noopener">简单说下 Promise.all 和 Promise.race 区别和使用场景 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ok4mp6n" target="_blank" rel="noopener">五一假期不想人挤人？来这里！ </a></p>
+</li>
+</ol>
+<h4 id="2021-05-03"><a href="#2021-05-03" class="headerlink" title="2021-05-03"></a>2021-05-03</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/0jalngx" target="_blank" rel="noopener">WebRTC 噪声抑制模块分析与实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/3zyt2c7" target="_blank" rel="noopener">日访问过亿，办公 IM 及开放式平台在携程的实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4wrlkf7" target="_blank" rel="noopener">聊聊因不恰当使用 alibaba sentinel 而踩到的坑 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4hok6wf" target="_blank" rel="noopener">搞懂 JavaScript 类型转换 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/veymhfk" target="_blank" rel="noopener">一个新细节，Go 1.17 将允许切片转换为数组指针 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/e7r8hkj" target="_blank" rel="noopener">Docker 实战：用 docker-compose 搭建 Laravel 开发环境 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/b5bv4dl" target="_blank" rel="noopener">特征工程方法总结 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/6x3rb9r" target="_blank" rel="noopener">聊天机器人真不是人，我放心了，不用担心隐私暴露 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/7fuz48b" target="_blank" rel="noopener">MCN 搭配评价模型论文笔记 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-02"><a href="#2021-05-02" class="headerlink" title="2021-05-02"></a>2021-05-02</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/6mzds1m" target="_blank" rel="noopener">系统设计之路：如何设计一个 URL 短链服务 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/z7fag7p" target="_blank" rel="noopener">Java 双刃剑之 Unsafe 类详解 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/b6wvgvt" target="_blank" rel="noopener">如何借助 Proxy 代理，提升架构扩展性 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/wa4mx5o" target="_blank" rel="noopener">对象的可见性：volatile 篇 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gvwrofa" target="_blank" rel="noopener">简单聊一聊 MQTT </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/kjh5lwh" target="_blank" rel="noopener">人工和自然 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/gil680k" target="_blank" rel="noopener">被拉进一个刷单群，赚了 75 元：就真的只是刷单吗？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/bbseaei" target="_blank" rel="noopener">Kotlin 内建代理 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/ncs1rgp" target="_blank" rel="noopener">如何从广度与深度衡量打包工具的好坏 </a></p>
+</li>
+</ol>
+<h4 id="2021-05-01"><a href="#2021-05-01" class="headerlink" title="2021-05-01"></a>2021-05-01</h4><hr>
+<ol>
+<li><p><a href="https://toutiao.io/k/xdsox3x" target="_blank" rel="noopener">撸代码前，写下设计方案 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/fjf4ers" target="_blank" rel="noopener">百度 C++ 工程师的那些极限优化（内存篇） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/5jnd1a6" target="_blank" rel="noopener">深入理解 HTTP 缓存机制 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/pft9nfv" target="_blank" rel="noopener">大型前端项目架构优化探索之路之腾讯文档表格 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/dibsh1j" target="_blank" rel="noopener">[英] BPF 极简示例：动态修改 TCP 初始 RTO（超时重传时间） </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/0f3ahmw" target="_blank" rel="noopener">Kubernetes 上容器的启动顺序如何把控？ </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/4sb61gl" target="_blank" rel="noopener">如何在 ClickHouse 中快速实现 AB 表切换 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/2p2dqp5" target="_blank" rel="noopener">携程火车票 Flutter 最佳实践 </a></p>
+</li>
+<li><p><a href="https://toutiao.io/k/urflygs" target="_blank" rel="noopener">2021 CocoaPods 新手进阶指南之仓库源 </a></p>
+</li>
+</ol>
+
+            </div>
+            <hr />
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">写作不易，客官能否打赏一杯奶茶？</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '25YwKhuYt2EHC4fvRiVds1mX-gzGzoHsz',
+        appKey: 'eTkk1KXcVIR5HVVUHcj48aS4',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/06/05/python-pypi-server/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Python Pypi Server">
+                        
+                        <span class="card-title">Python Pypi Server</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Python Pypi Server转载自《PyPI打包上传实践》
+1. 代码打包要打包代码，首先需要编写自己的代码包。比如你写了一个.py文件，里面有一些函数啥的，为了方便调用，你需要将代码打包，下次使用时直接调用就好，因此，第一步，将你
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Python/" class="post-category" target="_blank">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pypi/" target="_blank">
+                        <span class="chip bg-color">Pypi</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/05/26/liunx-an-zhuang-docker/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Liunx安装docker">
+                        
+                        <span class="card-title">Liunx安装docker</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            使用脚本自动安装(快速)Linux 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：获取脚本get-docker.sh
+安装
+# 记得给可执行权限
+chmod u+x get-docker.sh
+sudo 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2021-2020 OrangeQ. 版权所有
+
+            
+            
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/wc571498244" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:571498244@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+<!-- 
+
+    <a href="https://zhihu.com/people/wc571498244" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+ -->
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=571498244&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+<!-- 
+    <a href="https://weibo.com/wc571498244" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+ -->
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2021, 05, 15, 00, 00, 00); 
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    
+    <script src="/libs/others/clicklove.js"></script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>
