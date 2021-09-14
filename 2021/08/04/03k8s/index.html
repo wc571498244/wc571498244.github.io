@@ -4,19 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Docker-compose 安装Gitlab和Gitrunner, 博客 Python">
+    <meta name="keywords" content="03. 安装minikube, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="安装
-docker-compose.yaml
-
-version: &#39;3.5&#39;
-services:
-  gitlab:
-    image: gitlab/gitlab-ce:latest
-    hostname: gitlab host
-">
+    <meta name="description" content="安装minikube的前提需要安装kubectl
+安装kubectlCentos、Readhat编辑yum 的kubenernetes源vim /etc/yum.repos.d/kubernetes.repo并输入下面的内容
+[kubern">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +18,7 @@ services:
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Docker-compose 安装Gitlab和Gitrunner | 进步缓慢的CYX</title>
+    <title>03. 安装minikube | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -297,7 +291,7 @@ services:
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Docker-compose 安装Gitlab和Gitrunner
+                        03. 安装minikube
                     </div>
                 </div>
             </div>
@@ -408,8 +402,8 @@ services:
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/docker-compose/" target="_blank">
-                            <span class="chip bg-color">docker-compose</span>
+                        <a href="/tags/Kubernetes/" target="_blank">
+                            <span class="chip bg-color">Kubernetes</span>
                         </a>
                         
                     </div>
@@ -420,8 +414,8 @@ services:
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Docker/" class="post-category" target="_blank">
-                            Docker
+                        <a href="/categories/Kubernetes/" class="post-category" target="_blank">
+                            Kubernetes
                         </a>
                         
                     </div>
@@ -432,7 +426,7 @@ services:
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-12
+                    2021-08-04
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -446,7 +440,7 @@ services:
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    388
+                    497
                 </div>
                 
 
@@ -464,91 +458,47 @@ services:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
-<p>docker-compose.yaml</p>
-</blockquote>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.5'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  <span class="token key atrule">gitlab</span><span class="token punctuation">:</span>
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> gitlab/gitlab<span class="token punctuation">-</span>ce<span class="token punctuation">:</span>latest
-    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> gitlab host
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
-      <span class="token key atrule">GITLAB_OMNIBUS_CONFIG</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
-        gitlab_rails['gitlab_shell_ssh_port'] = 22</span>
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token string">"8000:80"</span> <span class="token comment" spellcheck="true"># 网页端端口</span>
-      <span class="token punctuation">-</span> <span class="token string">"8822:22"</span> <span class="token comment" spellcheck="true"># ssh端口</span>
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./config/gitlab<span class="token punctuation">:</span>/etc/gitlab
-      <span class="token punctuation">-</span> ./data/gitlab<span class="token punctuation">:</span>/var/opt/gitlab
-      <span class="token punctuation">-</span> ./logs<span class="token punctuation">:</span>/var/log/gitlab
-    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> gitlab
-  <span class="token key atrule">gitlab-runner</span><span class="token punctuation">:</span>
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> gitlab/gitlab<span class="token punctuation">-</span>runner<span class="token punctuation">:</span>alpine
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> gitlab
-    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true </span><span class="token comment" spellcheck="true"># 使用root权限</span>
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./config/gitlab<span class="token punctuation">-</span>runner<span class="token punctuation">:</span>/etc/gitlab<span class="token punctuation">-</span>runner
-      <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock <span class="token comment" spellcheck="true"># windows上宿主机docker.sock路径://var/run/docker.sock      linux上宿主机docker.sock路径:/var/run/docker.sock </span>
-    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> gitlab
-
-<span class="token key atrule">networks</span><span class="token punctuation">:</span>
-  <span class="token key atrule">gitlab</span><span class="token punctuation">:</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>安装minikube的前提需要安装kubectl</p>
+<h3 id="安装kubectl"><a href="#安装kubectl" class="headerlink" title="安装kubectl"></a>安装kubectl</h3><h4 id="Centos、Readhat"><a href="#Centos、Readhat" class="headerlink" title="Centos、Readhat"></a>Centos、Readhat</h4><p>编辑yum 的kubenernetes源<br><code>vim /etc/yum.repos.d/kubernetes.repo</code><br>并输入下面的内容</p>
+<pre><code>[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</code></pre><p>再使用命令:</p>
+<pre><code>yum install -y kubectl</code></pre><h4 id="Ubuntu、Debian"><a href="#Ubuntu、Debian" class="headerlink" title="Ubuntu、Debian"></a>Ubuntu、Debian</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y apt-transport-https
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg <span class="token operator">|</span> apt-key add - 
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span>EOF <span class="token operator">></span>/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
+EOF  
+<span class="token function">apt-get</span> update
+<span class="token function">apt-get</span> <span class="token function">install</span> -y kubelet kubeadm kubectl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="MacOs"><a href="#MacOs" class="headerlink" title="MacOs"></a>MacOs</h4><pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> kubernetes-cli
+kubectl version --client
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="安装minikube（使用阿里云镜像）"><a href="#安装minikube（使用阿里云镜像）" class="headerlink" title="安装minikube（使用阿里云镜像）"></a>安装minikube（使用阿里云镜像）</h3><h4 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h4><pre class="line-numbers language-bash"><code class="language-bash">curl -Lo minikube https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/releases/v1.18.1/minikube-linux-amd64 <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> +x minikube <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">mv</span> minikube /usr/local/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h4><pre class="line-numbers language-bash"><code class="language-bash">curl -Lo minikube https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/releases/v1.18.1/minikube-linux-amd64 <span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> +x minikube <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">mv</span> minikube /usr/local/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>启动：<code>minikube start --registry-mirror=https://registry.docker-cn.com --image-mirror-country cn</code></p>
+<p>完成以上步骤即可安装成功～</p>
+<h4 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h4><p>为了访问海外的资源，阿里云提供了一系列基础设施，请按照如下参数进行配置。其中常见参数</p>
 <blockquote>
-<p>目录结构如下：</p>
+<p>–driver=xxx 从1.5.0版本开始，Minikube缺省使用本地最好的驱动来创建Kubernetes本地环境，测试过的版本 docker, kvm<br>–image-mirror-country cn 将缺省利用 registry.cn-hangzhou.aliyuncs.com/google_containers 作为安装Kubernetes的容器镜像仓库 （阿里云版本可选）<br>–iso-url=xxx  利用阿里云的镜像地址下载相应的 .iso 文件 （阿里云版本可选）<br>–registry-mirror=xxx 为了拉取Docker Hub镜像，需要为 Docker daemon 配置镜像加速，参考阿里云镜像服务<br>–cpus=2: 为minikube虚拟机分配CPU核数<br>–memory=2048mb: 为minikube虚拟机分配内存数<br>–kubernetes-version=xxx: minikube 虚拟机将使用的 kubernetes 版本</p>
 </blockquote>
-<pre class="line-numbers language-sh"><code class="language-sh">.
-├── config
-│   └── gitlab
-├── data
-│   └── gitlab
-|   └── gitlab-runner
-├── docker-compose.yaml
-└── logs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>解决 ERROR:Docker Got permission denied while trying to connect to the Docker daemon socket at unix://</strong></p>
-<ol>
-<li><p>给权限</p>
-<pre class="line-numbers language-sh"><code class="language-sh">chmod 666 /var/run/docker.sock<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><p>安装minikube，缺省驱动</p>
+<p><code>minikube start --cpus=4 --memory=4096mb</code></p>
 </li>
-<li><p>把当前用户加入docker组 </p>
-<pre class="line-numbers language-sh"><code class="language-sh">sudo usermod -aG docker $USER<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li><p>安装minikube，Docker驱动</p>
+<p><code>minikube start --driver=docker</code></p>
 </li>
-<li><p>修改docker服务配置/usr/lib/systemd/system/docker.service</p>
-<pre class="line-numbers language-python"><code class="language-python">将原有的注释
-ExecStart<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>dockerd <span class="token operator">-</span>H fd<span class="token punctuation">:</span><span class="token operator">//</span> <span class="token operator">-</span><span class="token operator">-</span>containerd<span class="token operator">=</span><span class="token operator">/</span>run<span class="token operator">/</span>containerd<span class="token operator">/</span>containerd<span class="token punctuation">.</span>sock
-新加代码
-ExecStart<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>dockerd <span class="token operator">-</span>H unix<span class="token punctuation">:</span><span class="token operator">//</span><span class="token operator">/</span>var<span class="token operator">/</span>run<span class="token operator">/</span>docker<span class="token punctuation">.</span>sock <span class="token operator">-</span>H tcp<span class="token punctuation">:</span><span class="token operator">//</span><span class="token number">0.0</span><span class="token punctuation">.</span><span class="token number">0.0</span><span class="token punctuation">:</span><span class="token number">2375</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<li><p>安装minikube，KVM2驱动</p>
+<p><code>minikube start --driver=kvm2</code></p>
 </li>
-<li><p>重启docker服务</p>
-<pre class="line-numbers language-sh"><code class="language-sh">systemctl restart docker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li><p>打开Kubernetes控制台</p>
+<p><code>minikube dashboard</code></p>
 </li>
-</ol>
-<h3 id="gitlab-runner-注册到gitlab"><a href="#gitlab-runner-注册到gitlab" class="headerlink" title="gitlab-runner 注册到gitlab"></a>gitlab-runner 注册到gitlab</h3><blockquote>
-<p>注册命令</p>
-</blockquote>
-<pre class="line-numbers language-sh"><code class="language-sh">$ docker exec -it <gitlab-runner_container_name> gitlab-runner register
-
-Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
-http://gitlab.example.com/
-Please enter the gitlab-ci token for this runner:
-gitlab-token # gitlab项目里面的setting->CICD中 runner配置中
-Please enter the gitlab-ci description for this runner:
-[Double-dong.local]: gitlab-ci # 名字随便取
-Please enter the gitlab-ci tags for this runner (comma separated):
-python3.4 # 标签名， 后续在.gitlab-ci.yml中使用
-Registering runner... succeeded                     runner=6-uZ1ndZ
-Please enter the executor: docker+machine, kubernetes, ssh, virtualbox, docker-ssh, parallels, shell, docker-ssh+machine, custom, docker:
-docker # 这里选docker， 可根据需求任选一个
-Please enter the default Docker image (e.g. ruby:2.6):
-python:3.6 # 镜像名
-Runner registered successfully.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="./gitlab-token.png" alt="gitlab_token"></p>
+</ul>
 
             </div>
             <hr />
@@ -976,39 +926,33 @@ Runner registered successfully.<span aria-hidden="true" class="line-numbers-rows
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/06/12/gitlab-he-gitrunner-an-zhuang/">
+                <a href="/2021/09/07/04k8s/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Docker-compose 安装Gitlab和Gitrunner">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="04.k8s资源管理">
                         
-                        <span class="card-title">Docker-compose 安装Gitlab和Gitrunner</span>
+                        <span class="card-title">04.k8s资源管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            安装
-docker-compose.yaml
+                            k8s资源管理资源管理介绍在kubernetes中，所有的内容都抽象为资源，用户需要通过操作资源来管理kubernetes。
 
-version: '3.5'
-services:
-  gitlab:
-    image: gitlab/gitlab-ce:latest
-    hostname: gitlab host
-
+​    kubernetes的本质上就是一个集群系统，用户可以在集群中部署各种服务，所谓的部署服务，其实就是在
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-12
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-07
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Docker/" class="post-category" target="_blank">
-                                    Docker
+                            <a href="/categories/Kubernetes/" class="post-category" target="_blank">
+                                    Kubernetes
                                 </a>
                             
                             
@@ -1018,8 +962,8 @@ services:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker-compose/" target="_blank">
-                        <span class="chip bg-color">docker-compose</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>
@@ -1033,32 +977,33 @@ services:
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/05/python-pypi-server/">
+                <a href="/2021/07/26/02k8s/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Python Pypi Server">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="02. Kubernetes 组件">
                         
-                        <span class="card-title">Python Pypi Server</span>
+                        <span class="card-title">02. Kubernetes 组件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Python Pypi Server转载自《PyPI打包上传实践》
-1. 代码打包要打包代码，首先需要编写自己的代码包。比如你写了一个.py文件，里面有一些函数啥的，为了方便调用，你需要将代码打包，下次使用时直接调用就好，因此，第一步，将你
+                            Kubernetes 组件一个Kubernetes集群由一组被称为节点的机器组成。这些节点上运行了Kubernetes所管理的容器化应用。kubernetes集群主要是由控制节点(master)、工作节点(node)构成。
+
+master：
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
+                            <a href="/categories/Kubernetes/" class="post-category" target="_blank">
+                                    Kubernetes
                                 </a>
                             
                             
@@ -1068,8 +1013,8 @@ services:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pypi/" target="_blank">
-                        <span class="chip bg-color">Pypi</span>
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
                     </a>
                     
                 </div>

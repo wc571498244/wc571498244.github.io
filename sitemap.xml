@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wc571498244.github.io/2021/09/07/04k8s/</loc>
+    
+    <lastmod>2021-09-14T02:30:33.271Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
+    
+    <lastmod>2021-09-14T02:30:33.270Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wc571498244.github.io/2021/07/26/02k8s/</loc>
     
     <lastmod>2021-07-26T07:40:35.632Z</lastmod>
@@ -58,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/06/29/cai-keng-ji-he/</loc>
+    <loc>https://wc571498244.github.io/2021/06/14/chang-yong-huan-cun-tao-tai-suan-fa/</loc>
     
     <lastmod>2021-07-26T07:34:41.748Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/06/14/chang-yong-huan-cun-tao-tai-suan-fa/</loc>
+    <loc>https://wc571498244.github.io/2021/06/29/cai-keng-ji-he/</loc>
     
     <lastmod>2021-07-26T07:34:41.748Z</lastmod>
     
@@ -79,21 +93,7 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/06/12/gitlab-and-gitlab-runner/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.746Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wc571498244.github.io/2021/06/30/centosinstallohmyzsh/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.745Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
     
     <lastmod>2021-07-26T07:34:41.745Z</lastmod>
     
@@ -114,16 +114,9 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
+    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
     
-    <lastmod>2021-07-26T07:34:41.744Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/06/05/2021-05-kai-fa-zhe-re-bang/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.744Z</lastmod>
+    <lastmod>2021-07-26T07:34:41.745Z</lastmod>
     
   </url>
   
@@ -135,37 +128,9 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/04/30/2021-04-kai-fa-zhe-re-bang/</loc>
+    <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
     
-    <lastmod>2021-07-26T07:34:41.743Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/03/31/2021-03-kai-fa-zhe-re-bang-mei-ri-jing-xuan/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.743Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/02/28/2021-02-kai-fa-zhe-re-bang-mei-ri-jing-xuan/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.742Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/01/31/2021-01-kai-fa-zhe-re-bang-mei-ri-jing-xuan/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.742Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2020/12/30/2020-12-kai-fa-zhe-re-bang-mei-ri-jing-xuan/</loc>
-    
-    <lastmod>2021-07-26T07:34:41.741Z</lastmod>
+    <lastmod>2021-07-26T07:34:41.744Z</lastmod>
     
   </url>
   

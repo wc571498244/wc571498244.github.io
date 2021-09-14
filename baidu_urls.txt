@@ -1,3 +1,5 @@
+https://wc571498244.github.io/2021/09/07/04k8s/
+https://wc571498244.github.io/2021/08/04/03k8s/
 https://wc571498244.github.io/2021/07/26/02k8s/
 https://wc571498244.github.io/2021/07/21/01k8s/
 https://wc571498244.github.io/2021/06/30/centosinstallohmyzsh/
@@ -5,14 +7,7 @@ https://wc571498244.github.io/2021/06/30/gitlabupdatepwd/
 https://wc571498244.github.io/2021/06/29/cai-keng-ji-he/
 https://wc571498244.github.io/2021/06/14/chang-yong-huan-cun-tao-tai-suan-fa/
 https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/
-https://wc571498244.github.io/2021/06/12/gitlab-and-gitlab-runner/
 https://wc571498244.github.io/2021/06/05/python-pypi-server/
-https://wc571498244.github.io/2021/06/05/2021-05-kai-fa-zhe-re-bang/
 https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/
 https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/
 https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/
-https://wc571498244.github.io/2021/04/30/2021-04-kai-fa-zhe-re-bang/
-https://wc571498244.github.io/2021/03/31/2021-03-kai-fa-zhe-re-bang-mei-ri-jing-xuan/
-https://wc571498244.github.io/2021/02/28/2021-02-kai-fa-zhe-re-bang-mei-ri-jing-xuan/
-https://wc571498244.github.io/2021/01/31/2021-01-kai-fa-zhe-re-bang-mei-ri-jing-xuan/
-https://wc571498244.github.io/2020/12/30/2020-12-kai-fa-zhe-re-bang-mei-ri-jing-xuan/
