@@ -4,13 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="04.k8s资源管理, 博客 Python">
+    <meta name="keywords" content="HomeBrew 安装, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="k8s资源管理资源管理介绍在kubernetes中，所有的内容都抽象为资源，用户需要通过操作资源来管理kubernetes。
-
-​    kubernetes的本质上就是一个集群系统，用户可以在集群中部署各种服务，所谓的部署服务，其实就是在">
+    <meta name="description" content="homebrew(国内飞速安装)homebrew官网推荐的命令在国内巨慢…，不管你是否FQ，都没啥速度的提升
+/bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Home">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>04.k8s资源管理 | 进步缓慢的CYX</title>
+    <title>HomeBrew 安装 | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -285,13 +284,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        04.k8s资源管理
+                        HomeBrew 安装
                     </div>
                 </div>
             </div>
@@ -402,8 +401,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
+                        <a href="/tags/Mac/" target="_blank">
+                            <span class="chip bg-color">Mac</span>
                         </a>
                         
                     </div>
@@ -414,8 +413,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Kubernetes/" class="post-category" target="_blank">
-                            Kubernetes
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
                         </a>
                         
                     </div>
@@ -426,7 +425,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-07
+                    2021-09-14
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -440,14 +439,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    451
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    2 分
                 </div>
                 
                 
@@ -458,391 +457,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="k8s资源管理"><a href="#k8s资源管理" class="headerlink" title="k8s资源管理"></a>k8s资源管理</h1><h2 id="资源管理介绍"><a href="#资源管理介绍" class="headerlink" title="资源管理介绍"></a>资源管理介绍</h2><p>在kubernetes中，所有的内容都抽象为资源，用户需要通过操作资源来管理kubernetes。</p>
-<blockquote>
-<p>​    kubernetes的本质上就是一个集群系统，用户可以在集群中部署各种服务，所谓的部署服务，其实就是在kubernetes集群中运行一个个的容器，并将指定的程序跑在容器中。</p>
-<p>​    kubernetes的最小管理单元是pod而不是容器，所以只能将容器放在<code>Pod</code>中，而kubernetes一般也不会直接管理Pod，而是通过<code>Pod控制器</code>来管理Pod的。</p>
-<p>​    Pod可以提供服务之后，就要考虑如何访问Pod中服务，kubernetes提供了<code>Service</code>资源实现这个功能。</p>
-<p>​    当然，如果Pod中程序的数据需要持久化，kubernetes还提供了各种<code>存储</code>系统。</p>
-</blockquote>
-<p><img src="./image-20200406225334627.png" alt="资源管理"></p>
-<blockquote>
-<p> 学习kubernetes的核心，就是学习如何对集群上的<code>Pod、Pod控制器、Service、存储</code>等各种资源进行操作</p>
-</blockquote>
-<h2 id="资源管理方式"><a href="#资源管理方式" class="headerlink" title="资源管理方式"></a>资源管理方式</h2><ul>
-<li><p>命令式对象管理：直接使用命令去操作kubernetes资源</p>
-<p><code>kubectl run nginx-pod --image=nginx:1.17.1 --port=80</code></p>
-</li>
-<li><p>命令式对象配置：通过命令配置和配置文件去操作kubernetes资源</p>
-<p><code>kubectl create/patch -f nginx-pod.yaml</code></p>
-</li>
-<li><p>声明式对象配置：通过apply命令和配置文件去操作kubernetes资源</p>
-<p><code>kubectl apply -f nginx-pod.yaml</code></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>操作对象</th>
-<th>适用环境</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>命令式对象管理</td>
-<td>对象</td>
-<td>测试</td>
-<td>简单</td>
-<td>只能操作活动对象，无法审计、跟踪</td>
-</tr>
-<tr>
-<td>命令式对象配置</td>
-<td>文件</td>
-<td>开发</td>
-<td>可以审计、跟踪</td>
-<td>项目大时，配置文件多，操作麻烦</td>
-</tr>
-<tr>
-<td>声明式对象配置</td>
-<td>目录</td>
-<td>开发</td>
-<td>支持目录操作</td>
-<td>意外情况下难以调试</td>
-</tr>
-</tbody></table>
-<h3 id="命令式对象管理"><a href="#命令式对象管理" class="headerlink" title="命令式对象管理"></a>命令式对象管理</h3><p><strong>kubectl命令</strong></p>
-<p>​    kubectl是kubernetes集群的命令行工具，通过它能够对集群本身进行管理，并能够在集群上进行容器化应用的安装部署。kubectl命令的语法如下：</p>
-<pre class="line-numbers language-md"><code class="language-md">kubectl [command] [type] [name] [flags]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>comand</strong>：指定要对资源执行的操作，例如create、get、delete</p>
-<p><strong>type</strong>：指定资源类型，比如deployment、pod、service</p>
-<p><strong>name</strong>：指定资源的名称，名称大小写敏感</p>
-<p><strong>flags</strong>：指定额外的可选参数</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 查看所有pod</span>
-kubectl get pod 
+                <h3 id="homebrew-国内飞速安装"><a href="#homebrew-国内飞速安装" class="headerlink" title="homebrew(国内飞速安装)"></a><code>homebrew</code>(国内飞速安装)</h3><p><code>homebrew</code>官网推荐的命令在国内巨慢…，不管你是否FQ，都没啥速度的提升</p>
+<pre class="line-numbers language-sh"><code class="language-sh">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这里有个国内的源，可以使你下载速度提升百倍～</p>
+<pre class="line-numbers language-sh"><code class="language-sh">/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><em>若出现一下情况：</em></p>
+<p>如果命令执行中卡在下面信息：</p>
+<pre class="line-numbers language-sh"><code class="language-sh">==> Tapping homebrew/core
+Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core'...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>请<code>Command + C</code>中断脚本执行如下命令：</p>
+<pre class="line-numbers language-sh"><code class="language-sh">cd "$(brew --repo)/Library/Taps/"
+mkdir homebrew && cd homebrew
+git clone git://mirrors.ustc.edu.cn/homebrew-core.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>成功执行之后继续执行前文的安装命令。<br>最后看到<code>==&gt; Installation successful!</code>就说明安装成功了。</p>
+<p>最最后执行：<code>brew update</code></p>
+<p><code>cask</code>同样也有首次下载缓慢的问题，解决方法大致同上：</p>
+<pre class="line-numbers language-sh"><code class="language-sh">cd "$(brew --repo)/Library/Taps/"
+cd homebrew
+git clone https://mirrors.ustc.edu.cn/homebrew-cask.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>使用官方脚本同样会遇到uninstall地址无法访问问题，可以替换为下面脚本：</p>
+<pre class="line-numbers language-sh"><code class="language-sh">/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/uninstall)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="设置国内镜像源"><a href="#设置国内镜像源" class="headerlink" title="设置国内镜像源"></a>设置国内镜像源</h3><p><code>brew、homebrew/core</code>是必备项目，<code>homebrew/cask</code>、<code>homebrew/bottles</code>按需设置。<br>通过<code>brew config</code>命令查看配置信息。</p>
+<p><em>中科大源</em></p>
+<pre class="line-numbers language-sh"><code class="language-sh">git -C "$(brew --repo)" remote set-url origin https://mirrors.ustc.edu.cn/brew.git
 
-<span class="token comment" spellcheck="true"># 查看某个pod</span>
-kubectl get pod pod_name
+git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 
-<span class="token comment" spellcheck="true"># 查看某个pod,以yaml格式展示结果</span>
-kubectl get pod pod_name <span class="token operator">-</span>o yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>资源类型</strong></p>
-<p>kubernetes中所有的内容都抽象为资源，可以通过下面的命令进行查看:</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell">kubectl api<span class="token operator">-</span>resources<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>经常使用的资源有下面这些：</p>
-<table>
-    <tr>
-        <th>资源分类</th>
-        <th>资源名称</th>
-        <th>缩写</th>
-        <th>资源作用</th>
-    </tr>
-    <tr>
-        <td rowspan="2">集群级别资源</td>
-        <td>nodes</td>
-        <td>no</td>
-        <td>集群组成部分</td>
-    </tr>
-    <tr>
-        <td>namespaces</td>
-        <td>ns</td>
-        <td>隔离Pod</td>
-    </tr>
-    <tr>
-        <td>pod资源</td>
-        <td>pods</td>
-        <td>po</td>
-        <td>装载容器</td>
-    </tr>
-    <tr>
-        <td rowspan="8">pod资源控制器</td>
-        <td>replicationcontrollers</td>
-        <td>rc</td>
-        <td>控制pod资源</td>
-    </tr>
-    <tr>
-        <td>replicasets</td>
-        <td>rs</td>
-        <td>控制pod资源</td>
-    </tr>
-    <tr>
-        <td>deployments</td>
-        <td>deploy</td>
-        <td>控制pod资源</td>
-    </tr>
-    <tr>
-        <td>daemonsets</td>
-        <td>ds</td>
-        <td>控制pod资源</td>
-    </tr>
-    <tr>
-        <td>jobs</td>
-        <td></td>
-        <td>控制pod资源</td>
-    </tr>    
-    <tr>
-        <td>cronjobs</td>
-        <td>cj</td>
-        <td>控制pod资源</td>
-    </tr>    
-    <tr>
-        <td>horizontalpodautoscalers</td>
-        <td>hpa</td>
-        <td>控制pod资源</td>
-    </tr>    
-    <tr>
-        <td>statefulsets</td>
-        <td>sts</td>
-        <td>控制pod资源</td>
-    </tr>
-    <tr>
-        <td rowspan="2">服务发现资源</td>
-        <td>services</td>
-        <td>svc</td>
-        <td>统一pod对外接口</td>
-    </tr>
-    <tr>
-        <td>ingress</td>
-        <td>ing</td>
-        <td>统一pod对外接口</td>
-    </tr>
-    <tr>
-        <td rowspan="3">存储资源</td>
-        <td>volumeattachments</td>
-        <td></td>
-        <td>存储</td>
-    </tr>
-    <tr>
-        <td>persistentvolumes</td>
-        <td>pv</td>
-        <td>存储</td>
-    </tr>
-    <tr>
-        <td>persistentvolumeclaims</td>
-        <td>pvc</td>
-        <td>存储</td>
-    </tr>
-    <tr>
-        <td rowspan="2">配置资源</td>
-        <td>configmaps</td>
-        <td>cm</td>
-        <td>配置</td>
-    </tr>
-    <tr>
-        <td>secrets</td>
-        <td></td>
-        <td>配置</td>
-    </tr>
-</table>
+git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
 
-<p><strong>操作</strong></p>
-<p>kubernetes允许对资源进行多种操作，可以通过–help查看详细的操作命令</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell">kubectl <span class="token operator">--</span>help<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>经常使用的操作有下面这些：</p>
-<table>
-    <tr>
-        <th>命令分类</th>
-        <th>命令</th>
-        <th>翻译</th>
-        <th>命令作用</th>
-    </tr>
-    <tr>
-        <td rowspan="6">基本命令</td>
-        <td>create</td>
-        <td>创建</td>
-        <td>创建一个资源</td>
-    </tr>
-    <tr>
-        <td>edit</td>
-        <td>编辑</td>
-        <td>编辑一个资源</td>
-    </tr>
-    <tr>
-        <td>get</td>
-        <td>获取</td>
-        <td>获取一个资源</td>
-    </tr>
-   <tr>
-        <td>patch</td>
-        <td>更新</td>
-        <td>更新一个资源</td>
-    </tr>
-    <tr>
-        <td>delete</td>
-        <td>删除</td>
-        <td>删除一个资源</td>
-    </tr>
-    <tr>
-        <td>explain</td>
-        <td>解释</td>
-        <td>展示资源文档</td>
-    </tr>
-    <tr>
-        <td rowspan="10">运行和调试</td>
-        <td>run</td>
-        <td>运行</td>
-        <td>在集群中运行一个指定的镜像</td>
-    </tr>
-    <tr>
-        <td>expose</td>
-        <td>暴露</td>
-        <td>暴露资源为Service</td>
-    </tr>
-    <tr>
-        <td>describe</td>
-        <td>描述</td>
-        <td>显示资源内部信息</td>
-    </tr>
-    <tr>
-        <td>logs</td>
-        <td>日志</td>
-        <td>输出容器在 pod 中的日志</td>
-    </tr>    
-    <tr>
-        <td>attach</td>
-        <td>缠绕</td>
-        <td>进入运行中的容器</td>
-    </tr>    
-    <tr>
-        <td>exec</td>
-        <td>执行</td>
-        <td>执行容器中的一个命令</td>
-    </tr>    
-    <tr>
-        <td>cp</td>
-        <td>复制</td>
-        <td>在Pod内外复制文件</td>
-    </tr>
-        <tr>
-        <td>rollout</td>
-        <td>首次展示</td>
-        <td>管理资源的发布</td>
-    </tr>
-    <tr>
-        <td>scale</td>
-        <td>规模</td>
-        <td>扩(缩)容Pod的数量</td>
-    </tr>
-    <tr>
-        <td>autoscale</td>
-        <td>自动调整</td>
-        <td>自动调整Pod的数量</td>
-    </tr>
-    <tr>
-        <td rowspan="2">高级命令</td>
-        <td>apply</td>
-        <td>rc</td>
-        <td>通过文件对资源进行配置</td>
-    </tr>
-    <tr>
-        <td>label</td>
-        <td>标签</td>
-        <td>更新资源上的标签</td>
-    </tr>
-    <tr>
-        <td rowspan="2">其他命令</td>
-        <td>cluster-info</td>
-        <td>集群信息</td>
-        <td>显示集群信息</td>
-    </tr>
-    <tr>
-        <td>version</td>
-        <td>版本</td>
-        <td>显示当前Server和Client的版本</td>
-    </tr>
-</table>
+brew update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="恢复官方镜像源"><a href="#恢复官方镜像源" class="headerlink" title="恢复官方镜像源"></a>恢复官方镜像源</h3><pre class="line-numbers language-sh"><code class="language-sh">git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git
 
-<p>下面以一个namespace / pod的创建和删除简单演示下命令的使用：</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 创建一个namespace</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl create namespace dev</span>
-namespace<span class="token operator">/</span>dev created
+git -C "$(brew --repo homebrew/core)" remote set-url origin https://github.com/Homebrew/homebrew-core.git
 
-<span class="token comment" spellcheck="true"># 获取namespace</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl get ns</span>
-NAME              STATUS   AGE
-default           Active   21h
-dev               Active   21s
-kube<span class="token operator">-</span>node<span class="token operator">-</span>lease   Active   21h
-kube<span class="token operator">-</span>public       Active   21h
-kube<span class="token operator">-</span>system       Active   21h
+git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask.git
 
-<span class="token comment" spellcheck="true"># 在此namespace下创建并运行一个nginx的Pod</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl run pod --image=nginx -n dev</span>
-kubectl run <span class="token operator">--</span>generator=deployment<span class="token operator">/</span>apps<span class="token punctuation">.</span>v1 is DEPRECATED and will be removed in a future version<span class="token punctuation">.</span> Use kubectl run <span class="token operator">--</span>generator=run<span class="token operator">-</span>pod<span class="token operator">/</span>v1 or kubectl create instead<span class="token punctuation">.</span>
-deployment<span class="token punctuation">.</span>apps<span class="token operator">/</span>pod created
-
-<span class="token comment" spellcheck="true"># 查看新创建的pod</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl get pod -n dev</span>
-NAME                   READY   STATUS    RESTARTS   AGE
-pod<span class="token operator">-</span>864f9875b9<span class="token operator">-</span>pcw7x   1<span class="token operator">/</span>1     Running   0          21s
-
-<span class="token comment" spellcheck="true"># 删除指定的pod</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl delete pod pod-864f9875b9-pcw7x</span>
-pod <span class="token string">"pod-864f9875b9-pcw7x"</span> deleted
-
-<span class="token comment" spellcheck="true"># 删除指定的namespace</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl delete ns dev</span>
-namespace <span class="token string">"dev"</span> deleted<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="命令式对象配置"><a href="#命令式对象配置" class="headerlink" title="命令式对象配置"></a>命令式对象配置</h3><p>命令式对象配置就是使用命令配合配置文件一起来操作kubernetes资源。</p>
-<p>1） 创建一个nginxpod.yaml，内容如下：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Namespace
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> dev
-
-<span class="token punctuation">---</span>
-
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginxpod
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> dev
-<span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>containers
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>1.17.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>2）执行create命令，创建资源：</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl create -f nginxpod.yaml</span>
-namespace<span class="token operator">/</span>dev created
-pod<span class="token operator">/</span>nginxpod created<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>此时发现创建了两个资源对象，分别是namespace和pod</p>
-<p>3）执行get命令，查看资源：</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true">#  kubectl get -f nginxpod.yaml</span>
-NAME            STATUS   AGE
-namespace<span class="token operator">/</span>dev   Active   18s
-
-NAME            READY   STATUS    RESTARTS   AGE
-pod<span class="token operator">/</span>nginxpod    1<span class="token operator">/</span>1     Running   0          17s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样就显示了两个资源对象的信息</p>
-<p>4）执行delete命令，删除资源：</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true"># kubectl delete -f nginxpod.yaml</span>
-namespace <span class="token string">"dev"</span> deleted
-pod <span class="token string">"nginxpod"</span> deleted<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>此时发现两个资源对象被删除了</p>
-<pre class="line-numbers language-md"><code class="language-md">总结:
-    命令式对象配置的方式操作资源，可以简单的认为：命令  +  yaml配置文件（里面是命令需要的各种参数）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="声明式对象配置"><a href="#声明式对象配置" class="headerlink" title="声明式对象配置"></a>声明式对象配置</h3><p>声明式对象配置跟命令式对象配置很相似，但是它只有一个命令apply。</p>
-<pre class="line-numbers language-powershell"><code class="language-powershell"><span class="token comment" spellcheck="true"># 首先执行一次kubectl apply -f yaml文件，发现创建了资源</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true">#  kubectl apply -f nginxpod.yaml</span>
-namespace<span class="token operator">/</span>dev created
-pod<span class="token operator">/</span>nginxpod created
-
-<span class="token comment" spellcheck="true"># 再次执行一次kubectl apply -f yaml文件，发现说资源没有变动</span>
-<span class="token namespace">[root@master ~]</span><span class="token comment" spellcheck="true">#  kubectl apply -f nginxpod.yaml</span>
-namespace<span class="token operator">/</span>dev unchanged
-pod<span class="token operator">/</span>nginxpod unchanged<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-md"><code class="language-md">总结:
-    其实声明式对象配置就是使用apply描述一个资源最终的状态（在yaml中定义状态）
-    使用apply操作资源：
-        如果资源不存在，就创建，相当于 kubectl create
-        如果资源已存在，就更新，相当于 kubectl patch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>使用推荐:  三种方式应该怎么用 ?</p>
-</blockquote>
-<p> 创建/更新资源      使用声明式对象配置 kubectl apply -f  XXX.yaml</p>
-<p> 删除资源              使用命令式对象配置 kubectl delete -f  XXX.yaml</p>
-<p> 查询资源              使用命令式对象管理 kubectl get(describe) 资源名称</p>
+brew update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>homebrew-bottles</code>配置只能手动删除，将<code>~/.bash_profile</code>文件中的 <code>HOMEBREW_BOTTLE_DOMAIN=https://mirrors.xxx.com</code>内容删除，并执行<code>source ~/.bash_profile</code></p>
 
             </div>
             <hr />
@@ -1266,9 +917,10 @@ pod<span class="token operator">/</span>nginxpod unchanged<span aria-hidden="tru
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/14/homebrew/">
                     <div class="card-image">
@@ -1287,9 +939,9 @@ pod<span class="token operator">/</span>nginxpod unchanged<span aria-hidden="tru
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1302,6 +954,7 @@ pod<span class="token operator">/</span>nginxpod unchanged<span aria-hidden="tru
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1320,26 +973,26 @@ pod<span class="token operator">/</span>nginxpod unchanged<span aria-hidden="tru
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/04/03k8s/">
+                <a href="/2021/09/07/04k8s/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="03. 安装minikube">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="04.k8s资源管理">
                         
-                        <span class="card-title">03. 安装minikube</span>
+                        <span class="card-title">04.k8s资源管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            安装minikube的前提需要安装kubectl
-安装kubectlCentos、Readhat编辑yum 的kubenernetes源vim /etc/yum.repos.d/kubernetes.repo并输入下面的内容
-[kubern
+                            k8s资源管理资源管理介绍在kubernetes中，所有的内容都抽象为资源，用户需要通过操作资源来管理kubernetes。
+
+​    kubernetes的本质上就是一个集群系统，用户可以在集群中部署各种服务，所谓的部署服务，其实就是在
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-07
                             </span>
                         <span class="publish-author">
                             

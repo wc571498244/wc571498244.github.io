@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wc571498244.github.io/"/>
-  <updated>2021-09-14T02:30:33.271Z</updated>
+  <updated>2021-09-14T02:47:36.664Z</updated>
   <id>https://wc571498244.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HomeBrew 安装</title>
+    <link href="https://wc571498244.github.io/2021/09/14/homebrew/"/>
+    <id>https://wc571498244.github.io/2021/09/14/homebrew/</id>
+    <published>2021-09-14T02:45:21.000Z</published>
+    <updated>2021-09-14T02:47:36.664Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;homebrew-国内飞速安装&quot;&gt;&lt;a href=&quot;#homebrew-国内飞速安装&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://wc571498244.github.io/categories/Linux/"/>
+    
+    
+      <category term="Mac" scheme="https://wc571498244.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>04.k8s资源管理</title>

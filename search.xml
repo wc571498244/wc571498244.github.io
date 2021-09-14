@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>HomeBrew 安装</title>
+      <link href="/2021/09/14/homebrew/"/>
+      <url>/2021/09/14/homebrew/</url>
+      
+        <content type="html"><![CDATA[<h3 id="homebrew-国内飞速安装"><a href="#homebrew-国内飞速安装" class="headerlink" title="homebrew(国内飞速安装)"></a><code>homebrew</code>(国内飞速安装)</h3><p><code>homebrew</code>官网推荐的命令在国内巨慢…，不管你是否FQ，都没啥速度的提升</p><pre class="line-numbers language-sh"><code class="language-sh">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>这里有个国内的源，可以使你下载速度提升百倍～</p><pre class="line-numbers language-sh"><code class="language-sh">/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><em>若出现一下情况：</em></p><p>如果命令执行中卡在下面信息：</p><pre class="line-numbers language-sh"><code class="language-sh">==> Tapping homebrew/coreCloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core'...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>请<code>Command + C</code>中断脚本执行如下命令：</p><pre class="line-numbers language-sh"><code class="language-sh">cd "$(brew --repo)/Library/Taps/"mkdir homebrew && cd homebrewgit clone git://mirrors.ustc.edu.cn/homebrew-core.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>成功执行之后继续执行前文的安装命令。<br>最后看到<code>==&gt; Installation successful!</code>就说明安装成功了。</p><p>最最后执行：<code>brew update</code></p><p><code>cask</code>同样也有首次下载缓慢的问题，解决方法大致同上：</p><pre class="line-numbers language-sh"><code class="language-sh">cd "$(brew --repo)/Library/Taps/"cd homebrewgit clone https://mirrors.ustc.edu.cn/homebrew-cask.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>使用官方脚本同样会遇到uninstall地址无法访问问题，可以替换为下面脚本：</p><pre class="line-numbers language-sh"><code class="language-sh">/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/uninstall)"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="设置国内镜像源"><a href="#设置国内镜像源" class="headerlink" title="设置国内镜像源"></a>设置国内镜像源</h3><p><code>brew、homebrew/core</code>是必备项目，<code>homebrew/cask</code>、<code>homebrew/bottles</code>按需设置。<br>通过<code>brew config</code>命令查看配置信息。</p><p><em>中科大源</em></p><pre class="line-numbers language-sh"><code class="language-sh">git -C "$(brew --repo)" remote set-url origin https://mirrors.ustc.edu.cn/brew.gitgit -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.gitgit -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.gitbrew update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="恢复官方镜像源"><a href="#恢复官方镜像源" class="headerlink" title="恢复官方镜像源"></a>恢复官方镜像源</h3><pre class="line-numbers language-sh"><code class="language-sh">git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.gitgit -C "$(brew --repo homebrew/core)" remote set-url origin https://github.com/Homebrew/homebrew-core.gitgit -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask.gitbrew update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><code>homebrew-bottles</code>配置只能手动删除，将<code>~/.bash_profile</code>文件中的 <code>HOMEBREW_BOTTLE_DOMAIN=https://mirrors.xxx.com</code>内容删除，并执行<code>source ~/.bash_profile</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>04.k8s资源管理</title>
       <link href="/2021/09/07/04k8s/"/>
       <url>/2021/09/07/04k8s/</url>
