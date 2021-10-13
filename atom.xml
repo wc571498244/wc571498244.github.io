@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wc571498244.github.io/"/>
-  <updated>2021-09-14T02:47:36.664Z</updated>
+  <updated>2021-10-13T10:28:56.248Z</updated>
   <id>https://wc571498244.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql 存储emoji 表情</title>
+    <link href="https://wc571498244.github.io/2021/10/13/mysql-save-emoji/"/>
+    <id>https://wc571498244.github.io/2021/10/13/mysql-save-emoji/</id>
+    <published>2021-10-13T10:17:44.000Z</published>
+    <updated>2021-10-13T10:28:56.248Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;mysql-存储emoji-表情&quot;&gt;&lt;a href=&quot;#mysql-存储emoji-表情&quot; class=&quot;headerlink&quot; title=&quot;mysql 存储emoji 表情&quot;&gt;&lt;/a&gt;mysql 存储emoji
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="https://wc571498244.github.io/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="https://wc571498244.github.io/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>HomeBrew 安装</title>

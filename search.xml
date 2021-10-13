@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>mysql 存储emoji 表情</title>
+      <link href="/2021/10/13/mysql-save-emoji/"/>
+      <url>/2021/10/13/mysql-save-emoji/</url>
+      
+        <content type="html"><![CDATA[<h3 id="mysql-存储emoji-表情"><a href="#mysql-存储emoji-表情" class="headerlink" title="mysql 存储emoji 表情"></a>mysql 存储emoji 表情</h3><blockquote><p>近期排查bug发现，某个客户的订单一直更新不到系统中; 于是发现客户的订单号竟然有表情(🐝)…..真的奇葩;<br>后续发现mysql存储emoji表情需要unicode字符集, 所以尝试修改相关字符集, 得以解决。</p></blockquote><p><img src="./mysql_emoji.png" alt="mysql_emoji"></p><ol><li><p>需要将mysql 连接指定字符集utf8mb4<br> <code>mysql+mysqldb://user:pass@localhost/datab?charset=utf8mb4</code></p></li><li><p>数据库字符集 首先查看字符集设置如下, character_set_system为utf8, 需要将其修改为utf8mb4<br> 查看命令： <code>SHOW VARIABLES WHERE Variable_name LIKE &#39;character\_set\_%&#39; OR Variable_name LIKE &#39;collation%&#39;;</code></p><pre><code> +--------------------------+--------------------+ | Variable_name            | Value              | +--------------------------+--------------------+ | character_set_client     | utf8mb4            | | character_set_connection | utf8mb4            | | character_set_database   | utf8mb4            | | character_set_filesystem | binary             | | character_set_results    | utf8mb4            | | character_set_server     | utf8mb4            | | character_set_system     | utf8               | | collation_connection     | utf8mb4_unicode_ci | | collation_database       | utf8mb4_unicode_ci | | collation_server         | utf8mb4_unicode_ci | +--------------------------+--------------------+</code></pre></li><li><p>改库、表、字段的字符集</p><pre class="line-numbers language-sql"><code class="language-sql"> <span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER SET</span> <span class="token operator">=</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span> <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name <span class="token keyword">CONVERT</span> <span class="token keyword">TO</span> <span class="token keyword">CHARACTER SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span> <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name CHANGE column_name column_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">191</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HomeBrew 安装</title>
       <link href="/2021/09/14/homebrew/"/>
       <url>/2021/09/14/homebrew/</url>

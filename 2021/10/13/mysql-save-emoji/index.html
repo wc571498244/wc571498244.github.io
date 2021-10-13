@@ -4,11 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="01. Kubernetes是什么?, 博客 Python">
+    <meta name="keywords" content="mysql 存储emoji 表情, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="Kubernetes是什么?Kubernetes 是一个可移植的、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态系统。 Kubernetes 这个名字源于希腊">
+    <meta name="description" content="mysql 存储emoji 表情
+近期排查bug发现，某个客户的订单一直更新不到系统中; 于是发现客户的订单号竟然有表情(🐝)…..真的奇葩;后续发现mysql存储emoji表情需要unicode字符集, 所以尝试修改相关字符集, 得以解">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>01. Kubernetes是什么? | 进步缓慢的CYX</title>
+    <title>mysql 存储emoji 表情 | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -283,13 +284,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        01. Kubernetes是什么?
+                        mysql 存储emoji 表情
                     </div>
                 </div>
             </div>
@@ -400,8 +401,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/Kubernetes/" target="_blank">
-                            <span class="chip bg-color">Kubernetes</span>
+                        <a href="/tags/Mysql/" target="_blank">
+                            <span class="chip bg-color">Mysql</span>
                         </a>
                         
                     </div>
@@ -412,8 +413,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Kubernetes/" class="post-category" target="_blank">
-                            Kubernetes
+                        <a href="/categories/Mysql/" class="post-category" target="_blank">
+                            Mysql
                         </a>
                         
                     </div>
@@ -424,7 +425,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-21
+                    2021-10-13
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -438,14 +439,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    208
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
                 
@@ -456,48 +457,34 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Kubernetes是什么"><a href="#Kubernetes是什么" class="headerlink" title="Kubernetes是什么?"></a>Kubernetes是什么?</h2><p>Kubernetes 是一个可移植的、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态系统。 <strong>Kubernetes</strong> 这个名字源于希腊语，意为“舵手”或“飞行员”。k8s 这个缩写是因为 k 和 s 之间有八个字符的关系。</p>
-<h2 id="部署方式的演变"><a href="#部署方式的演变" class="headerlink" title="部署方式的演变"></a>部署方式的演变</h2><p><img src="./deploy_style.jpg" alt="deploy_style"></p>
-<h4 id="传统部署"><a href="#传统部署" class="headerlink" title="传统部署"></a>传统部署</h4><blockquote>
-<p>早期，直接将应用程序部署在物理机上。无法为物理服务器中的应用程序定义资源边界，这会导致资源分配问题。 例如，如果在物理服务器上运行多个应用程序，则可能会出现一个应用程序占用大部分资源的情况， 结果可能导致其他应用程序的性能下降。 一种解决方案是在不同的物理服务器上运行每个应用程序，但是由于资源利用不足而无法扩展， 并且维护许多物理服务器的成本很高。 </p>
+                <h3 id="mysql-存储emoji-表情"><a href="#mysql-存储emoji-表情" class="headerlink" title="mysql 存储emoji 表情"></a>mysql 存储emoji 表情</h3><blockquote>
+<p>近期排查bug发现，某个客户的订单一直更新不到系统中; 于是发现客户的订单号竟然有表情(🐝)…..真的奇葩;<br>后续发现mysql存储emoji表情需要unicode字符集, 所以尝试修改相关字符集, 得以解决。</p>
 </blockquote>
-<h4 id="虚拟化部署"><a href="#虚拟化部署" class="headerlink" title="虚拟化部署"></a>虚拟化部署</h4><blockquote>
-<p>可以在一台物理机上运行多个虚拟机，每个虚拟机都是独立的一个环境<br>优点：程序环境不会相互产生影响，提供了一定程度的安全性<br>缺点：增加了操作系统，浪费了部分资源</p>
-</blockquote>
-<h3 id="容器化部署"><a href="#容器化部署" class="headerlink" title="容器化部署"></a>容器化部署</h3><blockquote>
-<p>容器类似于 VM，但是它们具有被放宽的隔离属性，可以在应用程序之间共享操作系统（OS）。 因此，容器被认为是轻量级的。容器与 VM 类似，具有自己的文件系统、CPU、内存、进程空间等。 由于它们与基础架构分离，因此可以跨云和 OS 发行版本进行移植。</p>
-<p>容器因具有许多优势而变得流行起来。下面列出的是容器的一些好处：<br>​    可以保证每个容器拥有自己的文件系统、CPU、内存、进程空间等<br>​    运行应用程序所需要的资源都被容器包装，并和底层基础架构解耦<br>​    容器化的应用程序可以跨云服务商、跨Linux操作系统发行版进行部署</p>
-</blockquote>
-<h2 id="为什么需要-Kubernetes，它能做什么"><a href="#为什么需要-Kubernetes，它能做什么" class="headerlink" title="为什么需要 Kubernetes，它能做什么?"></a>为什么需要 Kubernetes，它能做什么?</h2><p>目前主流的方式是容器部署，在生产环节中假设一个容器发生故障，则需要启动另一个容器，并确保该容器不会停机等行为。这些问题就是由k8s来解决！ Kubernetes 为你提供了一个可弹性运行分布式系统的框架。 Kubernetes 会满足你的扩展要求、故障转移、部署模式等。 </p>
-<p>kubernetes的本质是<strong>一组服务器集群</strong>，它可以在集群的每个节点上运行特定的程序，来对节点中的容器进行管理。目的是实现资源管理的自动化！</p>
-<p><strong>Kubernetes 为你提供：</strong></p>
-<ul>
-<li><p>服务发现和负载均衡<br>Kubernetes 可以使用 DNS 名称或自己的 IP 地址公开容器，如果进入容器的流量很大， Kubernetes 可以负载均衡并分配网络流量，从而使部署稳定。</p>
+<p><img src="./mysql_emoji.png" alt="mysql_emoji"></p>
+<ol>
+<li><p>需要将mysql 连接指定字符集utf8mb4<br> <code>mysql+mysqldb://user:pass@localhost/datab?charset=utf8mb4</code></p>
 </li>
-<li><p>存储编排<br>Kubernetes 允许你自动挂载你选择的存储系统，例如本地存储、公共云提供商等。</p>
+<li><p>数据库字符集 首先查看字符集设置如下, character_set_system为utf8, 需要将其修改为utf8mb4<br> 查看命令： <code>SHOW VARIABLES WHERE Variable_name LIKE &#39;character\_set\_%&#39; OR Variable_name LIKE &#39;collation%&#39;;</code></p>
+<pre><code> +--------------------------+--------------------+
+ | Variable_name            | Value              |
+ +--------------------------+--------------------+
+ | character_set_client     | utf8mb4            |
+ | character_set_connection | utf8mb4            |
+ | character_set_database   | utf8mb4            |
+ | character_set_filesystem | binary             |
+ | character_set_results    | utf8mb4            |
+ | character_set_server     | utf8mb4            |
+ | character_set_system     | utf8               |
+ | collation_connection     | utf8mb4_unicode_ci |
+ | collation_database       | utf8mb4_unicode_ci |
+ | collation_server         | utf8mb4_unicode_ci |
+ +--------------------------+--------------------+</code></pre></li>
+<li><p>改库、表、字段的字符集</p>
+<pre class="line-numbers language-sql"><code class="language-sql"> <span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER SET</span> <span class="token operator">=</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span>
+ <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name <span class="token keyword">CONVERT</span> <span class="token keyword">TO</span> <span class="token keyword">CHARACTER SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span>
+ <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name CHANGE column_name column_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">191</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><p>自动部署和回滚</p>
-<p>你可以使用 Kubernetes 描述已部署容器的所需状态，它可以以受控的速率将实际状态 更改为期望状态。例如，你可以自动化 Kubernetes 来为你的部署创建新容器， 删除现有容器并将它们的所有资源用于新容器。</p>
-</li>
-<li><p>自动完成装箱计算</p>
-<p>Kubernetes 允许你指定每个容器所需 CPU 和内存（RAM）。 当容器指定了资源请求时，Kubernetes 可以做出更好的决策来管理容器的资源。</p>
-</li>
-<li><p>自我修复<br>Kubernetes 重新启动失败的容器、替换容器、杀死不响应用户定义的 运行状况检查的容器，并且在准备好服务之前不将其通告给客户端。</p>
-</li>
-<li><p>密钥与配置管理</p>
-<p>Kubernetes 允许你存储和管理敏感信息，例如密码、OAuth 令牌和 ssh 密钥。 你可以在不重建容器镜像的情况下部署和更新密钥和应用程序配置，也无需在堆栈配置中暴露密钥。</p>
-</li>
-</ul>
-<p><strong>简单的总结：</strong></p>
-<ul>
-<li><strong>自我修复</strong>：一旦某一个容器崩溃，能够在1秒中左右迅速启动新的容器</li>
-<li><strong>弹性伸缩</strong>：可以根据需要，自动对集群中正在运行的容器数量进行调整</li>
-<li><strong>服务发现</strong>：服务可以通过自动发现的形式找到它所依赖的服务</li>
-<li><strong>负载均衡</strong>：如果一个服务起动了多个容器，能够自动实现请求的负载均衡</li>
-<li><strong>版本回退</strong>：如果发现新发布的程序版本有问题，可以立即回退到原来的版本</li>
-<li><strong>存储编排</strong>：可以根据容器自身的需求自动创建存储卷</li>
-</ul>
-<p><a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/" target="_blank" rel="noopener">参考自 Kubernetes 官网</a></p>
+</ol>
 
             </div>
             <hr />
@@ -921,48 +908,49 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/07/26/02k8s/">
+                <a href="/2021/10/13/mysql-save-emoji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="02. Kubernetes 组件">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="mysql 存储emoji 表情">
                         
-                        <span class="card-title">02. Kubernetes 组件</span>
+                        <span class="card-title">mysql 存储emoji 表情</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Kubernetes 组件一个Kubernetes集群由一组被称为节点的机器组成。这些节点上运行了Kubernetes所管理的容器化应用。kubernetes集群主要是由控制节点(master)、工作节点(node)构成。
-
-master：
+                            mysql 存储emoji 表情
+近期排查bug发现，某个客户的订单一直更新不到系统中; 于是发现客户的订单号竟然有表情(🐝)…..真的奇葩;后续发现mysql存储emoji表情需要unicode字符集, 所以尝试修改相关字符集, 得以解
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Kubernetes/" class="post-category" target="_blank">
-                                    Kubernetes
+                            <a href="/categories/Mysql/" class="post-category" target="_blank">
+                                    Mysql
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Kubernetes/" target="_blank">
-                        <span class="chip bg-color">Kubernetes</span>
+                    <a href="/tags/Mysql/" target="_blank">
+                        <span class="chip bg-color">Mysql</span>
                     </a>
                     
                 </div>
@@ -976,37 +964,32 @@ master：
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/30/centosinstallohmyzsh/">
+                <a href="/2021/09/14/homebrew/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="CeontOS 安装oh-my-zsh">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="HomeBrew 安装">
                         
-                        <span class="card-title">CeontOS 安装oh-my-zsh</span>
+                        <span class="card-title">HomeBrew 安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CeontOS 安装oh-my-zsh废话不多说，zsh配合oh-my-zsh体验相当nice，直接开干。
-安装
-安装zsh并切换zsh为默认shell
-yum install zsh -y
-chsh -s /bin/zsh
-
-安装oh-m
+                            homebrew(国内飞速安装)homebrew官网推荐的命令在国内巨慢…，不管你是否FQ，都没啥速度的提升
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Home
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-30
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/shell/" class="post-category" target="_blank">
-                                    shell
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
                                 </a>
                             
                             
@@ -1016,8 +999,8 @@ chsh -s /bin/zsh
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/" target="_blank">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Mac/" target="_blank">
+                        <span class="chip bg-color">Mac</span>
                     </a>
                     
                 </div>

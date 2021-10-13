@@ -1,3 +1,4 @@
+https://wc571498244.github.io/2021/10/13/mysql-save-emoji/
 https://wc571498244.github.io/2021/09/14/homebrew/
 https://wc571498244.github.io/2021/09/07/04k8s/
 https://wc571498244.github.io/2021/08/04/03k8s/
