@@ -4,13 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Gunicorn 配置详解, 博客 Python">
+    <meta name="keywords" content="Supervisor进程管理工具, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="config-c CONFIG, --config CONFIGGunicorn配置文件路径，路径形式的字符串格式，如：
-gunicorn -c gunicorn.conf main:app
-bind-b ADDRESS, --bind A">
+    <meta name="description" content="一、supervisor简介Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork/exec的方式把这些被管理的进程当作supe">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@ bind-b ADDRESS, --bind A">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gunicorn 配置详解 | 进步缓慢的CYX</title>
+    <title>Supervisor进程管理工具 | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -285,13 +283,13 @@ bind-b ADDRESS, --bind A">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gunicorn 配置详解
+                        Supervisor进程管理工具
                     </div>
                 </div>
             </div>
@@ -426,7 +424,7 @@ bind-b ADDRESS, --bind A">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-16
+                    2021-10-18
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -440,14 +438,14 @@ bind-b ADDRESS, --bind A">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
                 
@@ -458,66 +456,111 @@ bind-b ADDRESS, --bind A">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p><code>-c CONFIG, --config CONFIG</code><br>Gunicorn配置文件路径，路径形式的字符串格式，如：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">gunicorn -c gunicorn.conf main:app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>-b ADDRESS, --bind ADDRESS</code><br>Gunicorn绑定服务器套接字，Host形式的字符串格式。Gunicorn可绑定多个套接字，如：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">gunicorn -b 127.0.0.1:8000 -b [::1]:9000 manager:app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="backlog"><a href="#backlog" class="headerlink" title="backlog"></a>backlog</h3><p><code>--backlog</code><br>未决连接的最大数量，即等待服务的客户的数量。必须是正整数，一般设定在64~2048的范围内，一般设置为2048，超过这个数字将导致客户端在尝试连接时错误</p>
-<h3 id="workers"><a href="#workers" class="headerlink" title="workers"></a>workers</h3><p><code>-w INT, --workers INT</code><br>用于处理工作进程的数量，为正整数，默认为1。worker推荐的数量为当前的CPU个数*2 + 1。计算当前的CPU个数方法：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
-<span class="token keyword">print</span> multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="worker-class"><a href="#worker-class" class="headerlink" title="worker_class"></a>worker_class</h3><p><code>-k STRTING, --worker-class STRTING</code><br>使用寿命工作模式，默认为sync。可使用下面的常用的工作模式:</p>
-<ul>
-<li>sync</li>
-<li>eventlet: 需要下载eventlet &gt;= 0.9.7</li>
-<li>gevent: 需要下载gevent &gt;= 0.13</li>
-<li>tornado: 需要下载tornado &gt;= 0.2</li>
-<li>gthread</li>
-<li>gaiohttp：需要python 3.4和aiohttp&gt;=0.21.5</li>
-<li>uvicorn: 需要下载uvicorn(部署fastAPI时使用, 下面举个例子)</li>
-</ul>
-<pre class="line-numbers language-sh"><code class="language-sh"># 举个例子(fastAPI)
-gunicorn example:app -w 4 -k uvicorn.workers.UvicornWorker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="threads"><a href="#threads" class="headerlink" title="threads"></a>threads</h3><p><code>--threads INT</code><br>处理请求的工作线程数，使用指定数量的线程运行每个worker。为正整数，默认为1。</p>
-<h3 id="worker-connections"><a href="#worker-connections" class="headerlink" title="worker_connections"></a>worker_connections</h3><p><code>--worker-connections INT</code><br>最大客户端并发数量，默认情况下这个值为1000。此设置将影响gevent和eventlet工作模式</p>
-<h3 id="max-requests"><a href="#max-requests" class="headerlink" title="max_requests"></a>max_requests</h3><p><code>--max-requests INT</code><br>重新启动之前，工作将处理的最大请求数。默认值为0。</p>
-<h3 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h3><p><code>-t INT, --timeout INT</code><br>超过这么多秒后工作将被杀掉，并重新启动。一般设定为30秒</p>
-<h3 id="keepalive"><a href="#keepalive" class="headerlink" title="keepalive"></a>keepalive</h3><p><code>--keep-alive INT</code><br>在keep-alive连接上等待请求的秒数，默认情况下值为2。一般设定在1~5秒之间。</p>
-<h3 id="limit-request-line"><a href="#limit-request-line" class="headerlink" title="limit_request_line"></a>limit_request_line</h3><p><code>--limit-request-line INT</code><br>HTTP请求行的最大大小，此参数用于限制HTTP请求行的允许大小，默认情况下，这个值为4094。该值的范围为0~8190。此参数可以防止任何DDOS攻击</p>
-<h3 id="limit-request-fields"><a href="#limit-request-fields" class="headerlink" title="limit_request_fields"></a>limit_request_fields</h3><p><code>--limit-request-fields INT</code><br>限制HTTP请求中请求头字段的数量。此字段用于限制请求头字段的数量以防止DDOS攻击，与limit-request-field-size一起使用可以提高安全性。默认情况下，这个值为100，这个值不能超过32768</p>
-<h3 id="limit-request-field-size"><a href="#limit-request-field-size" class="headerlink" title="limit_request_field_size"></a>limit_request_field_size</h3><p><code>--limit-request-field-size INT</code><br>限制HTTP请求中请求头的大小，默认情况下这个值为8190。值是一个整数或者0，当该值为0时，表示将对请求头大小不做限制</p>
-<h3 id="reload"><a href="#reload" class="headerlink" title="reload"></a>reload</h3><p><code>--reload</code><br>代码更新时将重启工作，默认为False。此设置一般用于开发，每当应用程序发生更改时，都会导致工作重新启动。</p>
-<h3 id="reload-engine"><a href="#reload-engine" class="headerlink" title="reload_engine"></a>reload_engine</h3><p><code>--reload-engine STRTING</code><br>选择重载的引擎，支持的有三种：</p>
-<ul>
-<li>auto</li>
-<li>pull</li>
-<li>inotity：需要下载</li>
-</ul>
-<h3 id="check-config"><a href="#check-config" class="headerlink" title="check_config"></a>check_config</h3><p><code>--check-config</code><br>显示现在的配置，默认值为False，即显示。</p>
-<h3 id="preload-app"><a href="#preload-app" class="headerlink" title="preload_app"></a>preload_app</h3><p><code>--preload</code><br>在工作进程被复制(派生)之前加载应用程序代码，默认为False。通过预加载应用程序，你可以节省RAM资源，并且加快服务器启动时间。</p>
-<h3 id="chdir"><a href="#chdir" class="headerlink" title="chdir"></a>chdir</h3><p><code>--chdir</code><br>加载应用程序之前将chdir目录指定到指定目录</p>
-<h3 id="daemon"><a href="#daemon" class="headerlink" title="daemon"></a>daemon</h3><p><code>--daemon</code><br>守护Gunicorn进程，默认False</p>
-<h3 id="raw-env"><a href="#raw-env" class="headerlink" title="raw_env"></a>raw_env</h3><p><code>-e ENV, --env ENV</code><br>设置环境变量(key=value)，将变量传递给执行环境，如：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">gunicorin -b 127.0.0.1:8000 -e abc=123 manager:app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在配置文件中写法：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">raw_env=["abc=123"]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="pidfile"><a href="#pidfile" class="headerlink" title="pidfile"></a>pidfile</h3><p><code>-p FILE, --pid FILE</code><br>设置pid文件的文件名，如果不设置将不会创建pid文件</p>
-<h3 id="worker-tmp-dir"><a href="#worker-tmp-dir" class="headerlink" title="worker_tmp_dir"></a>worker_tmp_dir</h3><p><code>--worker-tmp-dir DIR</code><br>设置工作临时文件目录，如果不设置会采用默认值。</p>
-<h3 id="accesslog"><a href="#accesslog" class="headerlink" title="accesslog"></a>accesslog</h3><p><code>--access-logfile FILE</code><br>要写入的访问日志目录</p>
-<h3 id="access-log-format"><a href="#access-log-format" class="headerlink" title="access_log_format"></a>access_log_format</h3><p><code>--access-logformat STRING</code><br>要写入的访问日志格式。如：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">access_log_format = '%(h)s %(l)s %(u)s %(t)s'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>常见格式说明：<br>|  识别码   | 说明                          |<br>|  —-     | —-                           |<br>|  h        |远程地址                        |<br>|  l        |“-“                            |<br>|  u        |用户名                            |<br>|  t        |时间                            |<br>|  r        |状态行，如：GET /test HTTP/1.1    |<br>|  m        |请求方法                        |<br>|  U        |没有查询字符串的URL            |<br>|  q        |查询字符串                        |<br>|  H        |协议                            |<br>|  s        |状态码                            |<br>|  B        |response长度                    |<br>|  b        |response长度(CLF格式)            |<br>|  f        |参考                            |<br>|  a        |用户代理                        |<br>|  T        |请求时间，单位为s                |<br>|  D        |请求时间，单位为ms                 |<br>|  p        |进程id                            |<br>|  {Header}i    | 请求头                    |<br>|  {Header}o    | 相应头                    |<br>|  {Variable}e    | 环境变量                    |</p>
-<h3 id="errorlog"><a href="#errorlog" class="headerlink" title="errorlog"></a>errorlog</h3><p><code>--error-logfile FILE, --log-file FILE</code><br>要写入错误日志的文件目录。</p>
-<h3 id="loglevel"><a href="#loglevel" class="headerlink" title="loglevel"></a>loglevel</h3><p><code>--log-level LEVEL</code><br>错误日志输出等级。</p>
-<p>支持的级别名称为:</p>
-<ul>
-<li>debug</li>
-<li>info</li>
-<li>warning</li>
-<li>error</li>
-<li>critical</li>
-</ul>
-<p>更多配置：<a href="http://docs.gunicorn.org/en/stable/settings.html#server-mechanics" target="_blank" rel="noopener">http://docs.gunicorn.org/en/stable/settings.html#server-mechanics</a></p>
+                <h2 id="一、supervisor简介"><a href="#一、supervisor简介" class="headerlink" title="一、supervisor简介"></a>一、supervisor简介</h2><p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork/exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。</p>
+<h2 id="二、安装supervisor"><a href="#二、安装supervisor" class="headerlink" title="二、安装supervisor"></a>二、安装supervisor</h2><ol>
+<li>使用yum安装，在配好yum源之后，可以直接安装<pre class="line-numbers language-shell"><code class="language-shell">yum install supervisor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>pip 安装<pre class="line-numbers language-shell"><code class="language-shell">pip install supervisor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h2 id="三、生成supervisor配置文件"><a href="#三、生成supervisor配置文件" class="headerlink" title="三、生成supervisor配置文件"></a>三、生成supervisor配置文件</h2><p><strong>supervisor配置文件</strong><br>运行命令<code>echo_supervisord_conf</code>生成supervisor的初始配置文件:</p>
+<pre class="line-numbers language-shell"><code class="language-shell">echo_supervisord_conf > /etc/supervisord.conf # 生成在哪个地方可以自己选择<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><em>注：supervisor的配置文件默认是不全的，不过在大部分默认的情况下，上面说的基本功能已经满足。</em></p>
+<p><strong>supervisor子进程配置文件</strong><br>需要修改配置文件<code>files</code>字段的路径(子进程配置文件路径)</p>
+<pre class="line-numbers language-shell"><code class="language-shell">...
+;[include]
+files = /etc/supervisord.d/*.ini # 子进程配置文件路径, 需要手动创建<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><em>默认子进程配置文件为ini格式，可在supervisor主配置文件中修改。</em></p>
+<h2 id="四、supervisor配置文件的说明"><a href="#四、supervisor配置文件的说明" class="headerlink" title="四、supervisor配置文件的说明"></a>四、supervisor配置文件的说明</h2><h4 id="supervisor-conf配置文件说明："><a href="#supervisor-conf配置文件说明：" class="headerlink" title="supervisor.conf配置文件说明："></a>supervisor.conf配置文件说明：</h4><pre class="line-numbers language-shell"><code class="language-shell">[unix_http_server]
+file=/tmp/supervisor.sock   ;UNIX socket 文件，supervisorctl 会使用
+;chmod=0700                 ;socket文件的mode，默认是0700
+;chown=nobody:nogroup       ;socket文件的owner，格式：uid:gid
+
+;[inet_http_server]         ;HTTP服务器，提供web管理界面
+;port=127.0.0.1:9001        ;Web管理后台运行的IP和端口，如果开放到公网，需要注意安全性
+;username=user              ;登录管理后台的用户名
+;password=123               ;登录管理后台的密码
+
+[supervisord]
+logfile=/tmp/supervisord.log ;日志文件，默认是 $CWD/supervisord.log
+logfile_maxbytes=50MB        ;日志文件大小，超出会rotate，默认 50MB，如果设成0，表示不限制大小
+logfile_backups=10           ;日志文件保留备份数量默认10，设为0表示不备份
+loglevel=info                ;日志级别，默认info，其它: debug,warn,trace
+pidfile=/tmp/supervisord.pid ;pid 文件
+nodaemon=false               ;是否在前台启动，默认是false，即以 daemon 的方式启动
+minfds=1024                  ;可以打开的文件描述符的最小值，默认 1024
+minprocs=200                 ;可以打开的进程数的最小值，默认 200
+
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ;通过UNIX socket连接supervisord，路径与unix_http_server部分的file一致
+;serverurl=http://127.0.0.1:9001 ; 通过HTTP的方式连接supervisord
+
+; [program:xx]是被管理的进程配置参数，xx是进程的名称
+[program:xx]
+command=/opt/apache-tomcat-8.0.35/bin/catalina.sh run  ; 程序启动命令
+autostart=true       ; 在supervisord启动的时候也自动启动
+startsecs=10         ; 启动10秒后没有异常退出，就表示进程正常启动了，默认为1秒
+autorestart=true     ; 程序退出后自动重启,可选值：[unexpected,true,false]，默认为unexpected，表示进程意外杀死后才重启
+startretries=3       ; 启动失败自动重试次数，默认是3
+user=tomcat          ; 用哪个用户启动进程，默认是root
+priority=999         ; 进程启动优先级，默认999，值小的优先启动
+redirect_stderr=true ; 把stderr重定向到stdout，默认false
+stdout_logfile_maxbytes=20MB  ; stdout 日志文件大小，默认50MB
+stdout_logfile_backups = 20   ; stdout 日志文件备份数，默认是10
+; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）
+stdout_logfile=/opt/apache-tomcat-8.0.35/logs/catalina.out
+stopasgroup=false     ;默认为false,进程被杀死时，是否向这个进程组发送stop信号，包括子进程
+killasgroup=false     ;默认为false，向进程组发送kill信号，包括子进程
+
+;包含其它配置文件
+[include]
+files = relative/directory/*.ini    ;可以指定一个或多个以.ini结束的配置文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="子进程配置文件说明："><a href="#子进程配置文件说明：" class="headerlink" title="子进程配置文件说明："></a>子进程配置文件说明：</h4><p>给需要管理的子进程(程序)编写一个配置文件，放在/etc/supervisor.d/目录下，以.ini作为扩展名（每个进程的配置文件都可以单独分拆也可以把相关的脚本放一起）。如任意定义一个和脚本相关的项目名称的选项组（/etc/supervisord.d/test.conf）：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#项目名
+[program:blog]
+#脚本目录
+directory=/opt/bin
+#脚本执行命令
+command=/usr/bin/python /opt/bin/test.py
+
+#supervisor启动的时候是否随着同时启动，默认True
+autostart=true
+#当程序exit的时候，这个program不会自动重启,默认unexpected，设置子进程挂掉后自动重启的情况，有三个选项，false,unexpected和true。如果为false的时候，无论什么情况下，都不会被重新启动，如果为unexpected，只有当进程的退出码不在下面的exitcodes里面定义的
+autorestart=false
+#这个选项是子进程启动多少秒之后，此时状态如果是running，则我们认为启动成功了。默认值为1
+startsecs=1
+
+#脚本运行的用户身份 
+user = test
+
+#日志输出 
+stderr_logfile=/tmp/blog_stderr.log 
+stdout_logfile=/tmp/blog_stdout.log 
+#把stderr重定向到stdout，默认 false
+redirect_stderr = true
+#stdout日志文件大小，默认 50MB
+stdout_logfile_maxbytes = 20M
+#stdout日志文件备份数
+stdout_logfile_backups = 20<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="子进程配置示例"><a href="#子进程配置示例" class="headerlink" title="子进程配置示例"></a>子进程配置示例</h4><pre class="line-numbers language-shell"><code class="language-shell">#说明同上
+[program:test] 
+directory=/opt/bin 
+command=/opt/bin/test
+autostart=true 
+autorestart=false 
+stderr_logfile=/tmp/test_stderr.log 
+stdout_logfile=/tmp/test_stdout.log 
+#user = test  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="五、supervisor命令说明"><a href="#五、supervisor命令说明" class="headerlink" title="五、supervisor命令说明"></a>五、supervisor命令说明</h2><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre class="line-numbers language-shell"><code class="language-shell">supervisorctl status        //查看所有进程的状态
+supervisorctl stop es       //停止es
+supervisorctl start es      //启动es
+supervisorctl restart       //重启es
+supervisorctl update        //配置文件修改后使用该命令加载新的配置
+supervisorctl reload        //重新启动配置中的所有程序<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>注：把<code>es</code>换成<code>all</code>可以管理配置中的所有进程。直接输入<code>supervisorctl</code>进入<code>supervisorctl</code>的shell交互界面，此时上面的命令不带<code>supervisorctl</code>可直接使用。</em></p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>使用<code>supervisor</code>进程管理命令之前先启动<code>supervisord</code>，否则程序报错。<br>使用命令<code>supervisord -c /etc/supervisord.conf</code>启动。<br>若是<code>centos7</code>：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">systemctl start supervisord.service     //启动supervisor并加载默认配置文件
+systemctl enable supervisord.service    //将supervisor加入开机启动项<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -941,86 +984,29 @@ gunicorn example:app -w 4 -k uvicorn.workers.UvicornWorker<span aria-hidden="tru
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/">
+                <a href="/2021/10/18/supervisor/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Docker-compose 安装Redis、Mysql、Kafka、RabbitMq">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Supervisor进程管理工具">
                         
-                        <span class="card-title">Docker-compose 安装Redis、Mysql、Kafka、RabbitMq</span>
+                        <span class="card-title">Supervisor进程管理工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Redisdocker-compose.yaml
-version: '3'
-services:
-  redis:
-    restart: always
-    image: redis
-    container_name: redis
-
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-26
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Docker/" class="post-category" target="_blank">
-                                    Docker
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/docker-compose/" target="_blank">
-                        <span class="chip bg-color">docker-compose</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/05/16/gunicorn-pei-zhi-xiang-jie/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Gunicorn 配置详解">
-                        
-                        <span class="card-title">Gunicorn 配置详解</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            config-c CONFIG, --config CONFIGGunicorn配置文件路径，路径形式的字符串格式，如：
-gunicorn -c gunicorn.conf main:app
-bind-b ADDRESS, --bind A
+                            一、supervisor简介Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork/exec的方式把这些被管理的进程当作supe
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-18
                             </span>
                         <span class="publish-author">
                             
@@ -1040,6 +1026,56 @@ bind-b ADDRESS, --bind A
                     
                     <a href="/tags/Python/" target="_blank">
                         <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/13/mysql-save-emoji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="mysql 存储emoji 表情">
+                        
+                        <span class="card-title">mysql 存储emoji 表情</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            mysql 存储emoji 表情
+近期排查bug发现，某个客户的订单一直更新不到系统中; 于是发现客户的订单号竟然有表情(🐝)…..真的奇葩;后续发现mysql存储emoji表情需要unicode字符集, 所以尝试修改相关字符集, 得以解
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Mysql/" class="post-category" target="_blank">
+                                    Mysql
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mysql/" target="_blank">
+                        <span class="chip bg-color">Mysql</span>
                     </a>
                     
                 </div>
