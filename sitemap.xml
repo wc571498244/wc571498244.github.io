@@ -37,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/07/21/01k8s/</loc>
-    
-    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/07/26/02k8s/</loc>
-    
-    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
+    <loc>https://wc571498244.github.io/2021/09/14/homebrew/</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
@@ -65,42 +51,21 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
+    <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
+    <loc>https://wc571498244.github.io/2021/07/26/02k8s/</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</loc>
-    
-    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/09/14/homebrew/</loc>
-    
-    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/</loc>
-    
-    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
+    <loc>https://wc571498244.github.io/2021/07/21/01k8s/</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
@@ -128,7 +93,35 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/about/index.html</loc>
+    <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
+    
+    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
+    
+    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/</loc>
+    
+    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
+    
+    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
@@ -142,7 +135,7 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/categories/index.html</loc>
+    <loc>https://wc571498244.github.io/about/index.html</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
@@ -150,6 +143,13 @@
   
   <url>
     <loc>https://wc571498244.github.io/contact/index.html</loc>
+    
+    <lastmod>2021-10-06T11:20:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wc571498244.github.io/categories/index.html</loc>
     
     <lastmod>2021-10-06T11:20:04.000Z</lastmod>
     
