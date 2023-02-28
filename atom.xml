@@ -121,6 +121,58 @@
   </entry>
   
   <entry>
+    <title>pod假死</title>
+    <link href="https://wc571498244.github.io/2021/10/08/pod-jia-si/"/>
+    <id>https://wc571498244.github.io/2021/10/08/pod-jia-si/</id>
+    <published>2021-10-08T09:24:00.000Z</published>
+    <updated>2023-02-28T12:50:50.745Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;K8S-pod假死处理方案&quot;&gt;&lt;a href=&quot;#K8S-pod假死处理方案&quot; class=&quot;headerlink&quot; title=&quot;K8S pod假死处理方案&quot;&gt;&lt;/a&gt;K8S pod假死处理方案&lt;/h2&gt;&lt;p&gt;近期在调研新技术方案,
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSGI和AWSGI</title>
+    <link href="https://wc571498244.github.io/2021/09/27/wsgi-he-awsgi/"/>
+    <id>https://wc571498244.github.io/2021/09/27/wsgi-he-awsgi/</id>
+    <published>2021-09-26T16:03:50.000Z</published>
+    <updated>2023-02-28T12:50:23.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;什么是WSGI？&quot;&gt;&lt;a href=&quot;#什么是WSGI？&quot; class=&quot;headerlink&quot; title=&quot;什么是WSGI？&quot;&gt;&lt;/a&gt;什么是WSGI？&lt;/h1&gt;&lt;p&gt;WSGI全称Web Server Gateway
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://wc571498244.github.io/categories/python/"/>
+    
+    
+      <category term="web" scheme="https://wc571498244.github.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HomeBrew 安装</title>
     <link href="https://wc571498244.github.io/2021/09/14/homebrew/"/>
     <id>https://wc571498244.github.io/2021/09/14/homebrew/</id>

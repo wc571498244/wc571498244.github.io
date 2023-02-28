@@ -4,18 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Docker-compose 安装Redis、Mysql、Kafka、RabbitMq, 博客 Python">
+    <meta name="keywords" content="WSGI和AWSGI, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="Redisdocker-compose.yaml
-version: &#39;3&#39;
-services:
-  redis:
-    restart: always
-    image: redis
-    container_name: redis
-">
+    <meta name="description" content="什么是WSGI？WSGI全称Web Server Gateway Interface(Web服务器网关接口)，这是一个规范（标准）；规定了web server如何与web application交互，application如何处理请求。
+W">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +17,7 @@ services:
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Docker-compose 安装Redis、Mysql、Kafka、RabbitMq | 进步缓慢的CYX</title>
+    <title>WSGI和AWSGI | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +284,13 @@ services:
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Docker-compose 安装Redis、Mysql、Kafka、RabbitMq
+                        WSGI和AWSGI
                     </div>
                 </div>
             </div>
@@ -407,8 +401,8 @@ services:
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/docker-compose/" target="_blank">
-                            <span class="chip bg-color">docker-compose</span>
+                        <a href="/tags/web/" target="_blank">
+                            <span class="chip bg-color">web</span>
                         </a>
                         
                     </div>
@@ -419,8 +413,8 @@ services:
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Docker/" class="post-category" target="_blank">
-                            Docker
+                        <a href="/categories/python/" class="post-category" target="_blank">
+                            python
                         </a>
                         
                     </div>
@@ -431,7 +425,7 @@ services:
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-26
+                    2021-09-27
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -445,7 +439,7 @@ services:
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    337
+                    485
                 </div>
                 
 
@@ -463,137 +457,20 @@ services:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>docker-compose.yaml</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> redis
-    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true </span><span class="token comment" spellcheck="true"># 容器内使用root权限</span>
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./datadir<span class="token punctuation">:</span>/data
-      <span class="token punctuation">-</span> ./conf/redis.conf<span class="token punctuation">:</span>/usr/local/etc/redis/redis.conf
-      <span class="token punctuation">-</span> ./logs<span class="token punctuation">:</span>/logs
-    <span class="token key atrule">command</span><span class="token punctuation">:</span>
-<span class="token comment" spellcheck="true">#      两个写入操作 只是为了解决启动后警告 可以去掉</span>
-      /bin/bash <span class="token punctuation">-</span>c "echo 511 <span class="token punctuation">></span> /proc/sys/net/core/somaxconn
-      &amp;&amp; echo never <span class="token punctuation">></span> /sys/kernel/mm/transparent_hugepage/enabled
-      &amp;&amp; redis<span class="token punctuation">-</span>server /usr/local/etc/redis/redis.conf"
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> 6379<span class="token punctuation">:</span><span class="token number">6379</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>redis.conf</p>
-<pre class="line-numbers language-sh"><code class="language-sh">daemonize no
-pidfile /var/run/redis.pid
-port 6379
-bind 0.0.0.0
-timeout 0
-loglevel verbose
-logfile /logs/redis.log
-databases 16<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>目录结构如下：</p>
-<pre><code>.
-├── conf
-│   └── redis.conf
-├── datadir
-├── docker-compose.yaml
-└── logs</code></pre><h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><p>docker-compose.yaml</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span>5.7.16
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> mysql
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./datadir<span class="token punctuation">:</span>/var/lib/mysql
-      <span class="token punctuation">-</span> ./conf/my.cnf<span class="token punctuation">:</span>/etc/my.cnf
-    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
-      <span class="token key atrule">MYSQL_ROOT_PASSWORD</span><span class="token punctuation">:</span> <span class="token string">"root"</span>
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> 3306<span class="token punctuation">:</span><span class="token number">3306</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>my.cnf</p>
-<pre class="line-numbers language-sh"><code class="language-sh">[mysqld]
-user=mysql
-default-storage-engine=INNODB
-character-set-client-handshake=FALSE
-character-set-server=utf8mb4
-collation-server=utf8mb4_unicode_ci
-init_connect='SET NAMES utf8mb4'
-[client]
-default-character-set=utf8mb4
-[mysql]
-default-character-set=utf8mb4
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>目录结构如下：</p>
-<pre><code>.
-├── conf
-│   └── my.cnf
-├── datadir
-└── docker-compose.yaml</code></pre><h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><p>docker-compose.yaml</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  <span class="token key atrule">zookeeper</span><span class="token punctuation">:</span>
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> zookeeper
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/zookeeper
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./zookeeper/data<span class="token punctuation">:</span>/data
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token string">"2181:2181"</span>
-
-  <span class="token key atrule">kafka</span><span class="token punctuation">:</span>
-    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token string">"9092:9092"</span>
-    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
-      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> localhost
-      <span class="token key atrule">KAFKA_MESSAGE_MAX_BYTES</span><span class="token punctuation">:</span> <span class="token number">2000000</span>
-      <span class="token key atrule">KAFKA_CREATE_TOPICS</span><span class="token punctuation">:</span> <span class="token string">"test:1:1"</span>
-      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zookeeper<span class="token punctuation">:</span><span class="token number">2181</span>
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> ./kafka<span class="token punctuation">:</span>/kafka
-
-  <span class="token key atrule">kafka-manager</span><span class="token punctuation">:</span>
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka<span class="token punctuation">-</span>manager
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> sheepkiller/kafka<span class="token punctuation">-</span>manager
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> 9020<span class="token punctuation">:</span><span class="token number">9000</span>
-    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
-      <span class="token key atrule">ZK_HOSTS</span><span class="token punctuation">:</span> zookeeper<span class="token punctuation">:</span><span class="token number">2181</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> 目录结构如下： </p>
-<pre><code>├── docker-compose.yaml
-├── kafka
-└── zookeeper
-    └── data</code></pre><h3 id="RabbitMq"><a href="#RabbitMq" class="headerlink" title="RabbitMq"></a>RabbitMq</h3><p>docker-compose.yaml</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.2"</span>
-<span class="token key atrule">services</span><span class="token punctuation">:</span>
-  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> rabbitmq<span class="token punctuation">:</span>3<span class="token punctuation">-</span>management<span class="token punctuation">-</span>alpine
-    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> <span class="token string">'rabbitmq'</span>
-    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> 5672<span class="token punctuation">:</span><span class="token number">5672</span>
-        <span class="token punctuation">-</span> 15672<span class="token punctuation">:</span><span class="token number">15672</span>
-    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> ./data/<span class="token punctuation">:</span>/var/lib/rabbitmq/
-        <span class="token punctuation">-</span> ./log/<span class="token punctuation">:</span>/var/log/rabbitmq
-    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> rabbitmq_go_net
-    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> RABBITMQ_DEFAULT_VHOST=my_vhost
-      <span class="token punctuation">-</span> RABBITMQ_DEFAULT_USER=admin
-      <span class="token punctuation">-</span> RABBITMQ_DEFAULT_PASS=admin
-<span class="token key atrule">networks</span><span class="token punctuation">:</span>
-  <span class="token key atrule">rabbitmq_go_net</span><span class="token punctuation">:</span>
-  <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>目录结构如下：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">├── data
-├── docker-compose.yaml
-└── log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h1 id="什么是WSGI？"><a href="#什么是WSGI？" class="headerlink" title="什么是WSGI？"></a>什么是WSGI？</h1><p>WSGI全称Web Server Gateway Interface(Web服务器网关接口)，这是一个规范（标准）；规定了web server如何与web application交互，application如何处理请求。</p>
+<h2 id="WSGI不足"><a href="#WSGI不足" class="headerlink" title="WSGI不足"></a>WSGI不足</h2><ol>
+<li>WSGI应用是单一的、同步的可调用对象（即输入一个请求，返回一个响应）。这个模式无法支持长连接或者Websocket这样的连接（有些WSGI server，比如Gunicorn里是能保持长连接，1-5s，但也仅限于他们的异步模式）。</li>
+<li>即使我们使应用程序可以异步调用，但他也只能处理单路径，它也无法处理一些协议的多个数据传入事件，比如websocket frames（请求多路复用把一个消息分成了多个块，一个连接会有不同路径的消息交错，类似http2/3）。</li>
+</ol>
+<h1 id="ASGI"><a href="#ASGI" class="headerlink" title="ASGI"></a>ASGI</h1><p>ASGI全称Asynchronous  Server Gateway Interface(异步服务器网关接口)，他是构建与WSGI规范之上的，是WSGI的延伸和扩展。<br>ASGI尝试保持在一个简单的应用接口的前提下，提供允许数据能够在任意时候、被任意应用进程发送和接受的抽象。还采用了将ASGI协议转换为python兼容、异步友好的消息集的原则，具体为两部分：一个用于通信的标准化接口，通过实现它来构建服务器，以及一组用于每个web协议的标准消息格式。</p>
+<h1 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h1><ul>
+<li>WSGI和ASGI，都是基于Python设计的网关接口（Gateway Interface，GI）。</li>
+<li>WSGI是基于http协议模式开发的，为同步应用程序提供标准，不支持Websocket。</li>
+<li>ASGI是为异步、同步应用程序提供标准，支持WSGI不支持当前Web开发中的一些新的协议标准。</li>
+<li>ASGI支持原有模式和Websocket的扩展，即ASGI是WSGI的扩展。</li>
+</ul>
+<p>WSGI服务器: uWSGI<br>WSGI框架: Flask1.0、Django3.0之前</p>
+<p>AWSGI服务器: uvicorn<br>AWSGI框架：FastAPI、Django3.0之后、Flask2.0</p>
 
             </div>
             <hr />
@@ -1021,29 +898,75 @@ default-character-set=utf8mb4
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/05/26/liunx-an-zhuang-docker/">
+                <a href="/2021/10/08/pod-jia-si/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Liunx安装docker">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="pod假死">
                         
-                        <span class="card-title">Liunx安装docker</span>
+                        <span class="card-title">pod假死</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用脚本自动安装(快速)Linux 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：获取脚本get-docker.sh
-安装
-# 记得给可执行权限
-chmod u+x get-docker.sh
-sudo 
+                            K8S pod假死处理方案近期在调研新技术方案, 开发和灰度过程中遇到pod假死问题; 总结出两个方案, 可供参考.详细内容: https://jimmysong.io/kubernetes-handbook/guide/configure
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-26
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-08
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Kubernetes/" class="post-category" target="_blank">
+                                    Kubernetes
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kubernetes/" target="_blank">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/14/homebrew/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="HomeBrew 安装">
+                        
+                        <span class="card-title">HomeBrew 安装</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            homebrew(国内飞速安装)homebrew官网推荐的命令在国内巨慢…，不管你是否FQ，都没啥速度的提升
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Home
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1059,59 +982,8 @@ sudo
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/" target="_blank">
-                        <span class="chip bg-color">docker</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/05/16/gunicorn-pei-zhi-xiang-jie/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Gunicorn 配置详解">
-                        
-                        <span class="card-title">Gunicorn 配置详解</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            config-c CONFIG, --config CONFIGGunicorn配置文件路径，路径形式的字符串格式，如：
-gunicorn -c gunicorn.conf main:app
-bind-b ADDRESS, --bind A
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                    Python
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/Mac/" target="_blank">
+                        <span class="chip bg-color">Mac</span>
                     </a>
                     
                 </div>

@@ -104,6 +104,56 @@
     
     
     <entry>
+      <title>pod假死</title>
+      <link href="/2021/10/08/pod-jia-si/"/>
+      <url>/2021/10/08/pod-jia-si/</url>
+      
+        <content type="html"><![CDATA[<h2 id="K8S-pod假死处理方案"><a href="#K8S-pod假死处理方案" class="headerlink" title="K8S pod假死处理方案"></a>K8S pod假死处理方案</h2><p>近期在调研新技术方案, 开发和灰度过程中遇到pod假死问题; 总结出两个方案, 可供参考.<br>详细内容: <a href="https://jimmysong.io/kubernetes-handbook/guide/configure-liveness-readiness-probes.html" target="_blank" rel="noopener">https://jimmysong.io/kubernetes-handbook/guide/configure-liveness-readiness-probes.html</a></p><h3 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h3><p>pod在运行一段时间, 出现pod假死; 假死之后流量还是会正常打入到该pod, 无法处理这部分请求, 体现在API接口上就是大量504超时.</p><h4 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h4><p>添加pod健康检查, 探测方式：exec方式, http探测, tcp探测; 可自行根据服务添加合理方式.<br>示例http探测方式:</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>    <span class="token key atrule">httpGet</span><span class="token punctuation">:</span>        <span class="token key atrule">path</span><span class="token punctuation">:</span> /healthy        <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>    <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">5  </span><span class="token comment" spellcheck="true"># 容器启动 5s 之后开始执行 Liveness 探测</span>    <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">5  </span><span class="token comment" spellcheck="true"># 每 5s 探测一次</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h3><p>kafka消费异常, 某个pod消费能力不足(原因有许多, 比如代码需优化, 消息内容大, DB压力大等…), 导致rebalance, 从而同一个消费者组内的其他pod也rebalance, 数次之后, 出现pod假死, 表现为消息不消费, 观察pod无日志输出.</p><h4 id="处理方法-1"><a href="#处理方法-1" class="headerlink" title="处理方法"></a>处理方法</h4><p>添加生命探测, 与上面差不多.</p><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>    <span class="token key atrule">exec</span><span class="token punctuation">:</span>      <span class="token key atrule">command</span><span class="token punctuation">:</span>    <span class="token punctuation">-</span> /bin/bash    <span class="token punctuation">-</span> probe.sh    <span class="token key atrule">failureThreshold</span><span class="token punctuation">:</span> <span class="token number">3</span>    <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">6</span>    <span class="token key atrule">successThreshold</span><span class="token punctuation">:</span> <span class="token number">1</span>    <span class="token key atrule">timeoutSeconds</span><span class="token punctuation">:</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>probe.sh</p><pre class="line-numbers language-sh"><code class="language-sh">#!/bin/bashoutputfile=./health_checkecho "OK" > ${outputfile}result=$(cat ${outputfile})if [[ "${result}" == "OK" ]]then    # sleep 10s    sleep 1s    rm -rf ${outputfile}    exit 0else    exit 1fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Kubernetes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WSGI和AWSGI</title>
+      <link href="/2021/09/27/wsgi-he-awsgi/"/>
+      <url>/2021/09/27/wsgi-he-awsgi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是WSGI？"><a href="#什么是WSGI？" class="headerlink" title="什么是WSGI？"></a>什么是WSGI？</h1><p>WSGI全称Web Server Gateway Interface(Web服务器网关接口)，这是一个规范（标准）；规定了web server如何与web application交互，application如何处理请求。</p><h2 id="WSGI不足"><a href="#WSGI不足" class="headerlink" title="WSGI不足"></a>WSGI不足</h2><ol><li>WSGI应用是单一的、同步的可调用对象（即输入一个请求，返回一个响应）。这个模式无法支持长连接或者Websocket这样的连接（有些WSGI server，比如Gunicorn里是能保持长连接，1-5s，但也仅限于他们的异步模式）。</li><li>即使我们使应用程序可以异步调用，但他也只能处理单路径，它也无法处理一些协议的多个数据传入事件，比如websocket frames（请求多路复用把一个消息分成了多个块，一个连接会有不同路径的消息交错，类似http2/3）。</li></ol><h1 id="ASGI"><a href="#ASGI" class="headerlink" title="ASGI"></a>ASGI</h1><p>ASGI全称Asynchronous  Server Gateway Interface(异步服务器网关接口)，他是构建与WSGI规范之上的，是WSGI的延伸和扩展。<br>ASGI尝试保持在一个简单的应用接口的前提下，提供允许数据能够在任意时候、被任意应用进程发送和接受的抽象。还采用了将ASGI协议转换为python兼容、异步友好的消息集的原则，具体为两部分：一个用于通信的标准化接口，通过实现它来构建服务器，以及一组用于每个web协议的标准消息格式。</p><h1 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h1><ul><li>WSGI和ASGI，都是基于Python设计的网关接口（Gateway Interface，GI）。</li><li>WSGI是基于http协议模式开发的，为同步应用程序提供标准，不支持Websocket。</li><li>ASGI是为异步、同步应用程序提供标准，支持WSGI不支持当前Web开发中的一些新的协议标准。</li><li>ASGI支持原有模式和Websocket的扩展，即ASGI是WSGI的扩展。</li></ul><p>WSGI服务器: uWSGI<br>WSGI框架: Flask1.0、Django3.0之前</p><p>AWSGI服务器: uvicorn<br>AWSGI框架：FastAPI、Django3.0之后、Flask2.0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HomeBrew 安装</title>
       <link href="/2021/09/14/homebrew/"/>
       <url>/2021/09/14/homebrew/</url>
