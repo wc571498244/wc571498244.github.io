@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wc571498244.github.io/2023/03/13/ji-yi-ci-oom/</loc>
+    <lastmod>2023-03-13</lastmod>
+  </url>  <url>
     <loc>https://wc571498244.github.io/2021/11/26/fastapi-xue-xi-zong-jie/</loc>
     <lastmod>2023-03-08</lastmod>
   </url>  <url>
@@ -19,19 +22,19 @@
     <loc>https://wc571498244.github.io/2021/10/18/supervisor/</loc>
     <lastmod>2021-10-26</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/07/21/01k8s/</loc>
-    <lastmod>2021-10-06</lastmod>
-  </url>  <url>
     <loc>https://wc571498244.github.io/2021/07/26/02k8s/</loc>
     <lastmod>2021-10-06</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
+    <loc>https://wc571498244.github.io/2021/07/21/01k8s/</loc>
+    <lastmod>2021-10-06</lastmod>
+  </url>  <url>
+    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
     <lastmod>2021-10-06</lastmod>
   </url>  <url>
     <loc>https://wc571498244.github.io/2021/09/07/04k8s/</loc>
     <lastmod>2021-10-06</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
+    <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
     <lastmod>2021-10-06</lastmod>
   </url>  <url>
     <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>

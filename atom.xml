@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wc571498244.github.io/"/>
-  <updated>2023-02-26T08:16:31.298Z</updated>
+  <updated>2023-03-13T14:00:34.332Z</updated>
   <id>https://wc571498244.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次OOM</title>
+    <link href="https://wc571498244.github.io/2023/03/13/ji-yi-ci-oom/"/>
+    <id>https://wc571498244.github.io/2023/03/13/ji-yi-ci-oom/</id>
+    <published>2023-03-13T13:30:29.000Z</published>
+    <updated>2023-03-13T14:00:34.332Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;现象&quot;&gt;&lt;a href=&quot;#现象&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="日常" scheme="https://wc571498244.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="BUG" scheme="https://wc571498244.github.io/tags/BUG/"/>
+    
+  </entry>
   
   <entry>
     <title>缓存淘汰算法：LRU、TTL</title>
