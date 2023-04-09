@@ -284,7 +284,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -439,14 +439,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.2k
+                    5.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    25 分
                 </div>
                 
                 
@@ -743,7 +743,146 @@ async def read_items(*, item_id: int = Path(..., alias=&quot;item-id&quot;),
                      q: str):
 
     return {&quot;item_id&quot;: item_id, &quot;q&quot;: q}</code></pre><p>通过将第一个参数设置为 *，使得 item_id 和 q 都必须通过关键字传递，所以此时默认参数在非默认参数之前也是允许的。当然我们也不需要担心 FastAPI 传参的问题，你可以认为它所有的参数都是通过关键字参数的方式传递的。</p>
+<h2 id="六、数据校验"><a href="#六、数据校验" class="headerlink" title="六、数据校验"></a>六、数据校验</h2><h3 id="6-1-类型注释的数据校验方式"><a href="#6-1-类型注释的数据校验方式" class="headerlink" title="6.1 类型注释的数据校验方式"></a>6.1 类型注释的数据校验方式</h3><p>Path(路径参数)/Query(params参数)/Body(json请求体)/Form(form表单请求体)/File(文件)/Cookie(cookie参数)/Header(请求头)</p>
+<p>上述这些 类在用于 类型注释时, 使用方式基本都差不多, 只是在某些方面有一些细微的差别</p>
+<p>6.1.1 公共校验部分</p>
+<p>这里以Query为例</p>
+<pre><code>Query(
+            None,
+            alias=&quot;item-query&quot;,
+            title=&quot;Query string&quot;,
+            description=&quot;Query string for the items to search in the database that have a good match&quot;,
+            min_length=3,
+            max_length=50,
+            regex=&quot;^fixedquery$&quot;,
+            deprecated=True,
+        )
 
+        1.修改额外的原数据:
+            alias - 起别名
+            title/description - 文档描述
+            deprecated - 参数弃用标识
+
+        2.用于校验的参数：    
+            min_length/max_length    长度匹配
+            regex        正则匹配
+
+        3.数值校验:
+            gt/ge/lt/le： 大于/大于等于/小于/小于等于 定义为float类型
+
+        4.设置必填/非必填/默认值
+        Query(...)    - 设置为必填
+         Query(None) - 设置为非必填
+      Query(&quot;test&quot;) - 设置默认值 test
+
+     5.接收列表
+         q: Optional[List[str]] = Query(None) 定义 query参数为必填的list, 即能匹配 xxx_url?q=foo&amp;q=bar ---&gt; q=[&#39;foo&#39;, &#39;bar&#39;]
+
+     6.指定数据接收类型
+         q:  Optional[str] = Query(...)
+      q: str    
+
+      这里支持的数据类型:
+      int/float/str/bool/list/dict/set
+      UUID/datetime.datetime(2008-09-15T15:53:00+05:00)/datetime.date(2008-09-15)
+      datetime.time(14:23:55.003)/datetime.timedelta(时间戳秒数)/bytes/Decimal(框架内可当做float使用)
+
+         支持指定多种数据类型：
+          user_id: Union[int, str]</code></pre><p>举个例子:</p>
+<pre><code>@app.get(&quot;/user&quot;)
+async def check_length(
+        password: str = Query(&quot;satori&quot;, min_length=6, max_length=15, regex=r&quot;^satori&quot;)
+):
+    &quot;&quot;&quot;此时的 password 默认值为 &#39;satori&#39;，并且传递的时候必须要以 &#39;satori&#39; 开头
+       但是值得注意的是 password 后面的是 str，不再是 Optional[str]，因为默认值不是 None 了
+       当然这里即使写成 Optional[str] 也是没有什么影响的
+    &quot;&quot;&quot;
+    return {&quot;password&quot;: password}</code></pre><p>​<br>    @app.get(“/items”)<br>    async def read_items(<br>            a1: str = Query(…),    # … 设置为必填参数<br>            a2: List[str] = Query(…), # 查询参数变成一个列表; 对应于 url后 a=1&amp;a=2的情况<br>            b: List[str] = Query(…)<br>    ):<br>        return {“a1”: a1, “a2”: a2, “b”: b}</p>
+<pre><code>@app.get(&quot;/items&quot;)
+async def read_items(
+        # item1 必须大于 5
+        item1: int = Query(..., gt=5),        # 数值检测
+        # item2 必须小于等于 7
+        item2: int = Query(..., le=7),
+        # item3 必须必须等于 10
+        item3: int = Query(..., ge=10, le=10)
+):
+    return {&quot;item1&quot;: item1, &quot;item2&quot;: item2, &quot;item3&quot;: item3}</code></pre><h4 id="6-1-2-各类型特殊部分"><a href="#6-1-2-各类型特殊部分" class="headerlink" title="6.1.2 各类型特殊部分"></a>6.1.2 各类型特殊部分</h4><p><strong>Path:</strong></p>
+<p>1.路径参数总是必须的, 所以应表示为Path(…), 即使写为了 Path(None), 也还是一个必选参数</p>
+<p><strong>Header：</strong></p>
+<p>1.默认情况下, Header 将把参数名称的字符从下划线 (_) 转换为连字符 (-) 来提取并记录 headers.</p>
+<p>2.设置Header的参数 convert_underscores 为 False, 可以取消上述的 下划线到连字符的自动转换</p>
+<p>3.headers 是大小写不敏感的</p>
+<h4 id="6-1-3-特殊检验类型-Filed"><a href="#6-1-3-特殊检验类型-Filed" class="headerlink" title="6.1.3 特殊检验类型 Filed"></a>6.1.3 特殊检验类型 Filed</h4><p>Filed与BaseModel一样, 由pydantic模块提供</p>
+<p>Filed类型的用法与 Query一致, 唯一的区别就是Filed可以对所有类型的 参数进行参数校验，而不像Query/Body这类参数, 在校验时, 只能获取对应的参数。</p>
+<p>如果有个 username参数即在 params参数中会出现， 在body参数中也会出现, 甚至于在 response 中也可能会出现， 此时使用 Filed进行参数验证就比较合适</p>
+<p>Filed的使用 示例见 6.3</p>
+<h3 id="6-2-变量类型声明的特殊情况"><a href="#6-2-变量类型声明的特殊情况" class="headerlink" title="6.2 变量类型声明的特殊情况"></a>6.2 变量类型声明的特殊情况</h3><h4 id="6-2-1-默认值与声明值可不同"><a href="#6-2-1-默认值与声明值可不同" class="headerlink" title="6.2.1 默认值与声明值可不同"></a>6.2.1 默认值与声明值可不同</h4><pre><code>@app.get(&quot;/user/{user_id}&quot;)
+async def get_user(user_id: str, name: str = &quot;UNKNOWN&quot;, age: int = &quot;哈哈哈&quot;):    # 这里的 age 需要接收一个整型，但是默认值却是一个字符串
+    return {&quot;user_id&quot;: user_id, &quot;name&quot;: name, &quot;age&quot;: age}</code></pre><p>这种情况下传递的 age 依旧需要整型，只不过在不传的时候会使用字符串类型的默认值，所以类型和默认值类型不同的时候也是可以的</p>
+<h4 id="6-2-2-同一个变量指定多个类型"><a href="#6-2-2-同一个变量指定多个类型" class="headerlink" title="6.2.2 同一个变量指定多个类型"></a>6.2.2 同一个变量指定多个类型</h4><pre><code>from typing import Union, Optional
+
+@app.get(&quot;/user/{user_id}&quot;)
+async def get_user(user_id: Union[int, str], name: Optional[str] = None):
+    &quot;&quot;&quot;通过 Union 来声明一个混合类型，int 在前、str 在后。会先按照 int 解析，解析失败再变成 str
+       然后是 name，它表示字符串类型、但默认值为 None（不是字符串），那么应该声明为 Optional[str]&quot;&quot;&quot;
+    return {&quot;user_id&quot;: user_id, &quot;name&quot;: name}</code></pre><h4 id="6-2-3指定数据接收类型"><a href="#6-2-3指定数据接收类型" class="headerlink" title="6.2.3指定数据接收类型"></a>6.2.3指定数据接收类型</h4><p>q: Optional[str] = Query(…)</p>
+<p>q: str</p>
+<p>这里支持的数据类型:</p>
+<p><code>int/float/str/bool/list/dict/set</code></p>
+<p><code>UUID/datetime.datetime(2008-09-15T15:53:00+05:00)/datetime.date(2008-09-15)</code></p>
+<p><code>datetime.time(14:23:55.003)/datetime.timedelta(时间戳秒数)/bytes/Decimal(框架内可当做float使用)</code></p>
+<p>支持指定多种数据类型：</p>
+<p>user_id: Union[int, str]</p>
+<h3 id="6-3-BaseModel校验方式"><a href="#6-3-BaseModel校验方式" class="headerlink" title="6.3 BaseModel校验方式"></a>6.3 BaseModel校验方式</h3><p>这里是用了 Filed做示例, 如果是 Body参数, 使用Body也可，其他的类推~</p>
+<p>示例如下:</p>
+<pre><code>class UserIn(BaseModel):
+    &quot;&quot;&quot;用户信息 请求格式&quot;&quot;&quot;
+    name: str = Field(..., min_length=1, max_length=64)
+    password: str = Field(..., min_length=1, max_length=32)
+    nickname: str = Field(None, max_length=64)
+    phone: str = Field(None, max_length=16, regex=r&#39;^1(3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d{8}$&#39;)    # 正则匹配
+    email: str = Field(None, max_length=32, regex=r&#39;^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$&#39;)
+
+class UserOut(BaseModel):
+    &quot;&quot;&quot;用户信息响应格式&quot;&quot;&quot;
+    id: str = Field(..., max_length=32)
+    name: str = Field(..., min_length=1, max_length=64)
+    nickname: str = Field(None, max_length=64)
+    last_login_address: str = Field(None, max_length=32)
+    last_login_time: datetime.datetime = Field(None)    # 指定datetime类型
+    login_counts: int = Field(0)        # 设置默认值 0
+    phone: str = Field(None, max_length=16)        # 设置为非必须字段
+    email: str = Field(None, max_length=32)
+    enabled: int = Field(1)
+    is_deleted: int = Field(0)</code></pre><h3 id="6-4-HTTP验证-security"><a href="#6-4-HTTP验证-security" class="headerlink" title="6.4 HTTP验证 security"></a>6.4 HTTP验证 security</h3><p>通过输入用户名和密码来确认身份</p>
+<pre><code>from fastapi import FastAPI, Depends
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+import uvicorn
+
+app = FastAPI()
+
+security = HTTPBasic()
+
+@app.get(&quot;/index&quot;)
+async def index(credentials: HTTPBasicCredentials = Depends(security)):
+    return {&quot;username&quot;: credentials.username, &quot;password&quot;: credentials.password}</code></pre><p>当用户访问 /index 的时候，会提示输入用户名和密码：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/a/dvlvakm1DFPw2BLV/3291b0841ffd47239b6543f1f0c3d3771684.png" alt="image"> </p>
+<p>输入完毕之后，信息会保存在 credentials，我们可以获取出来进行验证。</p>
+<h3 id="6-5-其他"><a href="#6-5-其他" class="headerlink" title="6.5 其他"></a>6.5 其他</h3><h4 id="6-5-1-使用枚举"><a href="#6-5-1-使用枚举" class="headerlink" title="6.5.1 使用枚举"></a>6.5.1 使用枚举</h4><p>如果我们希望有一个参数的取值范围只能是固定的 几个值, 可以使用枚举类型</p>
+<p>示例如下:</p>
+<pre><code>from enum import Enum
+
+class Gander(str, Enum):
+    type1 = &quot;boy&quot;        # 这里 type1 只是一个随意变量, 没有任何其他含义
+    type2 = &quot;girl&quot;
+
+@app.get(&quot;/users/{gander_type}&quot;)
+async def get_user(gander_type: Gander):
+    return {&quot;gander_type&quot;: gander_type}    # 这里的 gander_type 就只能是 boy/girl; 否则就会抛错</code></pre><h4 id="6-5-2-bool-类型自动转换"><a href="#6-5-2-bool-类型自动转换" class="headerlink" title="6.5.2 bool 类型自动转换"></a>6.5.2 bool 类型自动转换</h4><p>对于布尔类型，FastAPI 支持自动转换</p>
+<pre><code>@app.get(&quot;/{flag}&quot;)
+async def get_flag(flag: bool):
+    return {&quot;flag&quot;: flag}        # 这里 flag 为 True/true/on/yes/1 均会转换为 True; 0/False/false/off/no 均会转为 False</code></pre>
             </div>
             <hr />
 
@@ -1174,7 +1313,7 @@ async def read_items(*, item_id: int = Path(..., alias=&quot;item-id&quot;),
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="缓存淘汰算法：LRU、TTL">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="缓存淘汰算法：LRU、TTL">
                         
                         <span class="card-title">缓存淘汰算法：LRU、TTL</span>
                     </div>
@@ -1223,7 +1362,7 @@ async def read_items(*, item_id: int = Path(..., alias=&quot;item-id&quot;),
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Supervisor进程管理工具">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Supervisor进程管理工具">
                         
                         <span class="card-title">Supervisor进程管理工具</span>
                     </div>
