@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>进步缓慢的CYX</title>
+  
+  <subtitle>Slow progress CYX</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wc571498244.github.io/"/>
+  <updated>2024-12-27T02:47:37.014Z</updated>
+  <id>https://wc571498244.github.io/</id>
+  
+  <author>
+    <name>OrangeQ</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次OOM</title>
+    <link href="https://wc571498244.github.io/2023/03/13/ji-yi-ci-oom/"/>
+    <id>https://wc571498244.github.io/2023/03/13/ji-yi-ci-oom/</id>
+    <published>2023-03-13T13:30:29.000Z</published>
+    <updated>2024-12-27T02:47:37.014Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;现象&quot;&gt;&lt;a href=&quot;#现象&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="日常" scheme="https://wc571498244.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="BUG" scheme="https://wc571498244.github.io/tags/BUG/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>缓存淘汰算法：LRU、TTL</title>
+    <link href="https://wc571498244.github.io/2022/07/14/chang-yong-huan-cun-tao-tai-suan-fa/"/>
+    <id>https://wc571498244.github.io/2022/07/14/chang-yong-huan-cun-tao-tai-suan-fa/</id>
+    <published>2022-07-14T11:19:30.000Z</published>
+    <updated>2024-12-27T02:47:37.014Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;LRU-Cache&quot;&gt;&lt;a href=&quot;#LRU-Cache&quot; class=&quot;headerlink&quot; title=&quot;LRU Cache&quot;&gt;&lt;/a&gt;LRU Cache&lt;/h3&gt;&lt;p&gt;LRU(Least recently used,
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wc571498244.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Python" scheme="https://wc571498244.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FastApi学习总结</title>
+    <link href="https://wc571498244.github.io/2021/11/26/fastapi-xue-xi-zong-jie/"/>
+    <id>https://wc571498244.github.io/2021/11/26/fastapi-xue-xi-zong-jie/</id>
+    <published>2021-11-26T08:23:04.000Z</published>
+    <updated>2024-12-27T02:47:37.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt; &lt;code&gt;官网学习教程：&lt;/code&gt;&lt;a href=&quot;https://fastapi.tiangolo.com/zh/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
+    
+    
+      <category term="FastAPI" scheme="https://wc571498244.github.io/tags/FastAPI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Supervisor进程管理工具</title>
+    <link href="https://wc571498244.github.io/2021/10/18/supervisor/"/>
+    <id>https://wc571498244.github.io/2021/10/18/supervisor/</id>
+    <published>2021-10-18T03:49:17.000Z</published>
+    <updated>2024-12-27T02:47:37.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、supervisor简介&quot;&gt;&lt;a href=&quot;#一、supervisor简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://wc571498244.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql 存储emoji 表情</title>
+    <link href="https://wc571498244.github.io/2021/10/13/mysql-save-emoji/"/>
+    <id>https://wc571498244.github.io/2021/10/13/mysql-save-emoji/</id>
+    <published>2021-10-13T10:17:44.000Z</published>
+    <updated>2024-12-27T02:47:37.013Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;mysql-存储emoji-表情&quot;&gt;&lt;a href=&quot;#mysql-存储emoji-表情&quot; class=&quot;headerlink&quot; title=&quot;mysql 存储emoji 表情&quot;&gt;&lt;/a&gt;mysql 存储emoji
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="https://wc571498244.github.io/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="https://wc571498244.github.io/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pod假死</title>
+    <link href="https://wc571498244.github.io/2021/10/08/pod-jia-si/"/>
+    <id>https://wc571498244.github.io/2021/10/08/pod-jia-si/</id>
+    <published>2021-10-08T09:24:00.000Z</published>
+    <updated>2024-12-27T02:47:37.013Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;K8S-pod假死处理方案&quot;&gt;&lt;a href=&quot;#K8S-pod假死处理方案&quot; class=&quot;headerlink&quot; title=&quot;K8S pod假死处理方案&quot;&gt;&lt;/a&gt;K8S pod假死处理方案&lt;/h2&gt;&lt;p&gt;近期在调研新技术方案,
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSGI和AWSGI</title>
+    <link href="https://wc571498244.github.io/2021/09/27/wsgi-he-awsgi/"/>
+    <id>https://wc571498244.github.io/2021/09/27/wsgi-he-awsgi/</id>
+    <published>2021-09-26T16:03:50.000Z</published>
+    <updated>2024-12-27T02:47:37.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;什么是WSGI？&quot;&gt;&lt;a href=&quot;#什么是WSGI？&quot; class=&quot;headerlink&quot; title=&quot;什么是WSGI？&quot;&gt;&lt;/a&gt;什么是WSGI？&lt;/h1&gt;&lt;p&gt;WSGI全称Web Server Gateway
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://wc571498244.github.io/categories/python/"/>
+    
+    
+      <category term="web" scheme="https://wc571498244.github.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HomeBrew 安装</title>
+    <link href="https://wc571498244.github.io/2021/09/14/homebrew/"/>
+    <id>https://wc571498244.github.io/2021/09/14/homebrew/</id>
+    <published>2021-09-14T02:45:21.000Z</published>
+    <updated>2024-12-27T02:47:37.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;homebrew-国内飞速安装&quot;&gt;&lt;a href=&quot;#homebrew-国内飞速安装&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://wc571498244.github.io/categories/Linux/"/>
+    
+    
+      <category term="Mac" scheme="https://wc571498244.github.io/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>04.k8s资源管理</title>
+    <link href="https://wc571498244.github.io/2021/09/07/04k8s/"/>
+    <id>https://wc571498244.github.io/2021/09/07/04k8s/</id>
+    <published>2021-09-07T13:30:19.000Z</published>
+    <updated>2024-12-27T02:47:37.010Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;k8s资源管理&quot;&gt;&lt;a href=&quot;#k8s资源管理&quot; class=&quot;headerlink&quot; title=&quot;k8s资源管理&quot;&gt;&lt;/a&gt;k8s资源管理&lt;/h1&gt;&lt;h2 id=&quot;资源管理介绍&quot;&gt;&lt;a href=&quot;#资源管理介绍&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>03. 安装minikube</title>
+    <link href="https://wc571498244.github.io/2021/08/04/03k8s/"/>
+    <id>https://wc571498244.github.io/2021/08/04/03k8s/</id>
+    <published>2021-08-04T12:57:10.000Z</published>
+    <updated>2024-12-27T02:47:37.010Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;安装minikube的前提需要安装kubectl&lt;/p&gt;
+&lt;h3 id=&quot;安装kubectl&quot;&gt;&lt;a href=&quot;#安装kubectl&quot; class=&quot;headerlink&quot; title=&quot;安装kubectl&quot;&gt;&lt;/a&gt;安装kubectl&lt;/h3&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>02. Kubernetes 组件</title>
+    <link href="https://wc571498244.github.io/2021/07/26/02k8s/"/>
+    <id>https://wc571498244.github.io/2021/07/26/02k8s/</id>
+    <published>2021-07-26T07:37:09.000Z</published>
+    <updated>2024-12-27T02:47:37.009Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Kubernetes-组件&quot;&gt;&lt;a href=&quot;#Kubernetes-组件&quot; class=&quot;headerlink&quot; title=&quot;Kubernetes 组件&quot;&gt;&lt;/a&gt;Kubernetes
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>01. Kubernetes是什么?</title>
+    <link href="https://wc571498244.github.io/2021/07/21/01k8s/"/>
+    <id>https://wc571498244.github.io/2021/07/21/01k8s/</id>
+    <published>2021-07-21T13:31:45.000Z</published>
+    <updated>2024-12-27T02:47:37.008Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Kubernetes是什么&quot;&gt;&lt;a href=&quot;#Kubernetes是什么&quot; class=&quot;headerlink&quot; title=&quot;Kubernetes是什么?&quot;&gt;&lt;/a&gt;Kubernetes是什么?&lt;/h2&gt;&lt;p&gt;Kubernetes
+        
+      
+    
+    </summary>
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/categories/Kubernetes/"/>
+    
+    
+      <category term="Kubernetes" scheme="https://wc571498244.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CeontOS 安装oh-my-zsh</title>
+    <link href="https://wc571498244.github.io/2021/06/30/centosinstallohmyzsh/"/>
+    <id>https://wc571498244.github.io/2021/06/30/centosinstallohmyzsh/</id>
+    <published>2021-06-30T14:38:52.000Z</published>
+    <updated>2024-12-27T02:47:37.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;CeontOS-安装oh-my-zsh&quot;&gt;&lt;a href=&quot;#CeontOS-安装oh-my-zsh&quot; class=&quot;headerlink&quot; title=&quot;CeontOS 安装oh-my-zsh&quot;&gt;&lt;/a&gt;CeontOS
+        
+      
+    
+    </summary>
+    
+      <category term="shell" scheme="https://wc571498244.github.io/categories/shell/"/>
+    
+    
+      <category term="Linux" scheme="https://wc571498244.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gitlab修改root密码</title>
+    <link href="https://wc571498244.github.io/2021/06/30/gitlabupdatepwd/"/>
+    <id>https://wc571498244.github.io/2021/06/30/gitlabupdatepwd/</id>
+    <published>2021-06-30T14:37:22.000Z</published>
+    <updated>2024-12-27T02:47:37.013Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;gitlab修改root密码&quot;&gt;&lt;a href=&quot;#gitlab修改root密码&quot; class=&quot;headerlink&quot; title=&quot;gitlab修改root密码&quot;&gt;&lt;/a&gt;gitlab修改root密码&lt;/h3&gt;&lt;pre class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+      <category term="Gitlab" scheme="https://wc571498244.github.io/categories/Gitlab/"/>
+    
+    
+      <category term="Linux" scheme="https://wc571498244.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>踩坑集合</title>
+    <link href="https://wc571498244.github.io/2021/06/29/cai-keng-ji-he/"/>
+    <id>https://wc571498244.github.io/2021/06/29/cai-keng-ji-he/</id>
+    <published>2021-06-28T16:50:48.000Z</published>
+    <updated>2024-12-27T02:47:37.014Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;python文件操作&quot;&gt;&lt;a href=&quot;#python文件操作&quot; class=&quot;headerlink&quot; title=&quot;python文件操作&quot;&gt;&lt;/a&gt;python文件操作&lt;/h3&gt;&lt;pre class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://wc571498244.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="code" scheme="https://wc571498244.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker-compose 安装Gitlab和Gitrunner</title>
+    <link href="https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/"/>
+    <id>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</id>
+    <published>2021-06-11T17:41:48.000Z</published>
+    <updated>2024-12-27T02:47:37.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;docker-compose.yaml&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="https://wc571498244.github.io/categories/Docker/"/>
+    
+    
+      <category term="docker-compose" scheme="https://wc571498244.github.io/tags/docker-compose/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python Pypi Server</title>
+    <link href="https://wc571498244.github.io/2021/06/05/python-pypi-server/"/>
+    <id>https://wc571498244.github.io/2021/06/05/python-pypi-server/</id>
+    <published>2021-06-05T09:28:25.000Z</published>
+    <updated>2024-12-27T02:47:37.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Python-Pypi-Server&quot;&gt;&lt;a href=&quot;#Python-Pypi-Server&quot; class=&quot;headerlink&quot; title=&quot;Python Pypi Server&quot;&gt;&lt;/a&gt;Python Pypi Server&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
+    
+    
+      <category term="Pypi" scheme="https://wc571498244.github.io/tags/Pypi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Liunx安装docker</title>
+    <link href="https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/"/>
+    <id>https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/</id>
+    <published>2021-05-26T12:41:48.000Z</published>
+    <updated>2024-12-27T02:47:37.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;使用脚本自动安装-快速&quot;&gt;&lt;a href=&quot;#使用脚本自动安装-快速&quot; class=&quot;headerlink&quot; title=&quot;使用脚本自动安装(快速)&quot;&gt;&lt;/a&gt;使用脚本自动安装(快速)&lt;/h2&gt;&lt;p&gt;Linux 系统上可以使用这套脚本安装，另外可以通过
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://wc571498244.github.io/categories/Linux/"/>
+    
+    
+      <category term="docker" scheme="https://wc571498244.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker-compose 安装Redis、Mysql、Kafka、RabbitMq</title>
+    <link href="https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/"/>
+    <id>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</id>
+    <published>2021-05-26T08:41:48.000Z</published>
+    <updated>2024-12-27T02:47:37.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h3&gt;&lt;p&gt;docker-compose.yaml&lt;/p&gt;
+&lt;pre class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="https://wc571498244.github.io/categories/Docker/"/>
+    
+    
+      <category term="docker-compose" scheme="https://wc571498244.github.io/tags/docker-compose/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gunicorn 配置详解</title>
+    <link href="https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/"/>
+    <id>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</id>
+    <published>2021-05-16T02:52:48.000Z</published>
+    <updated>2024-12-27T02:47:37.011Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;config&quot;&gt;&lt;a href=&quot;#config&quot; class=&quot;headerlink&quot; title=&quot;config&quot;&gt;&lt;/a&gt;config&lt;/h3&gt;&lt;p&gt;&lt;code&gt;-c CONFIG, --config
+        
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://wc571498244.github.io/tags/Python/"/>
+    
+  </entry>
+  
+</feed>
