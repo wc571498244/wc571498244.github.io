@@ -4,11 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="记一次OOM, 博客 Python">
+    <meta name="keywords" content="webpack逆向, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="现象最近报表解析告警群，频繁出现kafka堆积告警。topic某个partition消费不动，其他partition消费正常，异常奇怪；同时消费者服务其中一个pod先挂掉，引发rebalance，导致其他pod也rebalance，同时挂掉">
+    <meta name="description" content="webpack扣代码参考：https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f
+案例网址：aHR0cHM6Ly93d3cuY29pbmdsYXNzLmNvbS8=
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>记一次OOM | 进步缓慢的CYX</title>
+    <title>webpack逆向 | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +267,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        记一次OOM
+                        webpack逆向
                     </div>
                 </div>
             </div>
@@ -382,8 +384,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/BUG/" target="_blank">
-                            <span class="chip bg-color">BUG</span>
+                        <a href="/tags/爬虫/" target="_blank">
+                            <span class="chip bg-color">爬虫</span>
                         </a>
                         
                     </div>
@@ -394,8 +396,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/日常/" class="post-category" target="_blank">
-                            日常
+                        <a href="/categories/python/" class="post-category" target="_blank">
+                            python
                         </a>
                         
                     </div>
@@ -406,7 +408,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-13
+                    2024-12-27
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -420,14 +422,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    728
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    2 分
                 </div>
                 
                 
@@ -438,75 +440,89 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>最近报表解析告警群，频繁出现kafka堆积告警。<br>topic某个partition消费不动，其他partition消费正常，异常奇怪；同时消费者服务其中一个pod先挂掉，引发rebalance，导致其他pod也rebalance，同时挂掉；重启次数较多。</p>
-<h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><ol>
-<li>本地解析该报表并没有复现该问题</li>
-<li>拿到partition中提交的最近的offset，获取其消息内容；发现该消息内容中的报表数据比其他报表数据大十几倍；从而让运维同事增加pod的内存资源。512m -&gt; 2G，然并软。（由于腾讯云上pod重启只能看到事件，无法实施观察到对应的输出日志；ELK只收集json格式日志）</li>
-<li>联系运维同事，将deployment中启运行命令改为 tial -f 某个文件，先让deployment挂起。再进入到对应的pod，启动消费者；程序运行几分钟之后就被kill掉</li>
+                <h1 id="webpack扣代码"><a href="#webpack扣代码" class="headerlink" title="webpack扣代码"></a>webpack扣代码</h1><p>参考：<a href="https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f" target="_blank" rel="noopener">https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f</a></p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>网址：aHR0cHM6Ly93d3cuY29pbmdsYXNzLmNvbS8=</p>
+<p>接口：aHR0cHM6Ly9jYXBpLmNvaW5nbGFzcy5jb20vYXBpL2V0Zi9mbG93</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/39a24ad3-34f2-4ba9-9cb0-7a1c48106f96.png" alt="image.png"></p>
+<ol>
+<li>先定位接口以及返回的数据</li>
 </ol>
-<h3 id="处理方案"><a href="#处理方案" class="headerlink" title="处理方案"></a>处理方案</h3><h4 id="排查被kill的源头。"><a href="#排查被kill的源头。" class="headerlink" title="排查被kill的源头。"></a>排查被kill的源头。</h4><p>由于使用的python的docker基础镜像，debian系统 /var/log/message（日志）并没有该文件。<br>使用 <code>strace</code> 工具：用于跟踪进程执行时的系统调用和所接收的信号，用户空间进程和内核的交互，比如系统调用、信号传递、进程状态变更等。</p>
-<h4 id="安装-strace"><a href="#安装-strace" class="headerlink" title="安装 strace"></a>安装 strace</h4><pre class="line-numbers language-sh"><code class="language-sh">apt update -y
-
-apt install strace -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>运行 <code>strace -p PID</code> 命令，来追踪进程的系统调用蛛丝马迹。<br>显示结果如下：</p>
-<pre class="line-numbers language-sh"><code class="language-sh">16:02:19.192409 mprotect(0x7f4aa886b000, 552960, PROT_READ|PROT_WRITE) = 0 <0.000014>
-16:02:19.744000 mmap(NULL, 552960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = -1 ENOMEM (Cannot allocate memory) <0.000108>
-16:02:19.755545 mprotect(0x7f4aa88f2000, 552960, PROT_READ|PROT_WRITE) = 0 <0.000019>
-16:02:23.404805 mmap(NULL, 552960, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <ptrace(SYSCALL):No such process>
-16:02:25.325272 +++ killed by SIGKILL +++
-[1]+ Killed python will_be_killed.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="KILLED信号对照表"><a href="#KILLED信号对照表" class="headerlink" title="KILLED信号对照表"></a>KILLED信号对照表</h4><pre><code>信号 　　　值 处理动作 发出信号的原因 
----------------------------------------------------------------------- 
-SIGHUP　　1 　　A　　 终端挂起或者控制进程终止 
-SIGINT 　　2 　　A 　　键盘中断（如break键被按下） 
-SIGQUIT 　 3 　　C 　　键盘的退出键被按下 
-SIGILL 　　 4 　　C 　　非法指令 
-SIGABRT 　6 　　C 　　由abort(3)发出的退出指令 
-SIGFPE 　  8 　　C 　　浮点异常 
-SIGKILL 　9 　　AEF　　Kill信号 
-SIGSEGV   11 　　C　　无效的内存引用 
-SIGPIPE 　13 　　A　　管道破裂: 写一个没有读端口的管道 
-SIGALRM 14 　　 A　　由alarm(2)发出的信号 
-SIGTERM 15 　　 A　　终止信号 
-SIGUSR1  30,10,16 A 　用户自定义信号1 
-SIGUSR2  31,12,17 A 　用户自定义信号2 
-SIGCHLD  20,17,18 B    子进程结束信号 
-SIGCONT  19,18,25       进程继续（曾被停止的进程） 
-SIGSTOP  17,19,23 DEF 终止进程 
-SIGTSTP  18,20,24 D 控制终端（tty）上按下停止键 
-SIGTTIN   21,21,26 D 后台进程企图从控制终端读 
-SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结果可以看出该程序是被强制KILL了。</p>
-<p>debian系统中，可以通过dmesg查看：<br><code>dmesg －T | grep -E -i -B100 &#39;killed process&#39;</code></p>
-<p>输出结果：</p>
-<pre><code>[月 12日 24 16:02:24 2022] [ pid ] uid tgid total_vm rss nr_ptes swapents oom_score_adj name
-[月 12日 24 16:02:24 2022] [ 172] 0 172 10553 722 23 1375 0 systemd-journal
-[月 12日 24 16:02:24 2022] [ 181] 0 181 10201 398 22 134 -1000 systemd-udevd
-[月 12日 24 16:02:24 2022] [ 518] 0 518 8738 361 21 70 0 cron
-[月 12日 24 16:02:24 2022] [ 519] 0 519 4756 314 13 45 0 atd
-[月 12日 24 16:02:24 2022] [ 520] 0 520 13795 412 31 143 -1000 sshd
-[月 12日 24 16:02:24 2022] [ 525] 0 525 4964 161 14 65 0 systemd-logind
-[月 12日 24 16:02:24 2022] [ 536] 105 536 10531 172 26 98 -900 dbus-daemon
-[月 12日 24 16:02:24 2022] [ 580] 0 580 1064 362 8 34 0 acpid
-[月 12日 24 16:02:24 2022] [ 602] 0 602 4926 373 13 37 0 agetty
-[月 12日 24 16:02:24 2022] [ 605] 0 605 4881 373 14 37 0 agetty
-[月 12日 24 16:02:24 2022] [ 643] 108 643 8346 283 22 134 0 ntpd
-[月 12日 24 16:02:24 2022] [ 889] 104 889 12794 369 26 158 0 exim4
-[月 12日 24 16:02:24 2022] [11640] 0 11640 4188 1118 15 0 0 atop
-[月 12日 24 16:02:24 2022] [29370] 0 29370 14434 420 30 177 0 sshd
-[月 12日 24 16:02:24 2022] [29372] 3010 29372 14434 189 29 147 0 sshd
-[月 12日 24 16:02:24 2022] [29373] 3010 29373 7813 491 20 587 0 bash
-[月 12日 24 16:02:24 2022] [30731] 0 30731 14434 429 30 177 0 sshd
-[月 12日 24 16:02:24 2022] [30733] 3010 30733 14434 328 29 154 0 sshd
-[月 12日 24 16:02:24 2022] [30734] 3010 30734 7810 432 19 606 0 bash
-[月 12日 24 16:02:24 2022] [30746] 3010 30746 13967 408 30 102 0 su
-[月 12日 24 16:02:24 2022] [30747] 0 30747 7389 422 19 194 0 bash
-[月 12日 24 16:02:24 2022] [31688] 0 31688 13967 408 31 101 0 su
-[月 12日 24 16:02:24 2022] [31689] 3010 31689 7808 482 19 566 0 bash
-[月 12日 24 16:02:24 2022] [32128] 3010 32128 7761 445 19 32 0 top
-[月 12日 24 16:02:24 2022] [32132] 3010 32132 2357921 1868878 4581 467803 0 python
-[月 12日 24 16:02:24 2022] [32133] 3010 32133 1255 152 7 57 0 strace
-[月 12日 24 16:02:24 2022] Out of memory: Kill process 32132 (python) score 957 or sacrifice child
-[月 12日 24 16:02:24 2022] Killed process 32132 (python) total-vm:9431684kB, anon-rss:7473936kB, file-rss:1576kB</code></pre><p>结果很明显OOM了。简单粗暴：直接加内存即可；但后续需找出好内存的代码段，进行优化。</p>
+<p>接口上面已给出，响应数据一看就有加密。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/052f6ff1-eece-4679-9d19-f09eaa2197c8.png" alt="image.png"></p>
+<ol start="2">
+<li>使用XHR断点进行debugger</li>
+</ol>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/71d5c3eb-2d51-42c5-a76f-97c1afd95ee6.png" alt="image.png"></p>
+<p>一步一步调试，找到解密的关键代码</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/6460a5f6-c7fd-4e57-8864-eb1dd47bc7ce.png" alt="image.png"></p>
+<ol start="3">
+<li>webpack打包</li>
+</ol>
+<p>通过debugger调试，把这个解密的js拉到开头，可以看出典型的webpack打包</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/ca78e79f-e7f9-4c80-94ff-1628641ffa8f.png" alt="image.png"></p>
+<p>跟进到eZ里面去</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/b57d05ba-45ba-43fb-abbf-152cf8c0c88a.png" alt="image.png"></p>
+<ol start="4">
+<li>找到webpack加载器</li>
+</ol>
+<p>这里需要跟进到加载器，将加载器扣出来。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/32c2a803-147b-453d-9f44-5bd96d36f136.png" alt="image.png"></p>
+<p>根据堆栈信息，可以找到加载器的入口</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/58e32640-051b-49d3-848e-37da1fa54e86.png" alt="image.png"></p>
+<p>将加载器复制出来，保存为本地js</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/11b01226-b678-4297-8944-0a4352e2d012.png" alt="image.png"></p>
+<ol start="5">
+<li>调试webpack，扣对应使用的js文件，补环境。</li>
+</ol>
+<p>新建load.js, 将加载器全部复制出来</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/673b5c8e-cbd8-4b19-89a6-6052a750720e.png" alt="image.png"></p>
+<p>通过加载器代码可发现h为加载器函数，使用全局变量导出 加载器函数。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/ca8f4045-fce1-4d39-bd1a-2ce881131a63.png" alt="image.png"></p>
+<p>调试, 发现报错</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/485128a9-dc2a-4f80-b3be-f156a7e1b6f6.png" alt="image.png"></p>
+<p>打断点到self这里，看下是什么。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/3e3eb1f1-5305-4c71-88f1-6eb5db894952.png" alt="image.png"></p>
+<p>这里可发现self就是window。</p>
+<p>直接补环境即可。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/bd2791bf-53d7-496b-ba8e-81e41af6ae2b.png" alt="image.png"></p>
+<p>继续执行，发行正常运行。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/89960f16-4e75-42ad-868d-86a0f93d7aa4.png" alt="image.png"></p>
+<p>接下来定位到解密的js，看到上面的 解密的关键代码 那块的图；找到对应的js文件和执行解密的代码块，看是使用的那个模块。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/094e0ce1-01be-4b64-b23e-690fcecd3f1b.png" alt="image.png"></p>
+<p>定位到解密的关键代码块，往上找加载了什么模块。</p>
+<p>我这里将这个js全部复制到vscode里面，通过关键字搜索，定位到了解密代码块，vscode也有提示这个代码块是属于那个模块的。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/dd9c3803-58c6-4599-9236-66141a96b642.png" alt="image.png"></p>
+<p>可以看出来是2214模块</p>
+<p>再使用加载器，调试下这个模块。</p>
+<p>window.my_load(2214)</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/03009470-e513-4c32-8752-bc40aea0311f.png" alt="image.png"></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/c7da9e71-c08b-4aba-a352-8c1f723f389e.png" alt="image.png"></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/4c947fc2-51cd-4de2-928b-cd94b737faeb.png" alt="image.png"></p>
+<p>通过输出结果，发现2214这个模块没有加载进来。</p>
+<p>好，刚才我们已经定位到这个js了，直接全扣出来。</p>
+<p>新建个文件 wp_model.js, 将那个js全部复制到文件中<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/70ff3b1c-c591-4ac7-8266-512f853f7beb.png" alt="image.png"></p>
+<p>再将该js导入到load.js里面，再次执行。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/4a746d69-e5bb-48a9-8882-33032ddb048e.png" alt="image.png"></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/f0192eff-86e3-43c7-99d0-4b2d8b41c107.png" alt="image.png"></p>
+<p>好，发现还缺少另一个模块 67294。</p>
+<p>直接通过开发者工具搜索，67294:，找到对应的模块加载js，将其扣入wp_model.js中，再次执行load.js直到把所有使用到的模块补全。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/bdc5d5d8-2fa3-4094-80a9-e70aad16f8ec.png" alt="image.png"></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/1115e733-d6df-4d48-9297-eca1a14bee3b.png" alt="image.png"></p>
+<p>这个案例用到了这两个模块（其实我们扣多了，有更简化的方案，这里不赘述）；</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/eaf72524-c0f8-4a0e-a8b9-bb7d879a7a7a.png" alt="image.png"></p>
+<p>直到输出没有报错，表示已经完成🎉。</p>
+<ol start="6">
+<li>使用全局变量导出解密函数<br>前面我们已经找到了解密关键代码块对应的function，这里直接用全局变量给他导出。</li>
+</ol>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/49e00760-5ba4-44ff-88eb-202939d42c9b.png" alt="image.png"></p>
+<p>也就是这个function。</p>
+<p>找到我们wp_model.js中对应的位置，使用window全局变量挂到自定义一个变量上去。即可使用。</p>
+<p>比如window.my_decrypt = function(t) ….</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/be7a7203-a0c3-41bc-9c4d-d8d750c0177e.png" alt="image.png"></p>
+<p>这里可以看到需要传入t参数，t参数怎么来呢？直接在浏览器上debugger到这里，复制t 这个obj就行。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/70ea8b29-bbe2-417a-ae99-67d74e7e035a.png" alt="image.png"></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/6ffe602d-1d5b-4c45-aeac-4c4ffe8b6761.png" alt="image.png"></p>
+<p>至此恭喜你完成解密。🎉</p>
 
             </div>
             <hr />
@@ -668,9 +684,10 @@ SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/12/27/webpack-ni-xiang/">
                     <div class="card-image">
@@ -690,9 +707,9 @@ SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2024-12-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-12-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -705,6 +722,7 @@ SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -723,31 +741,31 @@ SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/14/chang-yong-huan-cun-tao-tai-suan-fa/">
+                <a href="/2023/03/13/ji-yi-ci-oom/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="缓存淘汰算法：LRU、TTL">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="记一次OOM">
                         
-                        <span class="card-title">缓存淘汰算法：LRU、TTL</span>
+                        <span class="card-title">记一次OOM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            LRU CacheLRU(Least recently used, 最近最少使用)，其核心思想是：如果一个数据最近一段时间被访问过，那么以后被访问的几率越高，如果一个数据最近一段时间没有被访问过，那么将来被访问的几率越小；当内存超过限制时，
+                            现象最近报表解析告警群，频繁出现kafka堆积告警。topic某个partition消费不动，其他partition消费正常，异常奇怪；同时消费者服务其中一个pod先挂掉，引发rebalance，导致其他pod也rebalance，同时挂掉
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-03-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/日常/" class="post-category" target="_blank">
+                                    日常
                                 </a>
                             
                             
@@ -757,8 +775,8 @@ SIGTTOU 22,22,27 D 后台进程企图从控制终端写 </code></pre><p>从结�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/BUG/" target="_blank">
+                        <span class="chip bg-color">BUG</span>
                     </a>
                     
                 </div>

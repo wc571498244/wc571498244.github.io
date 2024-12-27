@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wc571498244.github.io/"/>
-  <updated>2024-12-27T02:47:37.014Z</updated>
+  <updated>2024-12-27T03:17:10.263Z</updated>
   <id>https://wc571498244.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack逆向</title>
+    <link href="https://wc571498244.github.io/2024/12/27/webpack-ni-xiang/"/>
+    <id>https://wc571498244.github.io/2024/12/27/webpack-ni-xiang/</id>
+    <published>2024-12-27T03:16:21.000Z</published>
+    <updated>2024-12-27T03:17:10.263Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;webpack扣代码&quot;&gt;&lt;a href=&quot;#webpack扣代码&quot; class=&quot;headerlink&quot; title=&quot;webpack扣代码&quot;&gt;&lt;/a&gt;webpack扣代码&lt;/h1&gt;&lt;p&gt;参考：&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://wc571498244.github.io/categories/python/"/>
+    
+    
+      <category term="爬虫" scheme="https://wc571498244.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次OOM</title>
@@ -512,32 +538,6 @@
     
     
       <category term="docker-compose" scheme="https://wc571498244.github.io/tags/docker-compose/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gunicorn 配置详解</title>
-    <link href="https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/"/>
-    <id>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</id>
-    <published>2021-05-16T02:52:48.000Z</published>
-    <updated>2024-12-27T02:47:37.011Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;config&quot;&gt;&lt;a href=&quot;#config&quot; class=&quot;headerlink&quot; title=&quot;config&quot;&gt;&lt;/a&gt;config&lt;/h3&gt;&lt;p&gt;&lt;code&gt;-c CONFIG, --config
-        
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="https://wc571498244.github.io/categories/Python/"/>
-    
-    
-      <category term="Python" scheme="https://wc571498244.github.io/tags/Python/"/>
     
   </entry>
   

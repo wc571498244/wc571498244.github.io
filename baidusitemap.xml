@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wc571498244.github.io/2024/12/27/webpack-ni-xiang/</loc>
+    <lastmod>2024-12-27</lastmod>
+  </url>  <url>
     <loc>https://wc571498244.github.io/2022/07/14/chang-yong-huan-cun-tao-tai-suan-fa/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
@@ -22,9 +25,6 @@
     <loc>https://wc571498244.github.io/2021/05/26/liunx-an-zhuang-docker/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
-    <lastmod>2024-12-27</lastmod>
-  </url>  <url>
     <loc>https://wc571498244.github.io/2021/10/18/supervisor/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
@@ -34,19 +34,22 @@
     <loc>https://wc571498244.github.io/2021/06/30/centosinstallohmyzsh/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
+    <loc>https://wc571498244.github.io/2021/06/05/python-pypi-server/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/11/26/fastapi-xue-xi-zong-jie/</loc>
+    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
     <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
-    <loc>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</loc>
+    <loc>https://wc571498244.github.io/2021/11/26/fastapi-xue-xi-zong-jie/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
     <loc>https://wc571498244.github.io/2021/09/14/homebrew/</loc>
+    <lastmod>2024-12-27</lastmod>
+  </url>  <url>
+    <loc>https://wc571498244.github.io/2021/05/16/gunicorn-pei-zhi-xiang-jie/</loc>
     <lastmod>2024-12-27</lastmod>
   </url>  <url>
     <loc>https://wc571498244.github.io/2021/08/04/03k8s/</loc>
