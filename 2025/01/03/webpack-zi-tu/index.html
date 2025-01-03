@@ -4,13 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="webpack逆向, 博客 Python">
+    <meta name="keywords" content="webpack自吐, 博客 Python">
     <meta name="baidu-site-verification" content="code-9mfL0js8FS">
     <!-- <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48" /> -->
     <!-- <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7" /> -->
-    <meta name="description" content="webpack扣代码参考：https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f
-案例网址：aHR0cHM6Ly93d3cuY29pbmdsYXNzLmNvbS8=
-">
+    <meta name="description" content="webpack自吐示例网站：aHR0cHM6Ly9zcGEyLnNjcmFwZS5jZW50ZXIv
+示例接口：aHR0cHM6Ly9zcGEyLnNjcmFwZS5jZW50ZXIvYXBpL21vdmllLw==
+token值js动态生">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>webpack逆向 | 进步缓慢的CYX</title>
+    <title>webpack自吐 | 进步缓慢的CYX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +267,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        webpack逆向
+                        webpack自吐
                     </div>
                 </div>
             </div>
@@ -408,7 +408,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-12-27
+                    2025-01-03
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -422,14 +422,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    728
+                    382
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
                 
@@ -440,89 +440,40 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="webpack扣代码"><a href="#webpack扣代码" class="headerlink" title="webpack扣代码"></a>webpack扣代码</h1><p>参考：<a href="https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f" target="_blank" rel="noopener">https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f</a></p>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>网址：aHR0cHM6Ly93d3cuY29pbmdsYXNzLmNvbS8=</p>
-<p>接口：aHR0cHM6Ly9jYXBpLmNvaW5nbGFzcy5jb20vYXBpL2V0Zi9mbG93</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/39a24ad3-34f2-4ba9-9cb0-7a1c48106f96.png" alt="image.png"></p>
-<ol>
-<li>先定位接口以及返回的数据</li>
-</ol>
-<p>接口上面已给出，响应数据一看就有加密。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/052f6ff1-eece-4679-9d19-f09eaa2197c8.png" alt="image.png"></p>
-<ol start="2">
-<li>使用XHR断点进行debugger</li>
-</ol>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/71d5c3eb-2d51-42c5-a76f-97c1afd95ee6.png" alt="image.png"></p>
-<p>一步一步调试，找到解密的关键代码</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/6460a5f6-c7fd-4e57-8864-eb1dd47bc7ce.png" alt="image.png"></p>
-<ol start="3">
-<li>webpack打包</li>
-</ol>
-<p>通过debugger调试，把这个解密的js拉到开头，可以看出典型的webpack打包</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/ca78e79f-e7f9-4c80-94ff-1628641ffa8f.png" alt="image.png"></p>
-<p>跟进到eZ里面去</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/b57d05ba-45ba-43fb-abbf-152cf8c0c88a.png" alt="image.png"></p>
-<ol start="4">
-<li>找到webpack加载器</li>
-</ol>
-<p>这里需要跟进到加载器，将加载器扣出来。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/32c2a803-147b-453d-9f44-5bd96d36f136.png" alt="image.png"></p>
-<p>根据堆栈信息，可以找到加载器的入口</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/58e32640-051b-49d3-848e-37da1fa54e86.png" alt="image.png"></p>
-<p>将加载器复制出来，保存为本地js</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/11b01226-b678-4297-8944-0a4352e2d012.png" alt="image.png"></p>
-<ol start="5">
-<li>调试webpack，扣对应使用的js文件，补环境。</li>
-</ol>
-<p>新建load.js, 将加载器全部复制出来</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/673b5c8e-cbd8-4b19-89a6-6052a750720e.png" alt="image.png"></p>
-<p>通过加载器代码可发现h为加载器函数，使用全局变量导出 加载器函数。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/ca8f4045-fce1-4d39-bd1a-2ce881131a63.png" alt="image.png"></p>
-<p>调试, 发现报错</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/485128a9-dc2a-4f80-b3be-f156a7e1b6f6.png" alt="image.png"></p>
-<p>打断点到self这里，看下是什么。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/3e3eb1f1-5305-4c71-88f1-6eb5db894952.png" alt="image.png"></p>
-<p>这里可发现self就是window。</p>
-<p>直接补环境即可。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/bd2791bf-53d7-496b-ba8e-81e41af6ae2b.png" alt="image.png"></p>
-<p>继续执行，发行正常运行。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/89960f16-4e75-42ad-868d-86a0f93d7aa4.png" alt="image.png"></p>
-<p>接下来定位到解密的js，看到上面的 解密的关键代码 那块的图；找到对应的js文件和执行解密的代码块，看是使用的那个模块。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/094e0ce1-01be-4b64-b23e-690fcecd3f1b.png" alt="image.png"></p>
-<p>定位到解密的关键代码块，往上找加载了什么模块。</p>
-<p>我这里将这个js全部复制到vscode里面，通过关键字搜索，定位到了解密代码块，vscode也有提示这个代码块是属于那个模块的。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/dd9c3803-58c6-4599-9236-66141a96b642.png" alt="image.png"></p>
-<p>可以看出来是2214模块</p>
-<p>再使用加载器，调试下这个模块。</p>
-<p>window.my_load(2214)</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/03009470-e513-4c32-8752-bc40aea0311f.png" alt="image.png"></p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/c7da9e71-c08b-4aba-a352-8c1f723f389e.png" alt="image.png"></p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/4c947fc2-51cd-4de2-928b-cd94b737faeb.png" alt="image.png"></p>
-<p>通过输出结果，发现2214这个模块没有加载进来。</p>
-<p>好，刚才我们已经定位到这个js了，直接全扣出来。</p>
-<p>新建个文件 wp_model.js, 将那个js全部复制到文件中<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/70ff3b1c-c591-4ac7-8266-512f853f7beb.png" alt="image.png"></p>
-<p>再将该js导入到load.js里面，再次执行。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/4a746d69-e5bb-48a9-8882-33032ddb048e.png" alt="image.png"></p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/f0192eff-86e3-43c7-99d0-4b2d8b41c107.png" alt="image.png"></p>
-<p>好，发现还缺少另一个模块 67294。</p>
-<p>直接通过开发者工具搜索，67294:，找到对应的模块加载js，将其扣入wp_model.js中，再次执行load.js直到把所有使用到的模块补全。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/bdc5d5d8-2fa3-4094-80a9-e70aad16f8ec.png" alt="image.png"></p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/1115e733-d6df-4d48-9297-eca1a14bee3b.png" alt="image.png"></p>
-<p>这个案例用到了这两个模块（其实我们扣多了，有更简化的方案，这里不赘述）；</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/eaf72524-c0f8-4a0e-a8b9-bb7d879a7a7a.png" alt="image.png"></p>
-<p>直到输出没有报错，表示已经完成🎉。</p>
-<ol start="6">
-<li>使用全局变量导出解密函数<br>前面我们已经找到了解密关键代码块对应的function，这里直接用全局变量给他导出。</li>
-</ol>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/49e00760-5ba4-44ff-88eb-202939d42c9b.png" alt="image.png"></p>
-<p>也就是这个function。</p>
-<p>找到我们wp_model.js中对应的位置，使用window全局变量挂到自定义一个变量上去。即可使用。</p>
-<p>比如window.my_decrypt = function(t) ….</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/be7a7203-a0c3-41bc-9c4d-d8d750c0177e.png" alt="image.png"></p>
-<p>这里可以看到需要传入t参数，t参数怎么来呢？直接在浏览器上debugger到这里，复制t 这个obj就行。</p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/70ea8b29-bbe2-417a-ae99-67d74e7e035a.png" alt="image.png"></p>
-<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/8K4nyR1P5pWYqLbj/img/6ffe602d-1d5b-4c45-aeac-4c4ffe8b6761.png" alt="image.png"></p>
-<p>至此恭喜你完成解密。🎉</p>
+                <h1 id="webpack自吐"><a href="#webpack自吐" class="headerlink" title="webpack自吐"></a>webpack自吐</h1><p>示例网站：aHR0cHM6Ly9zcGEyLnNjcmFwZS5jZW50ZXIv</p>
+<p>示例接口：aHR0cHM6Ly9zcGEyLnNjcmFwZS5jZW50ZXIvYXBpL21vdmllLw==</p>
+<p>token值js动态生成<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/aa7e9062-d6a5-41f7-8a59-1d4a4fab75a1.png" alt="image.png"></p>
+<p>根据接口的堆栈信息可定位到token生成代码</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/abca510c-9627-44ef-a786-96c4e1b687f0.png" alt="image.png"></p>
+<p>进入到 Object(i[“a”]) 中，里面代码非常简单明了；直接扣算法最简单（代码如下）。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> crypto <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'crypto-js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> t <span class="token operator">=</span> <span class="token string">'1735870406'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 时间戳</span>
+<span class="token keyword">var</span> o <span class="token operator">=</span> crypto<span class="token punctuation">.</span><span class="token function">SHA1</span><span class="token punctuation">(</span><span class="token string">'/api/movie,20,1735870406'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>enc<span class="token punctuation">.</span>Hex<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// url的path,offset,时间戳</span>
+
+<span class="token keyword">var</span> c <span class="token operator">=</span> crypto<span class="token punctuation">.</span>enc<span class="token punctuation">.</span>Base64<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>crypto<span class="token punctuation">.</span>enc<span class="token punctuation">.</span>Utf8<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">[</span>o<span class="token punctuation">,</span> t<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/d6d34917-7b8f-40a1-a666-14f0760d7d0a.png" alt="image.png"></p>
+<p>这里我们学习webpack自吐，因为token生成用到了n变量，而n在上面可以看到是r(‘3452’)生成的（webpack），断点到var n = r(“3452”); 刷新页面再根据堆栈信息定位到webpack加载器，从而把加载器抠出来。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/d631e730-cb65-4e78-969c-3b52fda1ae7f.png" alt="image.png"></p>
+<p>定位到加载器，将app.e9fbf43f.js的代码扣出来，放在本地执行，解决完window的问题运行不报错即可。</p>
+<p>接下来在加载器中 exports 后下个断点，重新刷新页面。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/2a49c881-3ca0-4f8c-8f52-65b9edfd967b.png" alt="image.png"></p>
+<p>再将自吐代码放入控制台执行，代码如下：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>c <span class="token operator">=</span> c<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// c 是加载器。 上面可以识别出来</span>
+window<span class="token punctuation">.</span>res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>r<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        window<span class="token punctuation">.</span>res <span class="token operator">=</span> window<span class="token punctuation">.</span>res <span class="token operator">+</span> <span class="token template-string"><span class="token string">`"</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>r<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"`</span></span> <span class="token operator">+</span> <span class="token string">":"</span><span class="token operator">+</span><span class="token punctuation">(</span>e<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">","</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> window<span class="token punctuation">.</span><span class="token function">c</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行后，跳到下个断点（也就是在执行var n = r(“3452”); 之前）；将window.flag改为ture（按需获取）。</p>
+<p>继续在i函数执行完后下个断点，也就是执行i函数所需要使用到的js文件。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/7fafde9b-f560-4255-878d-99c9b365d647.png" alt="image.png"></p>
+<p>断点跳到i函数执行完，控制台输出window.res, 即可自动吐出3452所需要的js文件了。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2YRpW2oVO7Ma/img/878ed208-9dfc-45ff-bef6-3c4a57ce9871.png" alt="image.png"></p>
 
             </div>
             <hr />
@@ -684,9 +635,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2025/01/03/webpack-zi-tu/">
                     <div class="card-image">
@@ -706,9 +658,9 @@ token值js动态生
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2025-01-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2025-01-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -721,6 +673,7 @@ token值js动态生
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -739,31 +692,33 @@ token值js动态生
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/03/13/ji-yi-ci-oom/">
+                <a href="/2024/12/27/webpack-ni-xiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="记一次OOM">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="webpack逆向">
                         
-                        <span class="card-title">记一次OOM</span>
+                        <span class="card-title">webpack逆向</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            现象最近报表解析告警群，频繁出现kafka堆积告警。topic某个partition消费不动，其他partition消费正常，异常奇怪；同时消费者服务其中一个pod先挂掉，引发rebalance，导致其他pod也rebalance，同时挂掉
+                            webpack扣代码参考：https://app.yinxiang.com/fx/970ae39c-9964-4aae-aa96-7e81fee4ef8f
+案例网址：aHR0cHM6Ly93d3cuY29pbmdsYXNzLmNvbS8=
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-03-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2024-12-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/日常/" class="post-category" target="_blank">
-                                    日常
+                            <a href="/categories/python/" class="post-category" target="_blank">
+                                    python
                                 </a>
                             
                             
@@ -773,8 +728,8 @@ token值js动态生
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/BUG/" target="_blank">
-                        <span class="chip bg-color">BUG</span>
+                    <a href="/tags/爬虫/" target="_blank">
+                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wc571498244.github.io/"/>
-  <updated>2024-12-27T03:17:10.263Z</updated>
+  <updated>2025-01-03T03:15:36.084Z</updated>
   <id>https://wc571498244.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack自吐</title>
+    <link href="https://wc571498244.github.io/2025/01/03/webpack-zi-tu/"/>
+    <id>https://wc571498244.github.io/2025/01/03/webpack-zi-tu/</id>
+    <published>2025-01-03T03:15:04.000Z</published>
+    <updated>2025-01-03T03:15:36.084Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;webpack自吐&quot;&gt;&lt;a href=&quot;#webpack自吐&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://wc571498244.github.io/categories/python/"/>
+    
+    
+      <category term="爬虫" scheme="https://wc571498244.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>webpack逆向</title>
@@ -511,33 +537,6 @@
     
     
       <category term="docker" scheme="https://wc571498244.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker-compose 安装Redis、Mysql、Kafka、RabbitMq</title>
-    <link href="https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/"/>
-    <id>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</id>
-    <published>2021-05-26T08:41:48.000Z</published>
-    <updated>2024-12-27T02:47:37.011Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h3&gt;&lt;p&gt;docker-compose.yaml&lt;/p&gt;
-&lt;pre class=&quot;line-numbers
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="https://wc571498244.github.io/categories/Docker/"/>
-    
-    
-      <category term="docker-compose" scheme="https://wc571498244.github.io/tags/docker-compose/"/>
     
   </entry>
   
