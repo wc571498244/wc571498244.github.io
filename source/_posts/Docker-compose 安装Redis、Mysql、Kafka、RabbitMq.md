@@ -181,7 +181,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin
 networks:
   rabbitmq_go_net:
-  driver: bridge
+    driver: bridge
 
 ```
 
