@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
+    
+    <lastmod>2025-03-07T06:50:23.452Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wc571498244.github.io/2025/01/03/webpack-zi-tu/</loc>
     
     <lastmod>2025-01-03T03:15:36.084Z</lastmod>
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/archives/index.html</loc>
+    <loc>https://wc571498244.github.io/categories/index.html</loc>
     
     <lastmod>2024-12-27T02:47:37.014Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://wc571498244.github.io/categories/index.html</loc>
+    <loc>https://wc571498244.github.io/archives/index.html</loc>
     
     <lastmod>2024-12-27T02:47:37.014Z</lastmod>
     
@@ -150,13 +157,6 @@
   
   <url>
     <loc>https://wc571498244.github.io/2021/06/12/gitlab-he-gitrunner-an-zhuang/</loc>
-    
-    <lastmod>2024-12-27T02:47:37.011Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wc571498244.github.io/2021/05/26/docker-compose-an-zhuang-redis-mysql-kafka-rabbitmq/</loc>
     
     <lastmod>2024-12-27T02:47:37.011Z</lastmod>
     
